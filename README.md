@@ -11,18 +11,22 @@
 
 ## 📖 Descripción
 
-**Cerebro Zero** es un sistema de inteligencia artificial completo construido **desde cero** en un móvil Android usando Termux. No utiliza frameworks como TensorFlow o PyTorch; todo el código está escrito manualmente con Python y NumPy.
+**Cerebro Zero** es un sistema de inteligencia artificial completo construido **desde cero** en un móvil Android usando Termux. Sin frameworks, sin TensorFlow, sin PyTorch. Solo **Python y NumPy**.
 
 El proyecto incluye:
-- Redes neuronales desde cero (MLP, CNN, Transformer)
-- Memoria persistente
-- Reconocimiento de voz
-- API de clima y noticias
-- Interfaz web y chat interactivo
+
+- ✅ Redes neuronales desde cero (MLP, CNN)
+- ✅ Autograd manual
+- ✅ Optimizadores (SGD, Adam)
+- ✅ Memoria persistente
+- ✅ Reconocimiento de voz
+- ✅ APIs de clima y noticias
+- ✅ Interfaz web
+- ✅ Chat interactivo
 
 ---
 
-## 🚀 Logros
+## 🚀 LOGROS
 
 | Logro | Detalle |
 |-------|---------|
@@ -35,7 +39,7 @@ El proyecto incluye:
 
 ---
 
-## 🛠️ Tecnologías
+## 🛠️ TECNOLOGÍAS
 
 | Tecnología | Versión |
 |------------|---------|
@@ -47,7 +51,7 @@ El proyecto incluye:
 
 ---
 
-## 📁 Estructura del Proyecto
+## 📁 ESTRUCTURA DEL PROYECTO
 
 ```
 
@@ -75,7 +79,7 @@ cerebro-zero/
 
 ---
 
-## 🧠 Cerebros Implementados
+## 🧠 CEREBROS IMPLEMENTADOS
 
 | # | Cerebro | Capas | Parámetros | Estado |
 |---|---------|-------|------------|--------|
@@ -94,7 +98,7 @@ cerebro-zero/
 
 ---
 
-## 🛠️ Herramientas Integradas
+## 🛠️ HERRAMIENTAS INTEGRADAS
 
 ### Avanzadas
 - Fecha y hora
@@ -123,7 +127,7 @@ cerebro-zero/
 
 ---
 
-## 🚀 Instalación y Uso
+## 🚀 INSTALACIÓN Y USO
 
 ### 1. Instalar Termux
 ```bash
@@ -161,7 +165,7 @@ Abrir en navegador: http://localhost:5000
 
 ---
 
-🌤️ Configurar APIs Reales
+🌤️ CONFIGURAR APIs REALES
 
 Clima (OpenWeatherMap)
 
@@ -185,7 +189,7 @@ self.api_key = "TU_API_KEY"
 
 ---
 
-📊 Ejemplos de Uso
+📊 EJEMPLOS DE USO
 
 Menú principal
 
@@ -218,7 +222,7 @@ Chat interactivo
 
 ---
 
-📤 Subir a GitHub
+📤 SUBIR A GITHUB
 
 ```bash
 git add .
@@ -228,13 +232,13 @@ git push
 
 ---
 
-📄 Licencia
+📄 LICENCIA
 
 Este proyecto es de código abierto. Puedes usarlo, modificarlo y distribuirlo libremente.
 
 ---
 
-👨‍💻 Autor
+👨‍💻 AUTOR
 
 Manuel (lecodev-26)
 
@@ -243,7 +247,7 @@ Manuel (lecodev-26)
 
 ---
 
-🙏 Agradecimientos
+🙏 AGRADECIMIENTOS
 
 · NumPy por la computación numérica
 · Termux por hacer posible Python en Android
@@ -252,7 +256,7 @@ Manuel (lecodev-26)
 
 ---
 
-🧠 Estado del Proyecto
+🧠 ESTADO DEL PROYECTO
 
 COMPLETO ✅
 
@@ -275,3 +279,4 @@ Interfaz web ✅
 ---
 
 Construido con 🧠 y ☕ desde un Samsung A16
+EOF
