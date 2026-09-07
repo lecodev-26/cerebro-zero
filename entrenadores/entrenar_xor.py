@@ -1,5 +1,7 @@
+import sys
+sys.path.append('..')
 import numpy as np
-from red_neuronal import Cerebro
+from cerebros.red_neuronal import Cerebro
 
 class Entrenador:
     def __init__(self, cerebro, tasa=0.5):
@@ -43,7 +45,7 @@ def entrenar_xor():
         pred = cerebro.predecir(inputs)
         print(f"{inputs} -> {pred[0][0]:.4f}")
     
-    cerebro.guardar("xor_cerebro_mejorado.pkl")
+    cerebro.guardar("../modelos_guardados/xor_cerebro_mejorado.pkl")
     print("\n💾 Cerebro guardado correctamente!")
 
 if __name__ == "__main__":

@@ -1,14 +1,15 @@
+import sys
+sys.path.append('..')
 import numpy as np
-from red_neuronal import Cerebro
+from cerebros.red_neuronal import Cerebro
 
 def ejecutar_profundo():
     print("🧠 CARGANDO CEREBRO GUARDADO (XOR)")
     print("="*40)
     
     try:
-        # Crear cerebro con la misma estructura
         cerebro = Cerebro([2, 8, 1])
-        cerebro.cargar("xor_cerebro_mejorado.pkl")
+        cerebro.cargar("../modelos_guardados/xor_cerebro_mejorado.pkl")
         
         print("\n✅ CEREBRO CARGADO EXITOSAMENTE!")
         print("\n📊 PREDICCIONES:")
