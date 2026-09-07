@@ -1,4 +1,41 @@
-*.npy
-*.pyc
+# Python
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Modelos guardados
+*.pkl
+*.npy
+*.npz
+*.h5
+*.pt
+
+# Datos
+*.csv
+*.gz
+
+# Entorno virtual
+venv/
+env/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Archivos temporales
 *.log
+*.tmp
+.DS_Store
+
+# Modelos grandes
+modelos_guardados/*.pkl
+modelos_guardados/*.npy
