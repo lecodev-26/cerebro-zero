@@ -1,4 +1,5 @@
 import numpy as np
+import pickle
 
 class Cerebro:
     def __init__(self, capas):
@@ -7,7 +8,7 @@ class Cerebro:
         self.sesgos = []
         
         for i in range(len(capas)-1):
-            w = np.random.randn(capas[i], capas[i+1]) * 0.1
+            w = np.random.randn(capas[i], capas[i+1]) * np.sqrt(2.0 / capas[i])
             b = np.zeros((1, capas[i+1]))
             self.pesos.append(w)
             self.sesgos.append(b)
@@ -26,19 +27,23 @@ class Cerebro:
     def predecir(self, entrada):
         return self.forward(entrada)
     
-    def guardar(self, nombre="cerebro.npy"):
-        np.savez(nombre, pesos=self.pesos, sesgos=self.sesgos)
+    def guardar(self, nombre="cerebro.pkl"):
+        with open(nombre, 'wb') as f:
+            pickle.dump({'pesos': self.pesos, 'sesgos': self.sesgos, 'capas': self.capas}, f)
         print(f"🧠 Guardado en {nombre}")
     
-    def cargar(self, nombre="cerebro.npy"):
-        data = np.load(nombre, allow_pickle=True)
+    def cargar(self, nombre="cerebro.pkl"):
+        with open(nombre, 'rb') as f:
+            data = pickle.load(f)
         self.pesos = data['pesos']
         self.sesgos = data['sesgos']
+        self.capas = data['capas']
         print(f"🧠 Cargado desde {nombre}")
-def resumen(self):
-    print(f"🧠 ESTRUCTURA DEL CEREBRO:")
-    print(f"   Capas: {self.capas}")
-    total_params = sum(w.size + b.size for w, b in zip(self.pesos, self.sesgos))
-    print(f"   Parámetros totales: {total_params}")
-    for i, (w, b) in enumerate(zip(self.pesos, self.sesgos)):
-        print(f"   Capa {i+1}: {w.shape} pesos + {b.shape} sesgos")
+    
+    def resumen(self):
+        print(f"🧠 ESTRUCTURA DEL CEREBRO:")
+        print(f"   Capas: {self.capas}")
+        total_params = sum(w.size + b.size for w, b in zip(self.pesos, self.sesgos))
+        print(f"   Parámetros totales: {total_params}")
+        for i, (w, b) in enumerate(zip(self.pesos, self.sesgos)):
+            print(f"   Capa {i+1}: {w.shape} pesos + {b.shape} sesgos")

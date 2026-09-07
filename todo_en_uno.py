@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 import numpy as np
+from entrenar_xor import entrenar_xor
+from datos_reales import ejecutar_datos_reales
+from entrenar_profundo import ejecutar_profundo
+from entrenar_memoria import ejecutar_memoria
 
 def menu():
     print("""
 🧠 CEREBRO ZERO - MENÚ COMPLETO
 ================================
-1. Entrenar XOR (básico)
+1. Entrenar XOR (básico) - RECOMENDADO
 2. Entrenar SENO (datos reales)
 3. Entrenar CEREBRO PROFUNDO (5 capas)
 4. Cerebro con MEMORIA
@@ -20,27 +24,13 @@ def menu():
 
 def ejecutar(opcion):
     if opcion == "1":
-        from entrenar import Cerebro, Entrenador
-        X = np.array([[0,0],[0,1],[1,0],[1,1]])
-        y = np.array([[0],[1],[1],[0]])
-        cerebro = Cerebro([2, 4, 1])
-        entrenador = Entrenador(cerebro, tasa=0.8)
-        print("Entrenando XOR...")
-        for epoch in range(5000):
-            error = entrenador.entrenar_epoch(X, y)
-            if epoch % 1000 == 0:
-                print(f"Epoch {epoch}: error = {error:.6f}")
-        print("\nResultados:")
-        for inputs in X:
-            pred = cerebro.predecir(inputs)
-            print(f"{inputs} -> {pred[0][0]:.4f}")
-    
+        entrenar_xor()
     elif opcion == "2":
-        from datos_reales import *
+        ejecutar_datos_reales()
     elif opcion == "3":
-        from entrenar_profundo import *
+        ejecutar_profundo()
     elif opcion == "4":
-        from entrenar_memoria import *
+        ejecutar_memoria()
     elif opcion == "5":
         from autoencoder import Autoencoder
         X = np.random.randn(100, 10)
