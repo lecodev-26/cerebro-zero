@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pkl
+*.npy
+*.npz
+.git/
+.gitignore
+README.md
+LICENSE
+*.log
+.DS_Store

@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cerebro-zero"
+version = "1.0.0"
+description = "🧠 Inteligencia Artificial desde cero en Termux"
+readme = "README.md"
+authors = [
+    {name = "Manuel (lecodev-26)", email = "axiomsystemsechepares@gmail.com"}
+]
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.14"
+dependencies = [
+    "numpy>=2.4.0",
+    "flask>=3.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/lecodev-26/cerebro-zero"
+Repository = "https://github.com/lecodev-26/cerebro-zero"
+Issues = "https://github.com/lecodev-26/cerebro-zero/issues"
+
+[project.scripts]
+cerebro-zero = "todo_en_uno:main"
