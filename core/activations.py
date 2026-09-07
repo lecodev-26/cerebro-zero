@@ -1,39 +1,41 @@
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import numpy as np
+from core.module import Module
+from core.tensor_v2 import Tensor
 
-class ReLU:
-    @staticmethod
-    def forward(x):
-        return np.maximum(0, x)
+class ReLU(Module):
+    def forward(self, x):
+        data = x.data
+        out_data = np.maximum(0, data)
+        out = Tensor(out_data, requires_grad=x.requires_grad, _children=(x,))
+        
+        def backward():
+            if x.requires_grad and out.grad is not None:
+                grad = out.grad * (data > 0).astype(float)
+                x.grad = grad if x.grad is None else x.grad + grad
+        
+        out._backward = backward
+        return out
     
-    @staticmethod
-    def backward(x, grad):
-        return grad * (x > 0).astype(float)
+    def __repr__(self):
+        return "ReLU()"
 
-class Sigmoid:
-    @staticmethod
-    def forward(x):
-        return 1 / (1 + np.exp(-np.clip(x, -500, 500)))
+class Sigmoid(Module):
+    def forward(self, x):
+        data = x.data
+        out_data = 1 / (1 + np.exp(-np.clip(data, -500, 500)))
+        out = Tensor(out_data, requires_grad=x.requires_grad, _children=(x,))
+        
+        def backward():
+            if x.requires_grad and out.grad is not None:
+                grad = out.grad * out_data * (1 - out_data)
+                x.grad = grad if x.grad is None else x.grad + grad
+        
+        out._backward = backward
+        return out
     
-    @staticmethod
-    def backward(x, grad):
-        sig = Sigmoid.forward(x)
-        return grad * sig * (1 - sig)
-
-class Softmax:
-    @staticmethod
-    def forward(x):
-        exp_x = np.exp(x - np.max(x, axis=1, keepdims=True))
-        return exp_x / np.sum(exp_x, axis=1, keepdims=True)
-    
-    @staticmethod
-    def backward(x, grad):
-        return grad  # Simplificado para cross-entropy
-
-class Tanh:
-    @staticmethod
-    def forward(x):
-        return np.tanh(x)
-    
-    @staticmethod
-    def backward(x, grad):
-        return grad * (1 - np.tanh(x) ** 2)
+    def __repr__(self):
+        return "Sigmoid()"
