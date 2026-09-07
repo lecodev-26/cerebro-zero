@@ -1,4 +1,7 @@
+import sys
+sys.path.append('..')
 import numpy as np
+from cerebros.red_neuronal import Cerebro
 
 class CapaConvolucional:
     def __init__(self, num_filtros, tamanio_filtro):
@@ -34,7 +37,7 @@ class CerebroConVision:
         salida2_h = salida1_h - 3 + 1
         self.tam_final = salida2_h ** 2 * 16
         
-        from red_neuronal import Cerebro
+        from cerebros.red_neuronal import Cerebro
         self.cerebro = Cerebro([self.tam_final, 32, 10])
     
     def procesar(self, imagen):
@@ -53,9 +56,11 @@ class CerebroConVision:
     
     def resumen(self):
         print("🧠 CEREBRO CON VISIÓN")
+        print("="*40)
         print(f"   Tamaño imagen: {self.tamanio_imagen}x{self.tamanio_imagen}")
         print(f"   Conv1: 8 filtros 3x3")
         print(f"   Conv2: 16 filtros 3x3")
         print(f"   Capas densas: {self.cerebro.capas}")
-        print(f"   Total parámetros: {self.cerebro.pesos[0].size + self.cerebro.pesos[1].size}")	
-
+        print(f"   Total parámetros: {self.cerebro.pesos[0].size + self.cerebro.pesos[1].size}")
+        print("\n💡 Para usar este cerebro necesitas una imagen como array numpy.")
+        print("   Ejemplo: imagen = np.random.randn(28, 28)")

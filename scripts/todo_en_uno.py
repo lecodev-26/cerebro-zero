@@ -7,6 +7,7 @@ from entrenadores.entrenar_xor import entrenar_xor
 from entrenadores.entrenar_premium import ejecutar_premium
 from entrenadores.entrenar_profundo import ejecutar_profundo
 from entrenadores.entrenar_memoria import ejecutar_memoria
+from utils.autoencoder import ejecutar_autoencoder
 
 def menu():
     print("""
@@ -17,7 +18,7 @@ def menu():
 3. Cargar cerebro guardado - ✅
 4. Cerebro con MEMORIA - ✅
 5. CEREBRO PREMIUM (Softmax + Adam + Dropout + BatchNorm) - 🆕
-6. Autoencoder - ⏳
+6. Autoencoder (PCA) - ✅
 7. Visión - ⏳
 8. Reforzamiento - ⏳
 9. Resumen
@@ -26,7 +27,7 @@ def menu():
     return input("Elige una opción: ")
 
 def ejecutar_seno():
-    exec(open("datos/seno_polinomico.py").read())
+    exec(open("../datos/seno_polinomico.py").read())
 
 def ejecutar(opcion):
     if opcion == "1":
@@ -40,10 +41,7 @@ def ejecutar(opcion):
     elif opcion == "5":
         ejecutar_premium()
     elif opcion == "6":
-        from utils.autoencoder import Autoencoder
-        X = np.random.randn(100, 10)
-        ae = Autoencoder(10, 3)
-        ae.entrenar(X, epochs=500)
+        ejecutar_autoencoder()
     elif opcion == "7":
         from utils.convolutional import CerebroConVision
         cerebro = CerebroConVision(28)
@@ -60,7 +58,7 @@ def ejecutar(opcion):
         print("   - cerebros/red_profunda.py: Cerebro profundo")
         print("   - cerebros/memoria.py: Cerebro con memoria")
         print("   - datos/seno_polinomico.py: Regresión polinómica")
-        print("   - utils/autoencoder.py: Autoencoder")
+        print("   - utils/autoencoder.py: Autoencoder (PCA)")
         print("   - utils/convolutional.py: Visión")
         print("   - utils/reforzamiento.py: Q-Learning")
     elif opcion == "0":
