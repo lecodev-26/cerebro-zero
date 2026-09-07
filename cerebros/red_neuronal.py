@@ -8,7 +8,8 @@ class Cerebro:
         self.sesgos = []
         
         for i in range(len(capas)-1):
-            w = np.random.randn(capas[i], capas[i+1]) * np.sqrt(2.0 / capas[i])
+            # Usar EXACTAMENTE la misma inicialización que la opción 1
+            w = np.random.randn(capas[i], capas[i+1]) * 0.1
             b = np.zeros((1, capas[i+1]))
             self.pesos.append(w)
             self.sesgos.append(b)

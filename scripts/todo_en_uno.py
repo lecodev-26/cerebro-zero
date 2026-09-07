@@ -10,22 +10,24 @@ from utils.autoencoder import ejecutar_autoencoder
 from entrenadores.entrenar_gigante import ejecutar_gigante
 from entrenadores.entrenar_maximo import ejecutar_maximo
 from entrenadores.entrenar_dios import ejecutar_dios
+from entrenadores.entrenar_axiom_creciente import ejecutar_axiom_creciente
 
 def menu():
     print("""
-🔥 CEREBRO ZERO - HASTA QUE PETE 🔥
+🧠 CEREBRO ZERO - SISTEMA COMPLETO
 ====================================
 1. XOR (básico) - ✅
 2. SENO - ✅
-3. Cargar cerebro - ✅
+3. Cargar cerebro guardado - ✅
 4. Memoria - ✅
 5. CEREBRO PREMIUM - ✅
 6. Autoencoder - ✅
 7. Visión - ✅
 8. Reforzamiento - ✅
-9. GIGANTE (256+256+256) - ✅
-10. 🆕 MÁXIMO (512 neuronas) - 🔥
-11. 🆕 DIOS (1000 neuronas) - 💀
+9. GIGANTE (64+64) - ✅
+10. MÁXIMO (512) - ✅
+11. DIOS (1000) - ✅
+12. 🆕 AXIOM CREATIVO (crece cada vez) - 🔥
 0. Salir
 """)
     return input("Elige una opción: ")
@@ -61,13 +63,15 @@ def ejecutar(opcion):
         ejecutar_maximo()
     elif opcion == "11":
         ejecutar_dios()
+    elif opcion == "12":
+        ejecutar_axiom_creciente()
     elif opcion == "0":
         print("👋 Hasta luego, Manuel!")
         return False
     return True
 
 if __name__ == "__main__":
-    print("\n🔥 CEREBRO ZERO - HASTA QUE PETE")
+    print("\n🧠 CEREBRO ZERO - SISTEMA COMPLETO")
     print("="*40)
     while True:
         opcion = menu()
