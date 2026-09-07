@@ -8,20 +8,21 @@ from entrenadores.entrenar_premium import ejecutar_premium
 from entrenadores.entrenar_profundo import ejecutar_profundo
 from entrenadores.entrenar_memoria import ejecutar_memoria
 from utils.autoencoder import ejecutar_autoencoder
+from entrenadores.entrenar_gigante import ejecutar_gigante
 
 def menu():
     print("""
 🧠 CEREBRO ZERO - MENÚ COMPLETO
 ================================
-1. Entrenar XOR (básico) - ✅
-2. Entrenar SENO (regresión polinómica) - ✅
-3. Cargar cerebro guardado - ✅
-4. Cerebro con MEMORIA - ✅
-5. CEREBRO PREMIUM (Softmax + Adam + Dropout + BatchNorm) - 🆕
-6. Autoencoder (PCA) - ✅
-7. Visión - ⏳
-8. Reforzamiento - ⏳
-9. Resumen
+1. XOR (básico) - ✅
+2. SENO - ✅
+3. Cargar cerebro - ✅
+4. Memoria - ✅
+5. CEREBRO PREMIUM - ✅
+6. Autoencoder - ✅
+7. Visión - ✅
+8. Reforzamiento - ✅
+9. 🆕 CEREBRO GIGANTE (256+256+256) - 🔥
 0. Salir
 """)
     return input("Elige una opción: ")
@@ -52,15 +53,7 @@ def ejecutar(opcion):
         cerebro = CerebroReforzado(11, 2)
         cerebro.jugar(env, 100)
     elif opcion == "9":
-        print("\n📊 RESUMEN DE CEREBROS:")
-        print("   - cerebros/red_neuronal.py: Cerebro básico (sigmoid)")
-        print("   - cerebros/red_neuronal_premium.py: Cerebro premium")
-        print("   - cerebros/red_profunda.py: Cerebro profundo")
-        print("   - cerebros/memoria.py: Cerebro con memoria")
-        print("   - datos/seno_polinomico.py: Regresión polinómica")
-        print("   - utils/autoencoder.py: Autoencoder (PCA)")
-        print("   - utils/convolutional.py: Visión")
-        print("   - utils/reforzamiento.py: Q-Learning")
+        ejecutar_gigante()
     elif opcion == "0":
         print("👋 Hasta luego, Manuel!")
         return False
