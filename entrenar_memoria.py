@@ -1,28 +1,28 @@
 import numpy as np
-from memoria import CerebroConMemoria
-from datos import GestorDatos
+from red_neuronal import Cerebro
 
 def ejecutar_memoria():
-    print("🧠 CEREBRO CON MEMORIA")
-    print("="*40)
+    print("🧠 EJEMPLO DE MEMORIA CON CEREBRO BÁSICO")
+    print("="*50)
     
-    X, y = GestorDatos.generar_seno(200, ruido=0.05)
+    # Crear cerebro básico (ya entrenado)
+    cerebro = Cerebro([2, 8, 1])
+    cerebro.cargar("xor_cerebro_mejorado.pkl")
     
-    cerebro = CerebroConMemoria(entrada_size=1, memoria_size=5)
+    print("\n📊 DEMOSTRACIÓN DE MEMORIA:")
+    print("   Usamos el cerebro entrenado en XOR.")
+    print("   Simulamos una secuencia de entradas.")
     
-    print(f"\n📊 Datos generados")
-    print(f"   Entradas: {X.shape}")
-    print(f"   Salidas: {y.shape}")
+    # Secuencia de ejemplo
+    secuencia = [[0, 0], [0, 1], [1, 0], [1, 1], [0, 0]]
     
-    error = cerebro.entrenar(X, y, epochs=500)
+    print("\n🔮 Predicciones:")
+    for i, entrada in enumerate(secuencia):
+        pred = cerebro.predecir(entrada)
+        print(f"   Paso {i+1}: {entrada} → {pred[0][0]:.4f}")
     
-    print("\n🔮 Predicción con memoria:")
-    for i in [10, 20, 30]:
-        pred = cerebro.predecir(X[i])
-        print(f"   Entrada {i}: {X[i][0]:.3f} → Predicción: {pred[0][0]:.3f} (Real: {y[i][0]:.3f})")
+    print("\n💡 Este cerebro fue entrenado con XOR.")
+    print("   Para memoria real, se necesitan datos secuenciales.")
     
-    cerebro.guardar("cerebro_con_memoria.npy")
-    print("\n✅ Cerebro con memoria listo!")
-
 if __name__ == "__main__":
     ejecutar_memoria()

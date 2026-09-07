@@ -1,4 +1,5 @@
 import numpy as np
+import pickle
 
 class CerebroProfundo:
     def __init__(self, capas):
@@ -6,9 +7,8 @@ class CerebroProfundo:
         self.pesos = []
         self.sesgos = []
         
-        # Inicializar con más neuronas
         for i in range(len(capas)-1):
-            w = np.random.randn(capas[i], capas[i+1]) * np.sqrt(2.0/capas[i])  # He inicialización
+            w = np.random.randn(capas[i], capas[i+1]) * np.sqrt(2.0 / capas[i])
             b = np.zeros((1, capas[i+1]))
             self.pesos.append(w)
             self.sesgos.append(b)
@@ -30,7 +30,6 @@ class CerebroProfundo:
             z = np.dot(self.activaciones[-1], w) + b
             self.lineales.append(z)
             
-            # ReLU en capas ocultas, sigmoid en la última
             if i == len(self.pesos) - 1:
                 a = self.sigmoid(z)
             else:
@@ -51,12 +50,15 @@ class CerebroProfundo:
             tipo = "ReLU" if i < len(self.pesos)-1 else "Sigmoid"
             print(f"   Capa {i+1}: {w.shape} → {b.shape} (activación: {tipo})")
     
-    def guardar(self, nombre="profundo.npy"):
-        np.savez(nombre, pesos=self.pesos, sesgos=self.sesgos)
+    def guardar(self, nombre="profundo_xor.pkl"):
+        with open(nombre, 'wb') as f:
+            pickle.dump({'pesos': self.pesos, 'sesgos': self.sesgos, 'capas': self.capas}, f)
         print(f"💾 Guardado en {nombre}")
     
-    def cargar(self, nombre="profundo.npy"):
-        data = np.load(nombre, allow_pickle=True)
+    def cargar(self, nombre="profundo_xor.pkl"):
+        with open(nombre, 'rb') as f:
+            data = pickle.load(f)
         self.pesos = data['pesos']
         self.sesgos = data['sesgos']
+        self.capas = data['capas']
         print(f"📂 Cargado desde {nombre}")
