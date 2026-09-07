@@ -23,6 +23,17 @@ class Entrenador:
             self.cerebro.sesgos[i] += self.tasa * np.sum(grad, axis=0, keepdims=True)
         
         return self.mse(y, salida)
+def entrenar(self, X, y, epochs=10000, verbose=True):
+    """Entrenamiento completo con progreso"""
+    for epoch in range(epochs):
+        error = self.entrenar_epoch(X, y)
+        if verbose and epoch % 1000 == 0:
+            print(f"Epoch {epoch}: error = {error:.6f}")
+    return error
+
+def predecir_batch(self, X):
+    """Predecir múltiples ejemplos a la vez"""
+    return self.cerebro.forward(X)
 
 # DATOS DE EJEMPLO: XOR
 X = np.array([[0,0],[0,1],[1,0],[1,1]])
