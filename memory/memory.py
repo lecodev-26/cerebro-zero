@@ -3,7 +3,6 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import numpy as np
-import pickle
 import json
 from datetime import datetime
 
@@ -42,42 +41,60 @@ class MemoriaPersistente:
         if not self.experiencias:
             return []
         
-        entrada = np.array(entrada).flatten()
+        # Convertir entrada a array numérico
+        try:
+            entrada = np.array(entrada).flatten().astype(float)
+        except:
+            # Si no se puede convertir a números, devolver experiencias recientes
+            return self.experiencias[-k:] if self.experiencias else []
+        
         if len(self.embeddings) != len(self.experiencias):
             self.embeddings = self._embed_experiencias()
         
-        # Calcular similitud
         similitudes = []
         for i, emb in enumerate(self.embeddings):
-            sim = np.dot(entrada, emb) / (np.linalg.norm(entrada) * np.linalg.norm(emb) + 1e-10)
-            similitudes.append((i, sim))
+            try:
+                sim = np.dot(entrada, emb) / (np.linalg.norm(entrada) * np.linalg.norm(emb) + 1e-10)
+                similitudes.append((i, sim))
+            except:
+                similitudes.append((i, 0))
         
-        # Ordenar por similitud (de mayor a menor)
         similitudes.sort(key=lambda x: x[1], reverse=True)
         
-        # Devolver las k más similares (solo si similitud > 0.3)
         resultados = []
         for i, sim in similitudes[:k]:
-            if sim > 0.3:
+            if sim > 0.1:  # Umbral más bajo
                 resultados.append(self.experiencias[i])
         
-        return resultados
+        return resultados if resultados else self.experiencias[-k:]
     
     def aprender(self, entrada, salida):
+        # Asegurar que entrada es una lista de números
+        try:
+            entrada_lista = entrada.tolist() if isinstance(entrada, np.ndarray) else entrada
+            salida_lista = salida.tolist() if isinstance(salida, np.ndarray) else salida
+        except:
+            entrada_lista = [float(x) if isinstance(x, (int, float)) else 0 for x in entrada]
+            salida_lista = [float(x) if isinstance(x, (int, float)) else 0 for x in salida]
+        
         if len(self.experiencias) >= self.max_size:
             self.experiencias.pop(0)
             self.embeddings.pop(0)
         
         experiencia = {
-            'entrada': entrada.tolist() if isinstance(entrada, np.ndarray) else entrada,
-            'salida': salida.tolist() if isinstance(salida, np.ndarray) else salida,
+            'entrada': entrada_lista,
+            'salida': salida_lista,
             'fecha': datetime.now().isoformat()
         }
         self.experiencias.append(experiencia)
         
-        emb = np.array(entrada).flatten()
-        emb = emb / (np.linalg.norm(emb) + 1e-10)
-        self.embeddings.append(emb.tolist())
+        # Embedding para búsqueda
+        try:
+            emb = np.array(entrada_lista).flatten()
+            emb = emb / (np.linalg.norm(emb) + 1e-10)
+            self.embeddings.append(emb.tolist())
+        except:
+            self.embeddings.append([0.0] * len(entrada_lista))
         
         self.guardar()
     
@@ -97,14 +114,17 @@ class MemoriaPersistente:
         print(f"🧠 MEMORIA PERSISTENTE")
         print(f"   Experiencias: {len(self.experiencias)}")
         print(f"   Capacidad máxima: {self.max_size}")
-        print(f"   Última actualización: {self.experiencias[-1].get('fecha', 'N/A') if self.experiencias else 'N/A'}")
         if self.experiencias:
-            print(f"   Ejemplo de entrada: {self.experiencias[0]['entrada']}")
+            print(f"   Última actualización: {self.experiencias[-1].get('fecha', 'N/A')}")
+            print(f"   Ejemplo de entrada: {self.experiencias[0].get('entrada', 'N/A')}")
     
     def _embed_experiencias(self):
         embeddings = []
         for exp in self.experiencias:
-            emb = np.array(exp['entrada']).flatten()
-            emb = emb / (np.linalg.norm(emb) + 1e-10)
-            embeddings.append(emb.tolist())
+            try:
+                emb = np.array(exp.get('entrada', [0])).flatten()
+                emb = emb / (np.linalg.norm(emb) + 1e-10)
+                embeddings.append(emb.tolist())
+            except:
+                embeddings.append([0.0])
         return embeddings
