@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import sys
 sys.path.append('..')
-
 import numpy as np
 from entrenadores.entrenar_xor import entrenar_xor
 from entrenadores.entrenar_premium import ejecutar_premium
@@ -9,11 +8,13 @@ from entrenadores.entrenar_profundo import ejecutar_profundo
 from entrenadores.entrenar_memoria import ejecutar_memoria
 from utils.autoencoder import ejecutar_autoencoder
 from entrenadores.entrenar_gigante import ejecutar_gigante
+from entrenadores.entrenar_maximo import ejecutar_maximo
+from entrenadores.entrenar_dios import ejecutar_dios
 
 def menu():
     print("""
-🧠 CEREBRO ZERO - MENÚ COMPLETO
-================================
+🔥 CEREBRO ZERO - HASTA QUE PETE 🔥
+====================================
 1. XOR (básico) - ✅
 2. SENO - ✅
 3. Cargar cerebro - ✅
@@ -22,7 +23,9 @@ def menu():
 6. Autoencoder - ✅
 7. Visión - ✅
 8. Reforzamiento - ✅
-9. 🆕 CEREBRO GIGANTE (256+256+256) - 🔥
+9. GIGANTE (256+256+256) - ✅
+10. 🆕 MÁXIMO (512 neuronas) - 🔥
+11. 🆕 DIOS (1000 neuronas) - 💀
 0. Salir
 """)
     return input("Elige una opción: ")
@@ -54,13 +57,17 @@ def ejecutar(opcion):
         cerebro.jugar(env, 100)
     elif opcion == "9":
         ejecutar_gigante()
+    elif opcion == "10":
+        ejecutar_maximo()
+    elif opcion == "11":
+        ejecutar_dios()
     elif opcion == "0":
         print("👋 Hasta luego, Manuel!")
         return False
     return True
 
 if __name__ == "__main__":
-    print("\n🧠 CEREBRO ZERO - SISTEMA COMPLETO")
+    print("\n🔥 CEREBRO ZERO - HASTA QUE PETE")
     print("="*40)
     while True:
         opcion = menu()
