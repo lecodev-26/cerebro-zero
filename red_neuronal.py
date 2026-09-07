@@ -35,3 +35,10 @@ class Cerebro:
         self.pesos = data['pesos']
         self.sesgos = data['sesgos']
         print(f"🧠 Cargado desde {nombre}")
+def resumen(self):
+    print(f"🧠 ESTRUCTURA DEL CEREBRO:")
+    print(f"   Capas: {self.capas}")
+    total_params = sum(w.size + b.size for w, b in zip(self.pesos, self.sesgos))
+    print(f"   Parámetros totales: {total_params}")
+    for i, (w, b) in enumerate(zip(self.pesos, self.sesgos)):
+        print(f"   Capa {i+1}: {w.shape} pesos + {b.shape} sesgos")
