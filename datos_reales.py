@@ -1,35 +1,62 @@
 import numpy as np
 from red_neuronal import Cerebro
-from entrenar import Entrenador
+
+class EntrenadorMejorado:
+    def __init__(self, cerebro, tasa=0.3):
+        self.cerebro = cerebro
+        self.tasa = tasa
+    
+    def mse(self, real, pred):
+        return np.mean((real - pred) ** 2)
+    
+    def entrenar_epoch(self, X, y):
+        salida = self.cerebro.forward(X)
+        error = y - salida
+        grad = error * salida * (1 - salida)
+        
+        for i in range(len(self.cerebro.pesos)-1, -1, -1):
+            self.cerebro.pesos[i] += self.tasa * np.dot(self.cerebro.activaciones[i].T, grad)
+            self.cerebro.sesgos[i] += self.tasa * np.sum(grad, axis=0, keepdims=True)
+            
+            if i > 0:
+                grad = np.dot(grad, self.cerebro.pesos[i].T)
+                grad = grad * self.cerebro.activaciones[i] * (1 - self.cerebro.activaciones[i])
+        
+        return self.mse(y, salida)
+    
+    def entrenar(self, X, y, epochs=10000):
+        for epoch in range(epochs):
+            error = self.entrenar_epoch(X, y)
+            if epoch % 1000 == 0:
+                print(f"Epoch {epoch}: error = {error:.6f}")
+        return error
 
 def ejecutar_datos_reales():
     print("🧠 ENTRENANDO CON DATOS REALES (SENO)")
     print("="*40)
     
-    X = np.random.rand(500, 1) * 10
-    y = np.sin(X) + np.random.randn(500, 1) * 0.1
+    # Generar datos (más ejemplos)
+    X = np.random.rand(1000, 1) * 10
+    y = np.sin(X) + np.random.randn(1000, 1) * 0.05
     
-    cerebro = Cerebro([1, 10, 1])
-    entrenador = Entrenador(cerebro, tasa=0.3)
+    # Cerebro más grande: 1 entrada, 20 ocultas, 1 salida
+    cerebro = Cerebro([1, 20, 1])
+    cerebro.resumen()
+    entrenador = EntrenadorMejorado(cerebro, tasa=0.5)
     
-    print(f"📊 Datos: {len(X)} ejemplos")
-    print(f"🧠 Estructura: {cerebro.capas}")
+    print(f"\n📊 Datos: {len(X)} ejemplos")
     print("\n🏋️ ENTRENANDO...")
-    
-    for epoch in range(5000):
-        error = entrenador.entrenar_epoch(X, y)
-        if epoch % 500 == 0:
-            print(f"Epoch {epoch}: error = {error:.6f}")
+    entrenador.entrenar(X, y, epochs=10000)
     
     print("\n✅ ENTRENADO!")
     print("\n📈 Predicciones:")
-    for x in [0, 2, 4, 6, 8, 10]:
+    for x in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
         pred = cerebro.predecir([x])
         real = np.sin(x)
         print(f"  x={x:.1f} → predicción: {pred[0][0]:.3f} (real: {real:.3f})")
     
-    cerebro.guardar("cerebro_seno.npy")
-    print("\n💾 Guardado en cerebro_seno.npy")
+    cerebro.guardar("cerebro_seno.pkl")
+    print("\n💾 Guardado en cerebro_seno.pkl")
 
 if __name__ == "__main__":
     ejecutar_datos_reales()

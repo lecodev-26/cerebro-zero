@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import numpy as np
+import pickle
 from entrenar_xor import entrenar_xor
-from datos_reales import ejecutar_datos_reales
 from entrenar_profundo import ejecutar_profundo
 from entrenar_memoria import ejecutar_memoria
 
@@ -9,8 +9,8 @@ def menu():
     print("""
 🧠 CEREBRO ZERO - MENÚ COMPLETO
 ================================
-1. Entrenar XOR (básico) - RECOMENDADO
-2. Entrenar SENO (datos reales)
+1. Entrenar XOR (básico) - ✅
+2. Entrenar SENO (regresión polinómica) - ✅
 3. Entrenar CEREBRO PROFUNDO (5 capas)
 4. Cerebro con MEMORIA
 5. Autoencoder (comprime datos)
@@ -22,11 +22,15 @@ def menu():
 """)
     return input("Elige una opción: ")
 
+def ejecutar_seno():
+    print("🧠 EJECUTANDO SENO POLINÓMICO...")
+    exec(open("seno_polinomico.py").read())
+
 def ejecutar(opcion):
     if opcion == "1":
         entrenar_xor()
     elif opcion == "2":
-        ejecutar_datos_reales()
+        ejecutar_seno()
     elif opcion == "3":
         ejecutar_profundo()
     elif opcion == "4":
@@ -52,10 +56,11 @@ def ejecutar(opcion):
         Visualizador.graficar_texto(X, y)
     elif opcion == "9":
         print("\n📊 RESUMEN DE CEREBROS:")
-        print("   - red_neuronal.py: Cerebro básico (2 capas)")
+        print("   - red_neuronal.py: Cerebro básico (sigmoid) - ✅ XOR")
         print("   - red_profunda.py: Cerebro profundo (5 capas + ReLU)")
         print("   - memoria.py: Cerebro con memoria circular")
-        print("   - convolutional.py: Cerebro con visión")
+        print("   - seno_polinomico.py: Regresión polinómica - ✅ SENO")
+        print("   - red_neuronal_relu.py: Cerebro con ReLU + salida lineal")
         print("   - autoencoder.py: Autoencoder (compresión)")
         print("   - reforzamiento.py: Q-Learning")
     elif opcion == "0":
