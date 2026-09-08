@@ -1,0 +1,23 @@
+{
+  "nombre_proyecto": {
+    "value": "Cerebro Zero",
+    "metadata": {
+      "tipo": "proyecto"
+    },
+    "timestamp": 1788859956.928936
+  },
+  "lenguaje_principal": {
+    "value": "Python",
+    "metadata": {
+      "tipo": "programacion"
+    },
+    "timestamp": 1788859956.929271
+  },
+  "framework": {
+    "value": "NumPy",
+    "metadata": {
+      "tipo": "libreria"
+    },
+    "timestamp": 1788859956.929499
+  }
+}
