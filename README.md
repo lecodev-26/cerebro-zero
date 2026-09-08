@@ -1,4 +1,4 @@
-# 🧠 CEREBRO ZERO
+# 🧠 CEREBRO ZERO.                       ⭐ ¡Si te gusta este proyecto, dale una estrella en GitHub!
 
 ## Sistema de Inteligencia Artificial desde cero en Termux
 
@@ -6,7 +6,13 @@
 [![NumPy](https://img.shields.io/badge/NumPy-2.4.4-green.svg)](https://numpy.org/)
 [![Termux](https://img.shields.io/badge/Termux-Android-orange.svg)](https://termux.com/)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?logo=github)](https://github.com/lecodev-26/cerebro-zero)
-
+[![Python](https://img.shields.io/badge/Python-3.14-blue.svg)](https://www.python.org/)
+[![NumPy](https://img.shields.io/badge/NumPy-2.4.4-green.svg)](https://numpy.org/)
+[![Flask](https://img.shields.io/badge/Flask-3.1.3-red.svg)](https://flask.palletsprojects.com/)
+[![Termux](https://img.shields.io/badge/Termux-Android-orange.svg)](https://termux.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/lecodev-26/cerebro-zero.svg)](https://github.com/lecodev-26/cerebro-zero/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/lecodev-26/cerebro-zero.svg)](https://github.com/lecodev-26/cerebro-zero/issues)
 ---
 ## 🗺️ ROADMAP - CEREBRO ZERO
 
