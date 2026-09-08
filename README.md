@@ -1,6 +1,6 @@
 # 🧠 CEREBRO ZERO.                      
 
-*** ⭐ ¡Si te gusta este proyecto, dale una estrella en GitHub!
+⭐ ¡Si te gusta este proyecto, dale una estrella en GitHub!
 
 ## Sistema de Inteligencia Artificial desde cero en Termux
 
