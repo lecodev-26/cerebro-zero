@@ -14,7 +14,8 @@ from typing import List, Dict, Any, Callable
 
 @dataclass
 class TestCase:
-    """Un caso de test"""
+    """Un caso de test (NO es un test de pytest)"""
+    __test__ = False  # Evita que pytest lo recolecte
     category: str
     question: str
     expected: Any
@@ -23,7 +24,8 @@ class TestCase:
 
 @dataclass
 class TestResult:
-    """Resultado de un test"""
+    """Resultado de un test (NO es un test de pytest)"""
+    __test__ = False  # Evita que pytest lo recolecte
     case: TestCase
     actual: Any
     passed: bool

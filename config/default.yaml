@@ -1,0 +1,118 @@
+# ============================================
+# CEREBRO ZERO 2.0 — CONFIGURACIÓN POR DEFECTO
+# ============================================
+
+# ============================================
+# MODELO
+# ============================================
+model:
+  type: "transformer"          # transformer | mlp
+  vocab_size: 200
+  d_model: 32
+  num_heads: 2
+  d_ff: 64
+  num_layers: 2
+  max_len: 16
+  dropout: 0.1
+
+# ============================================
+# ENTRENAMIENTO
+# ============================================
+training:
+  learning_rate: 0.01
+  batch_size: 8
+  epochs: 10
+  batches_per_epoch: 15
+  optimizer: "adam"            # adam | sgd
+  loss: "cross_entropy"        # cross_entropy | mse
+  eval_every: 1
+  early_stopping: true
+  patience: 3
+  verbose: true
+
+# ============================================
+# MEMORIA
+# ============================================
+memory:
+  short_term:
+    max_size: 100
+  long_term:
+    max_size: 1000
+    file: "memoria_largo_plazo.json"
+  episodic:
+    max_size: 100
+  semantic:
+    max_size: 1000
+    dim: 128
+    file: "memoria_semantica.json"
+    umbral: 0.3
+
+# ============================================
+# DATASETS
+# ============================================
+datasets:
+  dir: "datasets"
+  context_len: 16
+  add_bos_eos: true
+  splits:
+    train: "train.txt"
+    validation: "validation.txt"
+    test: "test.txt"
+
+# ============================================
+# SEGURIDAD
+# ============================================
+security:
+  sandbox:
+    strict: true
+    log_level: "info"
+  parser:
+    max_length: 1000
+  permissions:
+    default_set: "standard"    # safe | standard | network | full
+    approve_dangerous: false
+
+# ============================================
+# APRENDIZAJE CONTINUO
+# ============================================
+continuous_learning:
+  enabled: true
+  buffer_size: 500
+  replay_ratio: 0.5
+  forgetting_threshold: 0.3    # 30% de olvido = alerta
+
+# ============================================
+# EVALUACIÓN
+# ============================================
+evaluation:
+  objective: true
+  confidence_threshold: 0.7
+  benchmark:
+    cases_per_category: 100
+    categories:
+      - math
+      - memory
+      - language
+      - reasoning
+      - tools
+      - security
+      - generalization
+      - learning
+
+# ============================================
+# PATHS
+# ============================================
+paths:
+  models_dir: "modelos_guardados"
+  datasets_dir: "datasets"
+  logs_dir: "logs"
+  cache_dir: ".cache"
+
+# ============================================
+# LOGGING
+# ============================================
+logging:
+  level: "info"                # debug | info | warning | error
+  format: "[%(asctime)s] [%(levelname)s] %(message)s"
+  file: "logs/cerebro_zero.log"
+  console: true
