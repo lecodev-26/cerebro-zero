@@ -193,7 +193,7 @@ class HerramientasReales:
             return sum(digits) % 10 == 0
         
         try:
-            num = str(num).replace(' ', '').replace('-', '')
+            num = str(numero).replace(' ', '').replace('-', '')
             if len(num) < 13 or len(num) > 19:
                 return "❌ Número de tarjeta inválido (13-19 dígitos)"
             valido = luhn_check(num)
