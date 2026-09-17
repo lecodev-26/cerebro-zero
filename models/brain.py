@@ -13,9 +13,6 @@ from typing import Any, Dict, Optional
 class Brain(ABC):
     """
     Interfaz base para todos los cerebros.
-    
-    Todas las implementaciones (MLP, CNN, Transformer, ...) deben heredar
-    de esta clase y sobrescribir sus métodos.
     """
     
     def __init__(self, name: str = "Brain"):
@@ -25,24 +22,17 @@ class Brain(ABC):
         self._training_history = []
     
     # ============================================
-    # MÉTODOS ABSTRACTOS (a implementar por subclases)
+    # MÉTODOS ABSTRACTOS
     # ============================================
     
     @abstractmethod
     def forward(self, x):
-        """
-        Computación hacia adelante.
-        x: entrada (Tensor)
-        return: salida (Tensor)
-        """
+        """Computación hacia adelante"""
         pass
     
     @abstractmethod
     def parameters(self):
-        """
-        Devuelve los parámetros entrenables del modelo.
-        return: lista de Tensores
-        """
+        """Devuelve los parámetros entrenables"""
         pass
     
     # ============================================
@@ -50,22 +40,17 @@ class Brain(ABC):
     # ============================================
     
     def predict(self, x):
-        """
-        Predicción (sin gradientes).
-        """
         return self.forward(x)
+    
+    def zero_grad(self):
+        """Resetea gradientes de TODOS los parámetros"""
+        for p in self.parameters():
+            p.grad = None
     
     def train(self, dataset, epochs: int = 100, lr: float = 0.01, 
               optimizer=None, loss_fn=None, verbose: bool = True):
         """
         Entrenamiento genérico.
-        
-        dataset: iterable de (X, y)
-        epochs: número de épocas
-        lr: learning rate
-        optimizer: optimizador (si None, se crea uno por defecto)
-        loss_fn: función de pérdida (si None, se crea MSE)
-        verbose: mostrar progreso
         """
         from core.optimizers import Adam
         from core.losses import MSELoss
@@ -83,13 +68,20 @@ class Brain(ABC):
             num_batches = 0
             
             for X, y in dataset:
+                # Forward
                 pred = self.forward(X)
                 loss = loss_fn(pred, y)
-                loss.backward()
-                optimizer.step()
-                optimizer.zero_grad()
                 
-                total_loss += loss.data
+                # Backward
+                loss.backward()
+                
+                # Step
+                optimizer.step()
+                
+                # Zero grad (todos los parámetros)
+                self.zero_grad()
+                
+                total_loss += float(loss.data)
                 num_batches += 1
             
             avg_loss = total_loss / max(num_batches, 1)
@@ -105,9 +97,7 @@ class Brain(ABC):
         return self._training_history
     
     def save(self, path: str):
-        """
-        Guarda el modelo en disco (pickle).
-        """
+        """Guarda el modelo en disco"""
         import pickle
         state = self._get_state()
         with open(path, 'wb') as f:
@@ -115,9 +105,7 @@ class Brain(ABC):
         print(f"💾 {self.name} guardado en {path}")
     
     def load(self, path: str):
-        """
-        Carga el modelo desde disco.
-        """
+        """Carga el modelo desde disco"""
         import pickle
         with open(path, 'rb') as f:
             state = pickle.load(f)
@@ -126,10 +114,6 @@ class Brain(ABC):
         print(f"📂 {self.name} cargado desde {path}")
     
     def _get_state(self) -> Dict[str, Any]:
-        """
-        Devuelve el estado del modelo (a sobrescribir si es necesario).
-        Por defecto guarda los parámetros.
-        """
         return {
             'name': self.name,
             'version': self.version,
@@ -138,9 +122,6 @@ class Brain(ABC):
         }
     
     def _set_state(self, state: Dict[str, Any]):
-        """
-        Restaura el estado del modelo.
-        """
         self.name = state.get('name', self.name)
         self.version = state.get('version', self.version)
         self._trained = state.get('trained', False)
@@ -157,7 +138,6 @@ class Brain(ABC):
         return self._training_history
     
     def num_parameters(self) -> int:
-        """Cuenta el número total de parámetros"""
         total = 0
         for p in self.parameters():
             if hasattr(p, 'data'):
@@ -165,7 +145,6 @@ class Brain(ABC):
         return total
     
     def summary(self):
-        """Muestra un resumen del modelo"""
         print(f"🧠 {self.name} v{self.version}")
         print(f"   Entrenado: {'✅' if self._trained else '❌'}")
         print(f"   Parámetros: {self.num_parameters():,}")

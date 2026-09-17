@@ -10,57 +10,69 @@ import numpy as np
 from memory.short_term import ShortTermMemory
 from memory.long_term import LongTermMemory
 from memory.episodic import EpisodicMemory
+from memory.semantic import SemanticMemory
+
 
 class MemoryRetrieval:
     def __init__(self):
         self.short_term = ShortTermMemory(max_size=100)
         self.long_term = LongTermMemory(filename="memoria_largo_plazo.json")
         self.episodic = EpisodicMemory(max_size=100)
+        self.semantic = SemanticMemory(archivo="memoria_semantica.json", dim=128)
     
     def remember(self, query, limit=5):
         """
-        Recupera información relevante de todas las memorias
+        Recupera información relevante de todas las memorias.
         """
         results = {
             'short_term': [],
             'long_term': [],
-            'episodic': []
+            'episodic': [],
+            'semantic': [],
         }
         
-        # 1. Buscar en memoria a corto plazo
+        # 1. Corto plazo
         recent = self.short_term.get_recent(limit)
         results['short_term'] = recent
         
-        # 2. Buscar en memoria a largo plazo
+        # 2. Largo plazo (búsqueda por coincidencia exacta)
         long_results = self.long_term.search(query)
         results['long_term'] = long_results[:limit]
         
-        # 3. Buscar en memoria episódica
+        # 3. Episódica (búsqueda por contexto)
         ep_results = self.episodic.get_by_context(query, limit)
         results['episodic'] = ep_results
+        
+        # 4. Semántica (búsqueda por similitud)
+        sem_results = self.semantic.search(query, k=limit)
+        results['semantic'] = sem_results
         
         return results
     
     def add_experience(self, input_text, output_text, context=None):
-        """
-        Añade una experiencia a la memoria episódica
-        """
+        """Añade una experiencia a la memoria episódica"""
         self.episodic.add({
             'input': input_text,
             'output': output_text,
             'context': context or 'general'
         })
+        # También añadir a semántica para búsqueda por similitud
+        self.semantic.add(
+            f"{input_text} → {output_text}",
+            {'tipo': 'experiencia', 'contexto': context or 'general'}
+        )
     
     def add_knowledge(self, key, value, metadata=None):
-        """
-        Añade conocimiento a la memoria a largo plazo
-        """
+        """Añade conocimiento a largo plazo"""
         self.long_term.add(key, value, metadata)
+        # También añadir a semántica
+        self.semantic.add(
+            f"{key}: {value}",
+            {'tipo': 'conocimiento', **(metadata or {})}
+        )
     
     def add_recent(self, item, embedding=None):
-        """
-        Añade item a la memoria a corto plazo
-        """
+        """Añade item a la memoria a corto plazo"""
         self.short_term.add(item, embedding)
     
     def get_recent(self, n=5):
@@ -72,52 +84,51 @@ class MemoryRetrieval:
     def get_all_episodic(self):
         return self.episodic.get_all()
     
+    def get_all_semantic(self):
+        return self.semantic.entradas
+    
     def clear_all(self):
         self.short_term.clear()
         self.long_term.clear()
         self.episodic.clear()
+        self.semantic.clear()
         print("🧹 Todas las memorias limpiadas")
     
     def __repr__(self):
-        return f"MemoryRetrieval(short={self.short_term.size()}, long={self.long_term.size()}, ep={self.episodic.size()})"
+        return (f"MemoryRetrieval("
+                f"short={self.short_term.size()}, "
+                f"long={self.long_term.size()}, "
+                f"ep={self.episodic.size()}, "
+                f"sem={self.semantic.size()})")
 
-def prueba_retrieval():
-    print("🧠 PROBANDO SISTEMA DE RECUPERACIÓN DE MEMORIA")
-    print("="*40)
-    
-    memory = MemoryRetrieval()
-    
-    # Añadir conocimiento
-    memory.add_knowledge("nombre_proyecto", "Cerebro Zero", {"tipo": "proyecto"})
-    memory.add_knowledge("lenguaje_principal", "Python", {"tipo": "programacion"})
-    memory.add_knowledge("framework", "NumPy", {"tipo": "libreria"})
-    
-    # Añadir experiencias
-    memory.add_experience("Hola", "Hola, ¿cómo estás?", "saludo")
-    memory.add_experience("¿Qué hora es?", "Son las 11:00", "tiempo")
-    memory.add_experience("¿Cómo funciona el cerebro?", "Usa redes neuronales", "educacion")
-    
-    # Añadir a corto plazo
-    memory.add_recent("Última consulta: clima")
-    memory.add_recent("Última consulta: noticias")
-    
-    print(f"📊 Estado: {memory}")
-    
-    # Buscar
-    print("\n🔍 Buscando 'proyecto':")
-    resultados = memory.remember("proyecto")
-    for key, value in resultados.items():
-        print(f"   {key}: {value}")
-    
-    print("\n🔍 Buscando 'saludo':")
-    resultados = memory.remember("saludo")
-    for key, value in resultados.items():
-        print(f"   {key}: {value}")
-    
-    print("\n📋 Memoria a corto plazo:")
-    print(f"   {memory.get_recent(3)}")
-    
-    print("\n✅ SISTEMA DE RECUPERACIÓN FUNCIONANDO!")
 
 if __name__ == "__main__":
-    prueba_retrieval()
+    print("🧪 PROBANDO MEMORY RETRIEVAL CON SEMÁNTICA")
+    print("="*50)
+    
+    mem = MemoryRetrieval()
+    
+    # Añadir conocimiento
+    mem.add_knowledge("proyecto", "Cerebro Zero", {"tipo": "proyecto"})
+    mem.add_knowledge("lenguaje", "Python", {"tipo": "programacion"})
+    
+    # Añadir experiencias
+    mem.add_experience("hola", "Hola, ¿qué tal?", context="saludo")
+    mem.add_experience("adiós", "Hasta luego", context="despedida")
+    
+    print(f"\n📊 Estado: {mem}")
+    
+    # Buscar
+    print("\n🔍 Búsquedas:")
+    for q in ["hola", "proyecto", "Python", "despedida"]:
+        print(f"\n   Query: '{q}'")
+        r = mem.remember(q)
+        for key, items in r.items():
+            if items:
+                print(f"      {key}: {len(items)} resultados")
+                for item in items[:2]:
+                    if isinstance(item, dict):
+                        texto = item.get('texto') or item.get('output') or item.get('value') or str(item)
+                        print(f"         → {texto[:60]}")
+    
+    print("\n✅ MEMORY RETRIEVAL CON SEMÁNTICA FUNCIONANDO")

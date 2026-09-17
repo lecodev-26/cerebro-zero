@@ -16,10 +16,6 @@ from core.activations import ReLU, Sigmoid, Tanh
 class MLP(Brain):
     """
     Multilayer Perceptron usando la interfaz Brain.
-    
-    Ejemplo:
-        model = MLP([2, 8, 1])
-        model.forward(Tensor([[0, 1]]))
     """
     
     def __init__(self, layer_sizes, activation='relu', output_activation='sigmoid'):
@@ -33,7 +29,6 @@ class MLP(Brain):
         layers = []
         for i in range(len(layer_sizes) - 1):
             layers.append(Linear(layer_sizes[i], layer_sizes[i+1]))
-            # Añadir activación (excepto en la última capa)
             if i < len(layer_sizes) - 2:
                 if activation == 'relu':
                     layers.append(ReLU())
@@ -42,14 +37,12 @@ class MLP(Brain):
                 elif activation == 'sigmoid':
                     layers.append(Sigmoid())
             else:
-                # Activación de salida
                 if output_activation == 'sigmoid':
                     layers.append(Sigmoid())
                 elif output_activation == 'tanh':
                     layers.append(Tanh())
                 elif output_activation == 'relu':
                     layers.append(ReLU())
-                # Si es 'linear', no añadimos nada
         
         self.model = Sequential(*layers)
         self._trained = False
@@ -63,7 +56,6 @@ class MLP(Brain):
         return self.model.parameters()
     
     def _get_state(self):
-        """Guardar pesos"""
         state = super()._get_state()
         state['layer_sizes'] = self.layer_sizes
         state['activation'] = self.activation_name
@@ -91,21 +83,17 @@ class MLP(Brain):
         return f"MLP({self.layer_sizes})"
 
 
-# Test
 if __name__ == "__main__":
     print("🧪 PROBANDO MLP CON INTERFAZ BRAIN")
     print("="*50)
     
-    # Crear MLP
     model = MLP([2, 8, 1])
     model.summary()
     
-    # Forward
     x = Tensor([[0.0, 1.0]])
     y = model.forward(x)
     print(f"\n📊 Forward: {x.data} → {y.data}")
     
-    # Predicción
     pred = model.predict(x)
     print(f"🔮 Predicción: {pred.data}")
     
