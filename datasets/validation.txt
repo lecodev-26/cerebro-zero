@@ -1,0 +1,9 @@
+el aprendizaje profundo usa redes neuronales con muchas capas para extraer características
+la inteligencia artificial moderna se basa en grandes cantidades de datos y potencia de cómputo
+los transformers han revolucionado el procesamiento del lenguaje natural en los últimos años
+la memoria episódica almacena eventos específicos con su contexto temporal
+la recuperación de información busca los recuerdos más relevantes para una consulta dada
+el aprendizaje por refuerzo entrena agentes mediante recompensas y castigos
+el sistema debe aprender de sus errores para mejorar continuamente
+las herramientas son extensiones del cuerpo que amplían nuestras capacidades
+la seguridad es fundamental cuando el sistema puede ejecutar código arbitrario

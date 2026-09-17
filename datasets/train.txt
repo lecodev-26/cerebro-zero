@@ -1,0 +1,41 @@
+la inteligencia artificial es un campo de la computación que busca crear sistemas capaces de aprender
+el aprendizaje automático permite a las máquinas mejorar con la experiencia sin ser programadas explícitamente
+las redes neuronales son modelos inspirados en el cerebro humano que procesan información de forma distribuida
+python es un lenguaje de programación muy popular en ciencia de datos y aprendizaje automático
+numpy es una librería fundamental para el cálculo numérico en python y permite trabajar con matrices
+el cerebro humano contiene miles de millones de neuronas que se comunican mediante señales eléctricas
+la memoria es la capacidad de almacenar y recuperar información cuando se necesita
+el razonamiento permite resolver problemas descomponiéndolos en pasos más simples
+un algoritmo es una secuencia finita de pasos que resuelve un problema específico
+los datos son la materia prima del aprendizaje automático y sin ellos no hay aprendizaje posible
+el entrenamiento consiste en ajustar los parámetros de un modelo para minimizar el error
+la función de pérdida mide qué tan lejos está la predicción del valor real
+el descenso de gradiente es un método de optimización que ajusta los pesos paso a paso
+la retropropagación calcula los gradientes de cada parámetro usando la regla de la cadena
+el transformer es una arquitectura de red neuronal basada en mecanismos de atención
+la atención permite al modelo centrarse en las partes relevantes de la entrada
+el tokenizador convierte texto en números que el modelo puede procesar
+el vocabulario es el conjunto de todos los tokens que el modelo conoce
+la memoria a corto plazo guarda información reciente durante un tiempo limitado
+la memoria a largo plazo persiste entre sesiones y permite recordar experiencias pasadas
+la memoria semántica almacena conocimiento mediante vectores y permite búsquedas por similitud
+el razonamiento descompone problemas complejos en subproblemas más manejables
+un planificador decide qué pasos seguir para resolver un problema
+un verificador comprueba si la respuesta obtenida es correcta
+las herramientas amplían las capacidades del sistema permitiéndole interactuar con el mundo
+un plugin es un módulo que añade funcionalidad sin modificar el núcleo del sistema
+los permisos controlan qué puede hacer cada herramienta por razones de seguridad
+el sandbox aísla la ejecución de código peligroso para evitar daños
+el aprendizaje continuo permite al sistema mejorar con cada nueva experiencia
+la evaluación mide el rendimiento del modelo sobre datos que no ha visto antes
+el sobreajuste ocurre cuando el modelo memoriza los datos de entrenamiento pero falla en datos nuevos
+la regularización ayuda a prevenir el sobreajuste añadiendo restricciones al modelo
+la normalización estabiliza el entrenamiento manteniendo las activaciones en rangos razonables
+el dropout apaga neuronas aleatoriamente durante el entrenamiento para mejorar la generalización
+el optimizador adam combina momento y escalado adaptativo para un entrenamiento eficiente
+la tasa de aprendizaje controla cuánto se ajustan los pesos en cada paso
+un epoch es una pasada completa sobre todos los datos de entrenamiento
+el batch es un subconjunto de datos que se procesa antes de actualizar los pesos
+la precisión mide el porcentaje de predicciones correctas sobre el total
+la memoria es fundamental para que un agente recuerde lo que ha aprendido
+el cerebro zero es un proyecto que construye un agente híbrido desde cero en python
