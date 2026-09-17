@@ -1,0 +1,42 @@
+{
+  "experiencias": [
+    {
+      "entrada": "test1",
+      "salida": "respuesta1",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T13:14:30.720585"
+    },
+    {
+      "entrada": "test2",
+      "salida": "respuesta2",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T13:14:30.721441"
+    },
+    {
+      "entrada": "test3",
+      "salida": "respuesta3",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T13:14:30.721936"
+    }
+  ],
+  "errores": [
+    {
+      "entrada": "test3",
+      "salida": "respuesta3",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T13:14:30.721936"
+    }
+  ],
+  "correcciones": [],
+  "metricas": {
+    "total_experiencias": 3,
+    "aciertos": 2,
+    "errores": 1,
+    "tasa_acierto": 0.6666666666666666
+  },
+  "fecha_actualizacion": "2026-09-17T13:14:30.721966"
+}

@@ -15,9 +15,17 @@
   },
   "framework": {
     "value": "NumPy",
-    "metadata": {
-      "tipo": "libreria"
-    },
-    "timestamp": 1788859956.929499
+    "metadata": {},
+    "timestamp": 1789643670.647969
+  },
+  "proyecto": {
+    "value": "Cerebro Zero",
+    "metadata": {},
+    "timestamp": 1789643670.645936
+  },
+  "lenguaje": {
+    "value": "Python",
+    "metadata": {},
+    "timestamp": 1789643670.647104
   }
 }
