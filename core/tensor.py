@@ -75,7 +75,16 @@ class Tensor:
         return self.pow(n)
     
     def __neg__(self):
-        return Tensor(-self.data, requires_grad=self.requires_grad, _children=(self,))
+        out = Tensor(-self.data, requires_grad=self.requires_grad, _children=(self,))
+        out._op = 'neg'
+        def backward():
+            if out.grad is None:
+                return
+            if self.requires_grad:
+                g = -out.grad
+                self.grad = g if self.grad is None else self.grad + g
+        out._backward = backward
+        return out
     
     # ============================================
     # MATMUL (2D)

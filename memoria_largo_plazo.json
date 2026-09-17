@@ -1,31 +1,7 @@
 {
-  "nombre_proyecto": {
-    "value": "Cerebro Zero",
-    "metadata": {
-      "tipo": "proyecto"
-    },
-    "timestamp": 1788859956.928936
-  },
-  "lenguaje_principal": {
-    "value": "Python",
-    "metadata": {
-      "tipo": "programacion"
-    },
-    "timestamp": 1788859956.929271
-  },
-  "framework": {
-    "value": "NumPy",
-    "metadata": {},
-    "timestamp": 1789643670.647969
-  },
   "proyecto": {
     "value": "Cerebro Zero",
     "metadata": {},
-    "timestamp": 1789643670.645936
-  },
-  "lenguaje": {
-    "value": "Python",
-    "metadata": {},
-    "timestamp": 1789643670.647104
+    "timestamp": 1789651039.859557
   }
 }

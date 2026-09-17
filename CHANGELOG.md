@@ -1,72 +1,77 @@
 # 📝 CHANGELOG
 
-Todos los cambios importantes en Cerebro Zero.
+## [2.1.0] - 2026-09-17
 
-## [2.0.0-alpha] - En desarrollo
+### 🔴 TECHNICAL INTEGRITY RELEASE
 
-### 🔴 P0 — CORRECCIÓN
+#### FASE 2.1.8 — Documentación coherente
+- README actualizado al estado real (308 tests)
+- CHANGELOG con todas las fases 2.1
+- Limpieza de archivos muertos
 
-#### Añadido — FASE 25 (Documentación)
-- **`docs/ARCHITECTURE.md`** — Arquitectura completa
-- **`docs/TESTING.md`** — Guía de testing
-- **`docs/API.md`** — Referencia de API
-- README, ROADMAP y CHANGELOG alineados
+#### FASE 2.1.7 — Persistencia segura
+- Formato JSON + NPY (sin pickle)
+- Checksums SHA256
+- Detección de corrupción
+- `safe_save_model` / `safe_load_model`
 
-#### Añadido — FASE 24 (Seguridad)
-- **`security/permissions.py`** — 15 permisos atómicos
-- **`security/sandbox.py`** — Sandbox con audit log
-- **`security/parser.py`** — Detección de 15 patrones peligrosos
-- **`tools/registry.py`** — Tool Registry con permisos
-- **`tests/test_security.py`** — 15 tests
+#### FASE 2.1.6 — Sandbox real
+- Subprocess aislado con timeout
+- Límites de recursos (SAFE/STANDARD/GENEROUS)
+- Audit log persistente
 
-#### Corregido — FASE 23 (Broadcasting + Numérica)
-- Broadcasting completo en backward
-- Softmax, sigmoid, exp numéricamente estables
-- `mean()` lanza `ValueError` en tensor vacío
-- Soporte float32/float64 configurable
-- **`tests/test_broadcasting.py`** — 10 tests
-- **`tests/test_numerics.py`** — 14 tests
+#### FASE 2.1.5 — Pipeline arreglado
+- Parser con 9 intenciones
+- Steps: memory_store, memory_recall, learning
+- Accuracy: 52.45% → 97.74%
 
-#### Corregido — FASE 22 (Tests automáticos)
-- **`tests/test_layers.py`** — 7 tests
-- **`tests/test_losses.py`** — 6 tests
-- **`tests/test_optimizers.py`** — 4 tests
-- **`tests/test_models.py`** — 3 tests
-- **`pytest.ini`** configurado
-- **`.github/workflows/tests.yml`** — CI/CD
+#### FASE 2.1.4 — Benchmark 3.0 honesto
+- 265 casos con splits KNOWN/UNSEEN/ADVERSARIAL
+- Métricas p50/p95 de latencia
 
-#### Corregido — FASE 21 (Autograd)
-- `log()` — dominio correcto (x > 0)
-- `sqrt()` — dominio correcto (x ≥ 0)
-- Broadcasting en backward
-- `sum()` con axis y keepdims
-- `mean()` con axis y keepdims
-- **`tests/test_gradient_check.py`** — 25 tests
+#### FASE 2.1.3 — LMTrainer limpio
+- **BUGFIX CRÍTICO:** `__neg__` rompía el grafo de autograd
+- Backprop REAL sin gradientes aleatorios
+- Loss: 4.95 → 2.25 (-54.5%)
+
+#### FASE 2.1.2 — Transformer con backprop real
+- Multi-Head Attention con autograd completo
+- LayerNorm, FFN, residuales
+- **Gradient checking 17/17**
+
+#### FASE 2.1.1 — Autograd 3.0
+- `gather`, `embedding`, `batch_matmul`
+- `stack`, `concat`, `where`, `mask`, `max`
+- **Gradient checking 10/10**
+
+---
+
+## [2.0.0] - 2026-09-17
+
+### 🟢 RELEASE 2.0
+
+#### P3 — Ingeniería
+- FASE 36: Benchmark 2.0
+- FASE 37: Configuración YAML
+- FASE 38: CI/CD real
+- FASE 39: Cerebro Zero Mobile
+- FASE 40: Dashboard Flask
+
+#### P2 — Inteligencia
+- FASE 31-35
+
+#### P1 — Cerebro Central
+- FASE 26-30
+
+#### P0 — Corrección
+- FASE 21-25
 
 ---
 
 ## [1.0.0] - 2026-09-08
 
 ### Añadido
-- Redes neuronales desde cero (MLP, CNN, Transformer)
+- Redes neuronales desde cero
 - 12 cerebros funcionales
-- Cerebro de 1024 neuronas (MNIST)
-- 78.95% de precisión
-- Interfaz web con Flask
-- Chat interactivo
-- APIs reales (clima, noticias)
-- Reconocimiento de voz
-
-### Documentación inicial
-- LICENSE (MIT)
-- README
-- CONTRIBUTING
-- CODE_OF_CONDUCT
-- SECURITY
-- AUTHORS
-- CITATION
-- Makefile, setup.py, pyproject.toml, Dockerfile
-
----
-
-**Formato basado en [Keep a Changelog](https://keepachangelog.com/)**
+- Interfaz web
+- APIs reales

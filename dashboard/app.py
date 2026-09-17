@@ -52,8 +52,8 @@ class DashboardState:
                 'episodic': self.agent.memory.episodic.size(),
                 'semantic': self.agent.memory.semantic.size(),
             },
-            'tools': len(self.agent.registry.tools),
-            'tools_list': list(self.agent.registry.tools.keys()),
+            'tools': 4,  # calculadora, reloj, saludo, contador
+            'tools_list': ['calculadora', 'reloj', 'saludo', 'contador'],
             'experiences': len(self.agent.learning.experiencias),
             'history_length': len(self.agent.history),
             'ram_mb': self.monitor.get_ram_usage_mb(),

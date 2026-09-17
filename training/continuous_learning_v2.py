@@ -107,8 +107,9 @@ class ContinuousLearner:
     def _evaluate_on(self, X: np.ndarray, y: np.ndarray) -> float:
         """Evalúa el loss sobre un batch"""
         from core.tensor import Tensor
-        logits = self.model.forward(Tensor(X)).data
-        return self.trainer.cross_entropy_loss(logits, y)
+        logits = self.model.forward(Tensor(X))  # Tensor, no .data
+        loss = self.trainer.cross_entropy_loss(logits, y)
+        return float(loss.data)
     
     def evaluate_forgetting(self, task_data: dict, verbose: bool = False) -> dict:
         """

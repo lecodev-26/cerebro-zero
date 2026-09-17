@@ -1,1 +1,3 @@
-from .tensor_v2 import Tensor
+from core.tensor import Tensor
+
+__all__ = ['Tensor']

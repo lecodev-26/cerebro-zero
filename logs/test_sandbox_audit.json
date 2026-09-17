@@ -1,0 +1,37 @@
+[
+  {
+    "timestamp": 1789650503.5502641,
+    "action": "EXECUTE",
+    "message": "suma con execute_math"
+  },
+  {
+    "timestamp": 1789650503.550271,
+    "action": "SUCCESS",
+    "message": "suma"
+  },
+  {
+    "timestamp": 1789650503.5503428,
+    "action": "APPROVED",
+    "message": "Permiso peligroso aprobado: execute_subprocess"
+  },
+  {
+    "timestamp": 1789650503.550352,
+    "action": "EXECUTE_CODE",
+    "message": "subprocess: print(2 + 2)..."
+  },
+  {
+    "timestamp": 1789650503.6099796,
+    "action": "SUCCESS_CODE",
+    "message": "exit_code=0, duration=59.6ms"
+  },
+  {
+    "timestamp": 1789650503.6100814,
+    "action": "EXECUTE_CODE",
+    "message": "subprocess: while True: pass..."
+  },
+  {
+    "timestamp": 1789650508.618508,
+    "action": "ERROR_CODE",
+    "message": "Timeout despu\u00e9s de 5.0s"
+  }
+]
