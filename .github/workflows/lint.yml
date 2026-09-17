@@ -1,0 +1,38 @@
+name: Lint
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    name: Lint con flake8 y black
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+      
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      
+      - name: Instalar herramientas
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 black
+      
+      - name: Verificar sintaxis con flake8
+        run: |
+          # Detener solo en errores graves (E9, F63, F7, F82)
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # Advertencias informativas (no detienen el build)
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=100 --statistics
+      
+      - name: Verificar formato con black
+        run: |
+          black --check --diff . || echo "⚠️ Black sugiere cambios de formato"
+        continue-on-error: true

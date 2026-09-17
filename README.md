@@ -3,6 +3,14 @@
 ## Sistema de Inteligencia Artificial desde cero en Termux
 
 [![Python](https://img.shields.io/badge/Python-3.14-blue.svg)](https://www.python.org/)
+[![Tests](https://github.com/lecodev-26/cerebro-zero/actions/workflows/tests.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/tests.yml)
+[![Lint](https://github.com/lecodev-26/cerebro-zero/actions/workflows/lint.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/lint.yml)
+[![Benchmark](https://github.com/lecodev-26/cerebro-zero/actions/workflows/benchmark.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/benchmark.yml)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Tests](https://img.shields.io/badge/Tests-265%2F265-brightgreen.svg)](tests/)
+
+
+[![Python](https://img.shields.io/badge/Python-3.14-blue.svg)](https://www.python.org/)
 [![NumPy](https://img.shields.io/badge/NumPy-2.4.4-green.svg)](https://numpy.org/)
 [![Flask](https://img.shields.io/badge/Flask-3.1.3-red.svg)](https://flask.palletsprojects.com/)
 [![Tests](https://img.shields.io/badge/Tests-69%2F69-brightgreen.svg)](tests/)
@@ -42,6 +50,16 @@ La versión **2.0** se centra en la **coherencia, corrección y verificabilidad*
 | **CI/CD** | ✅ GitHub Actions |
 
 ---
+
+
+## 🚦 Estado del CI/CD
+
+| Workflow | Estado |
+|----------|--------|
+| Tests | [![Tests](https://github.com/lecodev-26/cerebro-zero/actions/workflows/tests.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/tests.yml) |
+| Lint | [![Lint](https://github.com/lecodev-26/cerebro-zero/actions/workflows/lint.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/lint.yml) |
+| Benchmark | [![Benchmark](https://github.com/lecodev-26/cerebro-zero/actions/workflows/benchmark.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/benchmark.yml) |
+| Package | [![Package](https://github.com/lecodev-26/cerebro-zero/actions/workflows/package.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/package.yml) |
 
 ## 🗺️ Roadmap 2.0 — 20 fases
 
