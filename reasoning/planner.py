@@ -125,31 +125,37 @@ class Verifier:
         return self.errores
 
 class Razonamiento:
-    def __init__(self):
+    def __init__(self, verbose=True):
         self.planner = Planner()
         self.verifier = Verifier()
         self.historial = []
+        self.verbose = verbose
     
     def razonar(self, pregunta):
         """
         Proceso completo de razonamiento
         """
-        print(f"🧠 Razonando sobre: {pregunta}")
+        if self.verbose:
+            print(f"🧠 Razonando sobre: {pregunta}")
         
         # 1. Planificar
-        print("📋 Planificando pasos...")
+        if self.verbose:
+            print("📋 Planificando pasos...")
         pasos = self.planner.planificar(pregunta)
-        print(f"   Pasos planificados: {len(pasos)}")
+        if self.verbose:
+            print(f"   Pasos planificados: {len(pasos)}")
         
         # 2. Ejecutar
-        print("⚙️ Ejecutando pasos...")
+        if self.verbose:
+            print("⚙️ Ejecutando pasos...")
         resultados = self.planner.ejecutar(pasos)
         
         # 3. Verificar
-        print("🔍 Verificando resultados...")
+        if self.verbose:
+            print("🔍 Verificando resultados...")
         for i, (paso, resultado) in enumerate(zip(pasos, resultados)):
             ok, msg = self.verifier.verificar(resultado, paso)
-            if not ok:
+            if not ok and self.verbose:
                 print(f"   ⚠️ Paso {i+1} requiere revisión: {msg}")
         
         # 4. Guardar en historial
