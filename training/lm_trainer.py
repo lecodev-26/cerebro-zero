@@ -1,5 +1,6 @@
 """
-Entrenador de Language Model con backprop real (parcial)
+Entrenador de Language Model con BACKPROP REAL
+Usa loss.backward() y optimizer.step() — sin aproximaciones.
 """
 
 import sys
@@ -16,11 +17,11 @@ from models.transformer import Transformer
 
 class LMTrainer:
     """
-    Entrenador de Language Model con backprop funcional.
+    Entrenador de Language Model con backprop real.
     
-    El backprop propaga gradientes hasta el LM head y los embeddings.
-    Los bloques Transformer se actualizan con un gradiente simplificado
-    pero funcional (suficiente para que el loss baje).
+    Uso:
+        trainer = LMTrainer(model, learning_rate=0.01)
+        history = trainer.train(train_ds, val_ds, epochs=10, batch_size=8)
     """
     
     def __init__(self, model: Transformer, learning_rate: float = 0.01):
@@ -35,227 +36,131 @@ class LMTrainer:
         }
         self.best_val_loss = float('inf')
         self.best_epoch = -1
+        self.best_weights = None
     
-    def cross_entropy_loss(self, logits: np.ndarray, targets: np.ndarray) -> float:
-        """Cross-entropy loss"""
-        batch, seq_len, vocab_size = logits.shape
-        logits_flat = logits.reshape(-1, vocab_size)
-        targets_flat = targets.reshape(-1)
-        
-        logits_max = np.max(logits_flat, axis=-1, keepdims=True)
-        logits_shifted = logits_flat - logits_max
-        log_sum_exp = np.log(np.sum(np.exp(logits_shifted), axis=-1) + 1e-10)
-        log_probs = logits_shifted - log_sum_exp[:, None]
-        
-        target_log_probs = log_probs[np.arange(len(targets_flat)), targets_flat]
-        return float(-np.mean(target_log_probs))
+    # ============================================
+    # LOSS Y GRADIENTES
+    # ============================================
     
-    def compute_logit_gradients(self, logits: np.ndarray, targets: np.ndarray) -> np.ndarray:
-        """grad = softmax(logits) - one_hot(targets)"""
-        batch, seq_len, vocab_size = logits.shape
+    def cross_entropy_loss(self, logits: Tensor, targets: np.ndarray) -> Tensor:
+        """
+        Cross-entropy loss dentro del grafo.
         
-        logits_max = np.max(logits, axis=-1, keepdims=True)
-        exp_logits = np.exp(logits - logits_max)
-        probs = exp_logits / (np.sum(exp_logits, axis=-1, keepdims=True) + 1e-10)
+        logits: Tensor (batch, seq_len, vocab_size)
+        targets: np.ndarray (batch, seq_len)
         
-        targets_flat = targets.reshape(-1)
-        probs_flat = probs.reshape(-1, vocab_size)
-        probs_flat[np.arange(len(targets_flat)), targets_flat] -= 1.0
+        Loss = -mean(log(softmax(logits)[target]))
         
-        return probs_flat.reshape(batch, seq_len, vocab_size) / (batch * seq_len)
-    
-    def train_step(self, X: np.ndarray, y: np.ndarray) -> float:
-        """Un paso de entrenamiento con backprop real"""
+        Implementación:
+        - Aplicar softmax sobre logits
+        - Codificar targets como one-hot
+        - Loss = -sum(target_onehot * log(probs))
+        """
+        batch, seq_len, vocab_size = logits.data.shape
+        targets_flat = targets.reshape(-1).astype(int)
+        batch_seq = batch * seq_len
         
-        # 1. FORWARD con cachés
-        caches = {}
-        logits = self._forward_with_cache(X, caches)
+        # Softmax con estabilidad numérica
+        probs = logits.softmax(axis=-1)
         
-        # 2. LOSS
-        loss = self.cross_entropy_loss(logits, y)
+        # Clip para evitar log(0)
+        eps = 1e-10
+        probs_clipped = probs + eps
         
-        # 3. GRADIENTE de la loss respecto a logits
-        grad_logits = self.compute_logit_gradients(logits, y)
+        # Log de las probabilidades
+        log_probs = probs_clipped.log()  # (batch, seq, vocab)
         
-        # 4. BACKPROP
-        self._backward(grad_logits, caches, X, y)
+        # Crear one-hot de los targets
+        targets_onehot = np.zeros((batch, seq_len, vocab_size), dtype=log_probs.data.dtype)
+        for b in range(batch):
+            for s in range(seq_len):
+                targets_onehot[b, s, targets[b, s]] = 1.0
         
-        # 5. OPTIMIZER
-        self.optimizer.step()
-        self.optimizer.zero_grad()
+        # Loss = -mean(sum(target_onehot * log_probs, axis=-1))
+        # Equivalente a: -sum(target_onehot * log_probs) / batch_seq
+        # Usamos multiplicación elemento a elemento + sum
+        
+        # Multiplicar elemento a elemento
+        product = log_probs * Tensor(targets_onehot, requires_grad=False)  # (batch, seq, vocab)
+        
+        # Sumar sobre vocab
+        summed = product.sum(axis=-1)  # (batch, seq)
+        
+        # Negativo y media
+        loss = -summed.mean()
         
         return loss
     
-    def _forward_with_cache(self, X: np.ndarray, caches: dict) -> np.ndarray:
-        """Forward que guarda activaciones para el backward"""
-        model = self.model
-        input_data = X.astype(int)
-        batch, seq_len = input_data.shape
-        
-        # Embeddings
-        tok_emb = model.token_emb.data[input_data]
-        pos_emb = model.pos_emb.data[:seq_len]
-        h = tok_emb + pos_emb
-        
-        caches['tok_emb'] = tok_emb
-        caches['h_input'] = h.copy()
-        caches['X_input'] = input_data.copy()
-        caches['seq_len'] = seq_len
-        caches['batch'] = batch
-        
-        # Bloques (simplificado)
-        for i, block in enumerate(model.blocks):
-            h_before = h.copy()
-            h = block.forward(Tensor(h)).data
-            caches[f'block_{i}_before'] = h_before
-            caches[f'block_{i}_after'] = h.copy()
-        
-        # LayerNorm final (simplificado)
-        caches['h_before_ln'] = h.copy()
-        mean = np.mean(h, axis=-1, keepdims=True)
-        var = np.var(h, axis=-1, keepdims=True)
-        h_norm = (h - mean) / np.sqrt(var + model.ln_final.eps)
-        h_ln = h_norm * model.ln_final.gamma.data + model.ln_final.beta.data
-        caches['h_norm'] = h_norm
-        caches['h_ln'] = h_ln.copy()
-        caches['mean'] = mean
-        caches['var'] = var
-        
-        # LM Head
-        logits = np.dot(h_ln, model.lm_head.data)
-        caches['logits'] = logits
-        caches['h_ln'] = h_ln
-        
-        return logits
+    # ============================================
+    # TRAIN STEP
+    # ============================================
     
-    def _backward(self, grad_logits: np.ndarray, caches: dict, X: np.ndarray, y: np.ndarray):
-        """Backprop real desde los logits hacia atrás"""
-        model = self.model
+    def train_step(self, X: np.ndarray, y: np.ndarray) -> float:
+        """
+        Un paso de entrenamiento con backprop REAL.
         
-        # === 1. Backprop del LM Head ===
-        # logits = h_ln @ W_lm_head
-        h_ln = caches['h_ln']
-        batch, seq_len, vocab_size = grad_logits.shape
+        X: (batch, seq_len) — tokens de entrada
+        y: (batch, seq_len) — tokens objetivo
+        """
+        # Forward
+        x_t = Tensor(X.astype(int))
+        logits = self.model.forward(x_t)
         
-        # dL/dW_lm_head = h_ln^T @ grad_logits (aplanado)
-        h_flat = h_ln.reshape(-1, model.d_model)
-        grad_flat = grad_logits.reshape(-1, vocab_size)
-        grad_W_lm = np.dot(h_flat.T, grad_flat)
+        # Loss
+        loss = self.cross_entropy_loss(logits, y)
         
-        # Aplicar gradiente al LM head
-        if model.lm_head.grad is None:
-            model.lm_head.grad = grad_W_lm
-        else:
-            model.lm_head.grad = model.lm_head.grad + grad_W_lm
+        # Backward REAL (sin aproximaciones)
+        loss.backward()
         
-        # dL/dh_ln = grad_logits @ W_lm_head^T
-        grad_h_ln = np.dot(grad_flat, model.lm_head.data.T)
-        grad_h_ln = grad_h_ln.reshape(batch, seq_len, model.d_model)
+        # Optimizer step
+        self.optimizer.step()
+        self.optimizer.zero_grad()
         
-        # === 2. Backprop de LayerNorm final ===
-        eps = model.ln_final.eps
-        mean = caches['mean']
-        var = caches['var']
-        h_norm = caches['h_norm']
-        
-        # dL/dgamma = sum(dL/dh_ln * h_norm) sobre batch y seq
-        grad_gamma = np.sum(grad_h_ln * h_norm, axis=(0, 1))
-        grad_beta = np.sum(grad_h_ln, axis=(0, 1))
-        
-        if model.ln_final.gamma.grad is None:
-            model.ln_final.gamma.grad = grad_gamma
-        else:
-            model.ln_final.gamma.grad = model.ln_final.gamma.grad + grad_gamma
-        
-        if model.ln_final.beta.grad is None:
-            model.ln_final.beta.grad = grad_beta
-        else:
-            model.ln_final.beta.grad = model.ln_final.beta.grad + grad_beta
-        
-        # dL/dh_before_ln (aproximado)
-        grad_h_before_ln = grad_h_ln * model.ln_final.gamma.data / np.sqrt(var + eps)
-        
-        # === 3. Backprop a través de bloques (aproximación simple) ===
-        grad_h = grad_h_before_ln
-        
-        # Distribuir el gradiente a los parámetros de los bloques
-        for i, block in enumerate(model.blocks):
-            # Aproximación: cada bloque recibe una fracción del gradiente
-            scale = 1.0 / len(model.blocks)
-            grad_block = grad_h * scale
-            
-            # Actualizar W_q, W_k, W_v, W_o con un gradiente aproximado
-            for attn_param in [block.attention.W_q, block.attention.W_k,
-                              block.attention.W_v, block.attention.W_o]:
-                grad_approx = grad_block.mean(axis=(0, 1))[:, None] * np.ones_like(attn_param.data) * 1e-4
-                if attn_param.grad is None:
-                    attn_param.grad = grad_approx
-                else:
-                    attn_param.grad = attn_param.grad + grad_approx
-            
-            # W1, b1, W2, b2 del FF
-            for ff_param in [block.ff.W1, block.ff.b1, block.ff.W2, block.ff.b2]:
-                grad_approx = np.random.randn(*ff_param.data.shape) * 1e-5
-                if ff_param.grad is None:
-                    ff_param.grad = grad_approx
-                else:
-                    ff_param.grad = ff_param.grad + grad_approx
-            
-            # LayerNorm de los bloques
-            for ln in [block.ln1, block.ln2]:
-                if ln.gamma.grad is None:
-                    ln.gamma.grad = np.random.randn(*ln.gamma.data.shape) * 1e-5
-                else:
-                    ln.gamma.grad = ln.gamma.grad + np.random.randn(*ln.gamma.data.shape) * 1e-5
-                
-                if ln.beta.grad is None:
-                    ln.beta.grad = np.random.randn(*ln.beta.data.shape) * 1e-5
-                else:
-                    ln.beta.grad = ln.beta.grad + np.random.randn(*ln.beta.data.shape) * 1e-5
-        
-        # === 4. Backprop a los embeddings ===
-        # dL/d_pos_emb
-        grad_pos = grad_h.mean(axis=0)  # (seq_len, d_model)
-        if model.pos_emb.grad is None:
-            model.pos_emb.grad = np.zeros_like(model.pos_emb.data)
-        model.pos_emb.grad[:caches['seq_len']] += grad_pos
-        
-        # dL/d_token_emb (scatter)
-        if model.token_emb.grad is None:
-            model.token_emb.grad = np.zeros_like(model.token_emb.data)
-        
-        X_input = caches['X_input']
-        for b in range(caches['batch']):
-            for s in range(caches['seq_len']):
-                token_id = X_input[b, s]
-                model.token_emb.grad[token_id] += grad_h[b, s]
+        return float(loss.data)
+    
+    # ============================================
+    # EVALUACIÓN
+    # ============================================
     
     def evaluate(self, dataset, batch_size: int = 8, num_batches: int = 10) -> dict:
-        """Evalúa el modelo"""
+        """Evalúa el modelo sobre un dataset"""
         losses = []
         for _ in range(num_batches):
             X, y = dataset.get_batch(batch_size=batch_size, shuffle=True)
-            logits = self.model.forward(Tensor(X)).data
+            x_t = Tensor(X.astype(int))
+            logits = self.model.forward(x_t)
             loss = self.cross_entropy_loss(logits, y)
-            losses.append(loss)
+            losses.append(float(loss.data))
         
         avg_loss = float(np.mean(losses))
-        ppl = float(np.exp(avg_loss))
+        ppl = float(np.exp(min(avg_loss, 20)))  # Cap para evitar overflow
+        
         return {'loss': avg_loss, 'ppl': ppl}
+    
+    # ============================================
+    # ENTRENAMIENTO
+    # ============================================
     
     def train(self, train_ds, val_ds=None, epochs: int = 10,
               batch_size: int = 8, batches_per_epoch: int = 20,
-              verbose: bool = True, eval_every: int = 1):
-        """Bucle de entrenamiento completo"""
+              verbose: bool = True, eval_every: int = 1,
+              early_stopping_patience: int = None):
+        """
+        Bucle de entrenamiento completo con backprop REAL.
+        """
         if verbose:
             print(f"🏋️ Entrenando {self.model.name}")
             print(f"   LR: {self.lr}")
             print(f"   Épocas: {epochs}")
             print(f"   Batches/época: {batches_per_epoch}")
             print(f"   Batch size: {batch_size}")
+            print(f"   Train samples: {len(train_ds)}")
+            if val_ds:
+                print(f"   Val samples: {len(val_ds)}")
             print("="*60)
         
         start_time = time.time()
+        epochs_no_improvement = 0
         
         for epoch in range(epochs):
             epoch_start = time.time()
@@ -267,12 +172,13 @@ class LMTrainer:
                 train_losses.append(loss)
             
             avg_train_loss = float(np.mean(train_losses))
-            train_ppl = float(np.exp(avg_train_loss))
+            train_ppl = float(np.exp(min(avg_train_loss, 20)))
             
             self.history['train_loss'].append(avg_train_loss)
             self.history['train_ppl'].append(train_ppl)
             
             val_info = ""
+            improved = False
             if val_ds is not None and (epoch + 1) % eval_every == 0:
                 val_metrics = self.evaluate(val_ds, batch_size=batch_size, num_batches=5)
                 self.history['val_loss'].append(val_metrics['loss'])
@@ -282,11 +188,24 @@ class LMTrainer:
                 if val_metrics['loss'] < self.best_val_loss:
                     self.best_val_loss = val_metrics['loss']
                     self.best_epoch = epoch
+                    # Guardar mejor peso
+                    self.best_weights = [p.data.copy() for p in self.model.parameters()]
+                    improved = True
+                    epochs_no_improvement = 0
+                else:
+                    epochs_no_improvement += 1
             
             epoch_time = time.time() - epoch_start
             if verbose:
+                marker = " ⭐" if improved else ""
                 print(f"Epoch {epoch+1}/{epochs} | train_loss={avg_train_loss:.4f}, "
-                      f"train_ppl={train_ppl:.2f}{val_info} | {epoch_time:.2f}s")
+                      f"train_ppl={train_ppl:.2f}{val_info} | {epoch_time:.2f}s{marker}")
+            
+            # Early stopping
+            if early_stopping_patience is not None and epochs_no_improvement >= early_stopping_patience:
+                if verbose:
+                    print(f"⏹️ Early stopping: {early_stopping_patience} épocas sin mejora")
+                break
         
         total_time = time.time() - start_time
         if verbose:
@@ -295,24 +214,38 @@ class LMTrainer:
             if self.best_epoch >= 0:
                 print(f"   Mejor época: {self.best_epoch+1}")
                 print(f"   Mejor val_loss: {self.best_val_loss:.4f}")
+                # Restaurar mejores pesos
+                if self.best_weights is not None:
+                    for p, w in zip(self.model.parameters(), self.best_weights):
+                        p.data = w.copy()
+                    if verbose:
+                        print(f"   ✅ Mejores pesos restaurados")
         
         self.model._trained = True
         return self.history
     
+    # ============================================
+    # PERSISTENCIA
+    # ============================================
+    
     def save(self, path: str):
-        """Guarda el modelo"""
+        """Guarda el modelo y el histórico"""
         state = {
             'model_weights': [p.data.copy() for p in self.model.parameters()],
             'history': self.history,
             'best_val_loss': self.best_val_loss,
             'best_epoch': self.best_epoch,
+            'vocab_size': self.model.vocab_size,
+            'd_model': self.model.d_model,
+            'num_heads': self.model.num_heads,
+            'num_layers': self.model.num_layers,
         }
         with open(path, 'wb') as f:
             pickle.dump(state, f)
         print(f"💾 Modelo guardado en {path}")
     
     def load(self, path: str):
-        """Carga el modelo"""
+        """Carga el modelo y el histórico"""
         with open(path, 'rb') as f:
             state = pickle.load(f)
         
@@ -327,16 +260,17 @@ class LMTrainer:
 
 
 # ============================================
-# TESTS
+# TEST
 # ============================================
 
 if __name__ == "__main__":
-    print("🧪 PROBANDO LM TRAINER")
+    print("🧪 PROBANDO LM TRAINER V3.0 (backprop REAL)")
     print("="*60)
     
     from language.tokenizer import Tokenizer
     from language.dataset import TextDataset
     
+    # Cargar datos
     all_texts = []
     for split in ['train', 'validation', 'test']:
         for prefix in ['', '../']:
@@ -356,33 +290,44 @@ if __name__ == "__main__":
                 return p
         return None
     
-    train_ds = TextDataset(find_path('train'), tok, context_len=16)
-    val_ds = TextDataset(find_path('validation'), tok, context_len=16)
+    train_ds = TextDataset(find_path('train'), tok, context_len=8)
+    val_ds = TextDataset(find_path('validation'), tok, context_len=8)
     
+    # Modelo más pequeño para móvil
     model = Transformer(
         vocab_size=tok.vocab_size,
-        d_model=32,
+        d_model=16,
         num_heads=2,
-        d_ff=64,
-        num_layers=2,
-        max_len=16,
+        d_ff=32,
+        num_layers=1,
+        max_len=8,
     )
     model.summary()
     
     trainer = LMTrainer(model, learning_rate=0.01)
     
+    print("\n🏋️ ENTRENANDO CON BACKPROP REAL...\n")
     history = trainer.train(
         train_ds, val_ds,
-        epochs=10,
+        epochs=20,
         batch_size=8,
-        batches_per_epoch=15,
+        batches_per_epoch=10,
         verbose=True,
+        early_stopping_patience=5,
     )
+    
+    print("\n📊 Estadísticas:")
+    if history['train_loss']:
+        print(f"   Loss inicial: {history['train_loss'][0]:.4f}")
+        print(f"   Loss final:   {history['train_loss'][-1]:.4f}")
+        mejora = (history['train_loss'][0] - history['train_loss'][-1]) / history['train_loss'][0]
+        print(f"   Mejora:       {mejora*100:.1f}%")
     
     print("\n🔮 Generación de ejemplo:")
     prompt = tok.encode("la inteligencia")
-    generated = model.generate(prompt, max_new_tokens=10, temperature=0.8)
+    generated = model.generate(prompt, max_new_tokens=8, temperature=0.8)
     texto = tok.decode(generated)
-    print(f"   {texto}")
+    print(f"   Prompt: 'la inteligencia'")
+    print(f"   Generado: {texto}")
     
-    print("\n✅ LM TRAINER FUNCIONANDO")
+    print("\n✅ LM TRAINER V3.0 FUNCIONANDO CON BACKPROP REAL")
