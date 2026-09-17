@@ -4,22 +4,38 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cerebro-zero"
-version = "1.0.0"
-description = "🧠 Inteligencia Artificial desde cero en Termux"
+version = "3.0.0"
+description = "Autonomous Learning Cognitive Agent — IA desde cero en Python + NumPy"
 readme = "README.md"
-authors = [
-    {name = "Manuel (lecodev-26)", email = "axiomsystemsechepares@gmail.com"}
-]
+requires-python = ">=3.10"
 license = {text = "MIT"}
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+authors = [
+    {name = "Manuel", email = "axiomsystemsechepares@gmail.com"},
 ]
-requires-python = ">=3.14"
+keywords = ["ai", "machine-learning", "numpy", "from-scratch", "cognitive-agent"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
 dependencies = [
-    "numpy>=2.4.0",
-    "flask>=3.0.0",
+    "numpy>=1.20",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+]
+web = [
+    "flask>=2.0",
 ]
 
 [project.urls]
@@ -28,4 +44,29 @@ Repository = "https://github.com/lecodev-26/cerebro-zero"
 Issues = "https://github.com/lecodev-26/cerebro-zero/issues"
 
 [project.scripts]
-cerebro-zero = "todo_en_uno:main"
+cerebro-zero = "cli:main"
+
+[tool.setuptools]
+packages = [
+    "agent",
+    "config",
+    "core",
+    "dashboard",
+    "datasets",
+    "evaluation",
+    "experiments",
+    "language",
+    "memory",
+    "mobile",
+    "models",
+    "reasoning",
+    "security",
+    "tools",
+    "training",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
