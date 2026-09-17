@@ -1,5 +1,5 @@
 """
-Parser de comandos con detección de intenciones peligrosas
+Parser de comandos con detección de intenciones y peligros
 """
 
 import sys
@@ -16,14 +16,14 @@ class ParsedCommand:
     """Resultado del parsing"""
     raw: str
     normalized: str
-    intent: str  # 'math', 'memory', 'filesystem', 'network', 'unknown'
-    entities: dict  # entidades extraídas (números, nombres, etc.)
+    intent: str
+    entities: dict
     dangerous: bool
     danger_reason: Optional[str] = None
 
 
 class Parser:
-    """Parser de comandos con detección de peligros"""
+    """Parser de comandos"""
     
     # Patrones de intención
     INTENTS = {
@@ -31,25 +31,37 @@ class Parser:
             r'\d+\s*[+\-*/]\s*\d+',
             r'(suma|resta|multiplica|divide|calcula)',
         ],
-        'memory': [
-            r'(recuerda|memoriza|aprende|guarda)',
-            r'(olvida|borra memoria)',
+        'memory_store': [
+            r'recuerda\s+\w+\s*=\s*\S+',
+            r'memoriza\s+\w+\s*=\s*\S+',
+            r'guarda\s+\w+\s*=\s*\S+',
         ],
-        'filesystem': [
-            r'(archivo|directorio|carpeta|fichero)',
-            r'(lee|escribe|crea|borra|elimina)\s+(archivo|carpeta)',
+        'memory_recall': [
+            r'recordar\s+\w+',
+            r'qué\s+es\s+\w+',
+            r'qu[eé]\s+sabes\s+de\s+\w+',
         ],
-        'network': [
-            r'(http|https|url|descarga|sube)',
-            r'(clima|tiempo|noticias|busca en internet)',
+        'learning': [
+            r'aprende\s+\w+',
         ],
-        'system': [
-            r'(sistema|proceso|programa|ejecuta)',
-            r'(instala|desinstala|actualiza)',
+        'greeting': [
+            r'^(hola|buenos|buenas|hey|qué\s+tal|saludos|qué\s+pasa|qué\s+hay)\b',
+        ],
+        'farewell': [
+            r'^(adi[oó]s|hasta\s+luego|chao|nos\s+vemos|bye)\b',
+        ],
+        'time': [
+            r'(qu[eé]\s+hora|dime\s+la\s+hora|hora\s+es|hora\s+actual)',
+            r'^hora$',
+        ],
+        'date': [
+            r'(qu[eé]\s+fecha|dime\s+la\s+fecha|fecha\s+es|qu[eé]\s+d[ií]a)',
+            r'^fecha$',
+            r'^hoy\??$',
         ],
     }
     
-    # Patrones peligrosos (señales de riesgo)
+    # Patrones peligrosos
     DANGEROUS_PATTERNS = [
         (r'rm\s+-rf', 'Intento de borrar recursivamente'),
         (r'format\s+[a-z]:', 'Intento de formatear disco'),
@@ -59,7 +71,6 @@ class Parser:
         (r'__import__', 'Importación dinámica'),
         (r'os\.system', 'Llamada a sistema'),
         (r'subprocess\.', 'Uso de subprocess'),
-        (r'open\s*\(.*[\'"]w[\'"]', 'Apertura de archivo en escritura'),
         (r'sudo\s+', 'Uso de sudo'),
         (r'chmod\s+777', 'Cambio de permisos inseguro'),
         (r'curl\s+.*\|\s*sh', 'Piping a shell'),
@@ -69,7 +80,6 @@ class Parser:
         (r'\$\(.*\)', 'Sustitución de comandos'),
     ]
     
-    # Números
     NUMBER_PATTERN = r'[-+]?\d*\.?\d+'
     
     def parse(self, input_text: str) -> ParsedCommand:
@@ -77,13 +87,8 @@ class Parser:
         raw = input_text
         normalized = input_text.strip().lower()
         
-        # 1. Detectar intención
         intent = self._detect_intent(normalized)
-        
-        # 2. Extraer entidades
-        entities = self._extract_entities(normalized, intent)
-        
-        # 3. Detectar peligros
+        entities = self._extract_entities(normalized, intent, raw)
         dangerous, reason = self._detect_dangerous(raw)
         
         return ParsedCommand(
@@ -96,14 +101,25 @@ class Parser:
         )
     
     def _detect_intent(self, text: str) -> str:
-        """Detecta la intención del comando"""
-        for intent, patterns in self.INTENTS.items():
-            for pattern in patterns:
-                if re.search(pattern, text):
+        """Detecta la intención del comando (orden de prioridad)"""
+        # Orden específico: memory_store > memory_recall > learning > time > date
+        # > greeting > farewell > math > unknown
+        
+        priority_order = [
+            'memory_store', 'learning', 'memory_recall',
+            'time', 'date',
+            'greeting', 'farewell',
+            'math',
+        ]
+        
+        for intent in priority_order:
+            for pattern in self.INTENTS[intent]:
+                if re.search(pattern, text, re.IGNORECASE):
                     return intent
+        
         return 'unknown'
     
-    def _extract_entities(self, text: str, intent: str) -> dict:
+    def _extract_entities(self, text: str, intent: str, raw: str) -> dict:
         """Extrae entidades según la intención"""
         entities = {}
         
@@ -111,7 +127,6 @@ class Parser:
             numeros = re.findall(self.NUMBER_PATTERN, text)
             entities['numbers'] = [float(n) for n in numeros]
             
-            # Detectar operador
             if '+' in text or 'suma' in text:
                 entities['operator'] = '+'
             elif '-' in text or 'resta' in text:
@@ -121,49 +136,65 @@ class Parser:
             elif '/' in text or 'divide' in text:
                 entities['operator'] = '/'
         
-        elif intent == 'network':
-            # Extraer URL si hay
-            urls = re.findall(r'https?://[^\s]+', text)
-            if urls:
-                entities['urls'] = urls
+        elif intent == 'memory_store':
+            # "recuerda clave = valor"
+            match = re.search(r'(?:recuerda|memoriza|guarda)\s+(\S+)\s*=\s*(.+)', raw, re.IGNORECASE)
+            if match:
+                entities['key'] = match.group(1).strip()
+                entities['value'] = match.group(2).strip()
+        
+        elif intent == 'memory_recall':
+            # "recordar clave"
+            match = re.search(r'recordar\s+(\S+)', raw, re.IGNORECASE)
+            if match:
+                entities['key'] = match.group(1).strip()
+            else:
+                # "qué es X" → clave
+                match = re.search(r'(?:qu[eé]\s+es|qu[eé]\s+sabes\s+de)\s+(\S+)', raw, re.IGNORECASE)
+                if match:
+                    entities['key'] = match.group(1).strip()
+        
+        elif intent == 'learning':
+            match = re.search(r'aprende\s+(.+)', raw, re.IGNORECASE)
+            if match:
+                entities['text'] = match.group(1).strip()
         
         return entities
     
     def _detect_dangerous(self, text: str) -> tuple:
-        """Detecta si el texto contiene patrones peligrosos"""
         for pattern, reason in self.DANGEROUS_PATTERNS:
             if re.search(pattern, text, re.IGNORECASE):
                 return True, reason
         return False, None
-    
-    def __repr__(self):
-        return f"Parser({len(self.INTENTS)} intenciones, {len(self.DANGEROUS_PATTERNS)} patrones peligrosos)"
 
 
 if __name__ == "__main__":
-    print("🧪 PROBANDO PARSER")
-    print("="*50)
+    print("🧪 PROBANDO PARSER V3.0")
+    print("="*60)
     
     parser = Parser()
     
     casos = [
         "¿Cuánto es 5 + 3?",
-        "suma 10 y 20",
-        "recuerda que me llamo Manuel",
+        "recuerda color = azul",
+        "recordar color",
+        "aprende a sumar",
+        "¿Qué hora es?",
+        "dime la hora",
+        "¿Qué fecha es hoy?",
+        "hola",
+        "adiós",
         "rm -rf /",
         "eval('print(1)')",
-        "descarga https://ejemplo.com/archivo.txt",
-        "¿Qué hora es?",
-        "os.system('ls')",
+        "qué es la ia",
     ]
     
     for caso in casos:
-        print(f"\n📝 Entrada: {caso}")
         parsed = parser.parse(caso)
-        print(f"   Intención: {parsed.intent}")
-        print(f"   Entidades: {parsed.entities}")
-        print(f"   ¿Peligroso?: {parsed.dangerous}")
+        print(f"\n📝 '{caso}'")
+        print(f"   Intent: {parsed.intent}")
+        print(f"   Entities: {parsed.entities}")
         if parsed.dangerous:
-            print(f"   ⚠️ Razón: {parsed.danger_reason}")
+            print(f"   ⚠️ PELIGROSO: {parsed.danger_reason}")
     
-    print("\n✅ PARSER FUNCIONANDO")
+    print("\n✅ PARSER V3.0 FUNCIONANDO")

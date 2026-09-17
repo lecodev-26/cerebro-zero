@@ -1,6 +1,5 @@
 """
-Pipeline del Cerebro Central
-Cada paso es una función pura que recibe un contexto y lo transforma.
+Pipeline del Cerebro Central con memoria y aprendizaje
 """
 
 import sys
@@ -20,7 +19,8 @@ class Context:
     block_reason: Optional[str] = None
     tool_result: Optional[Any] = None
     memory_results: List[dict] = field(default_factory=list)
-    exact_match: Optional[str] = None  # Coincidencia exacta en memoria
+    exact_match: Optional[str] = None
+    memory_stored: bool = False
     reasoning_steps: List[Any] = field(default_factory=list)
     verified: bool = False
     confidence: float = 0.0
@@ -32,18 +32,10 @@ class Context:
         return {
             'input': self.input,
             'intent': self.parsed.intent if self.parsed else None,
-            'dangerous': self.parsed.dangerous if self.parsed else None,
             'allowed': self.allowed,
-            'block_reason': self.block_reason,
-            'tool_result': str(self.tool_result) if self.tool_result else None,
-            'memory_count': len(self.memory_results),
-            'exact_match': self.exact_match,
-            'reasoning_count': len(self.reasoning_steps),
-            'verified': self.verified,
-            'confidence': self.confidence,
             'output': self.output,
-            'error': self.error,
             'learned': self.learned,
+            'memory_stored': self.memory_stored,
         }
 
 
@@ -61,9 +53,9 @@ def step_parse(ctx: Context, parser) -> Context:
 
 
 def step_sandbox_check(ctx: Context, sandbox) -> Context:
-    """Paso 2: Verificar seguridad con sandbox"""
+    """Paso 2: Verificar seguridad"""
     if ctx.parsed is None:
-        ctx.error = "No hay parsed para verificar"
+        ctx.error = "No hay parsed"
         return ctx
     
     if ctx.parsed.dangerous:
@@ -75,168 +67,181 @@ def step_sandbox_check(ctx: Context, sandbox) -> Context:
     return ctx
 
 
-def step_tool_execution(ctx: Context, tool_registry) -> Context:
-    """Paso 3: Ejecutar herramienta si es necesario"""
+def step_memory_store(ctx: Context, agent) -> Context:
+    """Paso 3a: Almacenar en memoria si es un comando 'recuerda X = Y'"""
     if not ctx.allowed or ctx.parsed is None:
         return ctx
     
-    tool_name = _detect_tool_from_intent(ctx.parsed)
-    
-    if tool_name and tool_registry:
-        try:
-            args = _extract_args_for_tool(ctx.parsed, tool_name)
-            if args:
-                result = tool_registry.execute(tool_name, *args)
-                if result.get('success'):
-                    ctx.tool_result = result.get('result')
-        except Exception as e:
-            ctx.error = f"Error ejecutando {tool_name}: {e}"
+    if ctx.parsed.intent == 'memory_store':
+        key = ctx.parsed.entities.get('key')
+        value = ctx.parsed.entities.get('value')
+        if key and value is not None:
+            try:
+                agent.memory.add_knowledge(key, value, {'tipo': 'memoria'})
+                ctx.memory_stored = True
+                ctx.output = f"✅ Guardado: {key} = {value}"
+            except Exception as e:
+                ctx.error = f"Error guardando: {e}"
     
     return ctx
 
 
-def step_memory_retrieval(ctx: Context, memory) -> Context:
-    """
-    Paso 4: Recuperar de memoria.
-    - Primero busca coincidencia exacta en episódica.
-    - Luego busca por similitud.
-    """
-    # 1. Coincidencia exacta en memoria episódica
+def step_memory_recall(ctx: Context, agent) -> Context:
+    """Paso 3b: Recuperar de memoria si es 'recordar X'"""
+    if not ctx.allowed or ctx.parsed is None:
+        return ctx
+    
+    if ctx.output is not None:  # Ya hay output
+        return ctx
+    
+    if ctx.parsed.intent in ('memory_recall',):
+        key = ctx.parsed.entities.get('key')
+        if key:
+            try:
+                # Buscar en memoria de largo plazo
+                results = agent.memory.long_term.search(key)
+                if results:
+                    value = results[0].get('value', '')
+                    ctx.output = f"💭 Recuerdo: {key} = {value}"
+                    return ctx
+                
+                # Buscar en memoria semántica
+                sem_results = agent.memory.semantic.search(key, k=1)
+                if sem_results:
+                    ctx.output = f"💭 {sem_results[0]['texto']}"
+                    return ctx
+                
+                ctx.output = f"❓ No recuerdo '{key}'"
+            except Exception as e:
+                ctx.error = f"Error recordando: {e}"
+    
+    return ctx
+
+
+def step_learning(ctx: Context, agent) -> Context:
+    """Paso 3c: Aprender si es 'aprende X'"""
+    if not ctx.allowed or ctx.parsed is None:
+        return ctx
+    
+    if ctx.output is not None:
+        return ctx
+    
+    if ctx.parsed.intent == 'learning':
+        text = ctx.parsed.entities.get('text')
+        if text:
+            try:
+                # Guardar como conocimiento
+                key = f"learning_{len(agent.memory.long_term.get_all())}"
+                agent.memory.add_knowledge(key, text, {'tipo': 'aprendizaje', 'original': text})
+                ctx.learned = True
+                ctx.output = f"🎓 Aprendido: {text}"
+            except Exception as e:
+                ctx.error = f"Error aprendiendo: {e}"
+    
+    return ctx
+
+
+def step_tool_execution(ctx: Context, agent) -> Context:
+    """Paso 4: Ejecutar herramienta (hora, fecha, math)"""
+    if not ctx.allowed or ctx.parsed is None:
+        return ctx
+    
+    if ctx.output is not None:
+        return ctx
+    
+    intent = ctx.parsed.intent
+    
     try:
-        episodios = memory.get_all_episodic()
+        if intent == 'math':
+            nums = ctx.parsed.entities.get('numbers', [])
+            op = ctx.parsed.entities.get('operator', '+')
+            if len(nums) >= 2:
+                a, b = nums[0], nums[1]
+                if op == '+': result = a + b
+                elif op == '-': result = a - b
+                elif op == '*': result = a * b
+                elif op == '/': result = a / b if b != 0 else "Error"
+                else: result = None
+                
+                if result is not None:
+                    ctx.output = f"{a} {op} {b} = {result}"
+        
+        elif intent == 'time':
+            from datetime import datetime
+            hora = datetime.now().strftime('%H:%M:%S')
+            ctx.output = f"🕐 {hora}"
+        
+        elif intent == 'date':
+            from datetime import datetime
+            fecha = datetime.now().strftime('%d/%m/%Y')
+            ctx.output = f"📅 {fecha}"
+        
+        elif intent == 'greeting':
+            ctx.output = "¡Hola! Soy Cerebro Zero 2.1. ¿En qué puedo ayudarte?"
+        
+        elif intent == 'farewell':
+            ctx.output = "¡Hasta luego! Ha sido un placer."
+    
+    except Exception as e:
+        ctx.error = f"Error en tool: {e}"
+    
+    return ctx
+
+
+def step_memory_search(ctx: Context, agent) -> Context:
+    """Paso 5: Buscar en memoria si no hay output"""
+    if not ctx.allowed or ctx.output is not None:
+        return ctx
+    
+    try:
+        # Búsqueda exacta en episódica
+        episodios = agent.memory.get_all_episodic()
         input_lower = ctx.input.lower().strip()
         for ep in episodios:
             ep_input = ep.get('input', '').lower().strip()
             if ep_input == input_lower:
                 ctx.exact_match = ep.get('output', '')
-                break
+                ctx.output = ctx.exact_match
+                return ctx
+        
+        # Búsqueda semántica
+        results = agent.memory.semantic.search(ctx.input, k=1)
+        if results and results[0]['similitud'] > 0.5:
+            ctx.output = results[0]['texto']
     except Exception:
         pass
     
-    # 2. Si no hay exacta, buscar por similitud
-    if not ctx.exact_match:
-        try:
-            results = memory.remember(ctx.input)
-            if results:
-                for key, items in results.items():
-                    if isinstance(items, list):
-                        ctx.memory_results.extend(items)
-        except Exception:
-            pass
-    
-    return ctx
-
-
-def step_reasoning(ctx: Context, reasoner) -> Context:
-    """
-    Paso 5: Razonamiento paso a paso.
-    SOLO si no hay tool_result, exact_match, ni memoria relevante.
-    """
-    # Si ya hay resultado, no razonar
-    if ctx.tool_result is not None:
-        return ctx
-    
-    if ctx.exact_match:
-        return ctx
-    
-    if ctx.memory_results:
-        for mem in ctx.memory_results:
-            if isinstance(mem, dict) and mem.get('output'):
-                return ctx
-            if isinstance(mem, str) and len(mem) > 0:
-                return ctx
-    
-    # Razonar
-    try:
-        steps = reasoner.razonar(ctx.input)
-        if steps:
-            ctx.reasoning_steps = steps
-    except Exception:
-        pass
     return ctx
 
 
 def step_verify(ctx: Context, verifier) -> Context:
-    """Paso 6: Verificar la respuesta"""
+    """Paso 6: Verificar respuesta"""
     if ctx.output is None:
-        ctx.output = _pick_best_response(ctx)
-    
-    if ctx.output:
+        ctx.output = "No tengo información sobre eso."
+        ctx.confidence = 0.3
+    else:
         try:
             evaluation = verifier.evaluar(ctx.input, ctx.output)
-            ctx.confidence = evaluation.get('confianza', 0.0)
+            ctx.confidence = evaluation.get('confianza', 0.5)
             ctx.verified = ctx.confidence >= 0.7
         except Exception:
-            pass
+            ctx.confidence = 0.5
     
     return ctx
 
 
-def step_learn(ctx: Context, learning) -> Context:
-    """Paso 7: Guardar experiencia"""
-    if ctx.output and learning:
+def step_learn(ctx: Context, agent) -> Context:
+    """Paso 7: Aprender de la experiencia"""
+    if ctx.output and agent:
         try:
-            correcto = ctx.verified or ctx.tool_result is not None or ctx.exact_match is not None
-            learning.aprender(ctx.input, ctx.output, correcto=correcto)
+            correcto = ctx.verified or ctx.tool_result is not None or ctx.memory_stored
+            agent.learning.aprender(ctx.input, ctx.output, correcto=correcto)
             ctx.learned = True
         except Exception:
             pass
     return ctx
 
 
-# ============================================
-# HELPERS
-# ============================================
-
-def _detect_tool_from_intent(parsed) -> Optional[str]:
-    """Detecta qué herramienta usar según la intención"""
-    intent = parsed.intent
-    if intent == 'math':
-        if 'numbers' in parsed.entities and len(parsed.entities['numbers']) >= 2:
-            return 'calculadora'
-    return None
-
-
-def _extract_args_for_tool(parsed, tool_name: str) -> list:
-    """Extrae argumentos para una herramienta según el parsed"""
-    if tool_name == 'calculadora' and 'numbers' in parsed.entities:
-        nums = parsed.entities['numbers']
-        op = parsed.entities.get('operator', '+')
-        if len(nums) >= 2:
-            return [nums[0], nums[1], op]
-    return []
-
-
-def _pick_best_response(ctx: Context) -> Optional[str]:
-    """Elige la mejor respuesta disponible (por prioridad)"""
-    # 1. Resultado de herramienta
-    if ctx.tool_result is not None:
-        return str(ctx.tool_result)
-    
-    # 2. Coincidencia EXACTA en memoria
-    if ctx.exact_match:
-        return ctx.exact_match
-    
-    # 3. Memoria por similitud
-    if ctx.memory_results:
-        for mem in ctx.memory_results:
-            if isinstance(mem, dict) and mem.get('output'):
-                return mem['output']
-            if isinstance(mem, str) and len(mem) > 0:
-                return mem
-    
-    # 4. Razonamiento
-    if ctx.reasoning_steps:
-        for step in ctx.reasoning_steps:
-            if isinstance(step, str):
-                return step
-            if step is not None:
-                return str(step)
-    
-    return None
-
-
 if __name__ == "__main__":
-    print("🧪 PIPELINE — Módulo cargado correctamente")
-    print(f"   Context: {Context}")
-    print(f"   Pasos: parse, sandbox, tool, memory, reasoning, verify, learn")
+    print("🧪 PIPELINE V3.0")
+    print(f"   Pasos: parse, sandbox, memory_store, memory_recall, learning, tool, memory_search, verify, learn")

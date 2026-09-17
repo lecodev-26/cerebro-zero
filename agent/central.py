@@ -1,5 +1,5 @@
 """
-Cerebro Central - Orquesta el pipeline
+Cerebro Central V3.0 con memoria y aprendizaje
 """
 
 import sys
@@ -8,176 +8,125 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from agent.pipeline import (
     Context,
-    step_parse, step_sandbox_check, step_tool_execution,
-    step_memory_retrieval, step_reasoning, step_verify, step_learn,
+    step_parse, step_sandbox_check,
+    step_memory_store, step_memory_recall, step_learning,
+    step_tool_execution, step_memory_search,
+    step_verify, step_learn,
 )
 
 from security.parser import Parser
 from security.sandbox import Sandbox
 from security.permissions import Permission, PERMISSIONS_STANDARD
-from tools.registry import ToolRegistry
 from memory.retrieval import MemoryRetrieval
-from reasoning.planner import Razonamiento
-from evaluation.self_evaluation import SelfEvaluation
+from evaluation.objective_evaluator import ObjectiveEvaluator
 from training.continuous_learning import ContinuousLearning
 
 
 class CerebroCentral:
-    """
-    Cerebro Central: pipeline limpio con cada paso aislado.
-    
-    Uso:
-        cerebro = CerebroCentral()
-        output = cerebro.procesar("¿Cuánto es 5 + 3?")
-    """
+    """Cerebro Central V3.0 con memoria y aprendizaje"""
     
     def __init__(self, debug: bool = False):
         self.name = "Cerebro Central"
-        self.version = "2.0.0"
+        self.version = "3.0.0"
         self.debug = debug
         
-        # Componentes
         self.parser = Parser()
         self.sandbox = Sandbox(
             permissions=PERMISSIONS_STANDARD.copy(),
             strict=True,
         )
-        self.registry = ToolRegistry(sandbox=self.sandbox)
         self.memory = MemoryRetrieval()
-        self.reasoner = Razonamiento(verbose=debug)
-        self.verifier = SelfEvaluation()
-        self.learning = ContinuousLearning(archivo="cerebro_central.json")
+        self.verifier = ObjectiveEvaluator()
+        self.learning = ContinuousLearning(archivo="cerebro_central_v3.json")
         
-        # Registrar herramientas básicas
-        self._register_basic_tools()
-        
-        # Historial de ejecuciones
         self.history = []
     
-    def _register_basic_tools(self):
-        """Registra las herramientas básicas en el registry"""
-        
-        @self.registry.register(
-            name="calculadora",
-            description="Calcula operaciones matemáticas",
-            permissions={Permission.EXECUTE_MATH},
-        )
-        def calculadora(a, b, op='+'):
-            a, b = float(a), float(b)
-            if op == '+': return a + b
-            if op == '-': return a - b
-            if op == '*': return a * b
-            if op == '/': return a / b if b != 0 else "Error: división por cero"
-            return "Operación no válida"
-        
-        @self.registry.register(
-            name="fecha",
-            description="Devuelve la fecha actual",
-            permissions={Permission.READ_SYSTEM_INFO},
-        )
-        def fecha():
-            from datetime import datetime
-            return datetime.now().strftime('%d/%m/%Y')
-        
-        @self.registry.register(
-            name="hora",
-            description="Devuelve la hora actual",
-            permissions={Permission.READ_SYSTEM_INFO},
-        )
-        def hora():
-            from datetime import datetime
-            return datetime.now().strftime('%H:%M:%S')
-    
     def procesar(self, input_text: str) -> str:
-        """
-        Procesa una entrada a través del pipeline completo.
-        """
-        # Crear contexto
+        """Procesa una entrada a través del pipeline"""
         ctx = Context(input=input_text)
         
-        # Ejecutar pipeline
+        # Pipeline
         ctx = step_parse(ctx, self.parser)
         ctx = step_sandbox_check(ctx, self.sandbox)
-        ctx = step_tool_execution(ctx, self.registry)
-        ctx = step_memory_retrieval(ctx, self.memory)
-        ctx = step_reasoning(ctx, self.reasoner)
-        ctx = step_verify(ctx, self.verifier)
-        ctx = step_learn(ctx, self.learning)
         
-        # Guardar en historial
+        # Solo si no está bloqueado
+        if ctx.allowed:
+            ctx = step_memory_store(ctx, self)      # Guardar
+            ctx = step_memory_recall(ctx, self)     # Recuperar
+            ctx = step_learning(ctx, self)          # Aprender
+            ctx = step_tool_execution(ctx, self)    # Herramientas
+            ctx = step_memory_search(ctx, self)     # Búsqueda
+        
+        ctx = step_verify(ctx, self.verifier)
+        ctx = step_learn(ctx, self)
+        
         self.history.append(ctx)
         
-        # Debug
         if self.debug:
             self._print_debug(ctx)
         
-        # Devolver respuesta
         if not ctx.allowed:
             return f"🔒 Bloqueado por seguridad: {ctx.block_reason}"
         
-        if ctx.output:
-            return ctx.output
-        
-        return "No tengo información sobre eso."
+        return ctx.output or "No tengo información sobre eso."
     
     def _print_debug(self, ctx: Context):
-        """Imprime información de debug del pipeline"""
-        print(f"\n🔍 DEBUG del pipeline:")
+        print(f"\n🔍 DEBUG:")
         print(f"   Input: {ctx.input}")
         print(f"   Intent: {ctx.parsed.intent if ctx.parsed else 'N/A'}")
+        print(f"   Entities: {ctx.parsed.entities if ctx.parsed else '{}'}")
         print(f"   Allowed: {ctx.allowed}")
-        print(f"   Tool result: {ctx.tool_result}")
-        print(f"   Memory results: {len(ctx.memory_results)}")
-        print(f"   Reasoning steps: {len(ctx.reasoning_steps)}")
         print(f"   Output: {ctx.output}")
         print(f"   Confidence: {ctx.confidence}")
-        print(f"   Learned: {ctx.learned}")
     
     def enseñar(self, entrada: str, respuesta: str):
-        """Enseña una respuesta al cerebro"""
+        """Enseña una respuesta directa"""
         self.memory.add_experience(entrada, respuesta)
         self.learning.aprender(entrada, respuesta, correcto=True)
-        print(f"🎓 Enseñado: {entrada} → {respuesta}")
     
     def resumen(self):
-        """Resumen del estado del cerebro"""
         print(f"\n🧠 {self.name} v{self.version}")
-        print(f"   Herramientas: {len(self.registry.tools)}")
-        print(f"   Permisos: {len(self.sandbox.permissions)}")
         print(f"   Historial: {len(self.history)}")
         print(f"   Experiencias: {len(self.learning.experiencias)}")
+        print(f"   Memoria: {self.memory}")
     
     def __repr__(self):
         return f"CerebroCentral(v{self.version})"
 
 
 if __name__ == "__main__":
-    print("🧪 PROBANDO CEREBRO CENTRAL")
-    print("="*50)
+    print("🧪 PROBANDO CEREBRO CENTRAL V3.0")
+    print("="*60)
     
-    cerebro = CerebroCentral(debug=False)
+    cerebro = CerebroCentral()
     
     # Enseñar
-    cerebro.enseñar("hola", "Hola, soy Cerebro Central 2.0")
-    cerebro.enseñar("adiós", "Hasta luego, ha sido un placer")
+    cerebro.enseñar("hola", "¡Hola! Soy Cerebro Zero 2.1")
     
-    # Procesar
+    # Probar
     entradas = [
         "hola",
         "¿Cuánto es 5 + 3?",
+        "¿Cuánto es 10 * 7?",
+        "recuerda color = azul",
+        "recordar color",
+        "recuerda nombre = Manuel",
+        "recordar nombre",
+        "aprende a programar en python",
         "¿Qué hora es?",
+        "dime la hora",
         "¿Qué fecha es hoy?",
+        "qué es la ia",
         "adiós",
-        "algo que no sé",
         "rm -rf /",
     ]
     
     for entrada in entradas:
         print(f"\n📝 Entrada: {entrada}")
         resultado = cerebro.procesar(entrada)
-        print(f"   Respuesta: {resultado}")
+        print(f"   → {resultado}")
     
-    # Resumen
+    print("\n")
     cerebro.resumen()
     
-    print("\n✅ CEREBRO CENTRAL FUNCIONANDO")
+    print("\n✅ CEREBRO CENTRAL V3.0 FUNCIONANDO")
