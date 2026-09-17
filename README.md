@@ -1,320 +1,190 @@
-# 🧠 CEREBRO ZERO.                      
-
-⭐ ¡Si te gusta este proyecto, dale una estrella en GitHub!
+# 🧠 CEREBRO ZERO 2.0
 
 ## Sistema de Inteligencia Artificial desde cero en Termux
 
 [![Python](https://img.shields.io/badge/Python-3.14-blue.svg)](https://www.python.org/)
 [![NumPy](https://img.shields.io/badge/NumPy-2.4.4-green.svg)](https://numpy.org/)
-[![Termux](https://img.shields.io/badge/Termux-Android-orange.svg)](https://termux.com/)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?logo=github)](https://github.com/lecodev-26/cerebro-zero)
-[![Python](https://img.shields.io/badge/Python-3.14-blue.svg)](https://www.python.org/)
-[![NumPy](https://img.shields.io/badge/NumPy-2.4.4-green.svg)](https://numpy.org/)
 [![Flask](https://img.shields.io/badge/Flask-3.1.3-red.svg)](https://flask.palletsprojects.com/)
-[![Termux](https://img.shields.io/badge/Termux-Android-orange.svg)](https://termux.com/)
+[![Tests](https://img.shields.io/badge/Tests-69%2F69-brightgreen.svg)](tests/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/lecodev-26/cerebro-zero.svg)](https://github.com/lecodev-26/cerebro-zero/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/lecodev-26/cerebro-zero.svg)](https://github.com/lecodev-26/cerebro-zero/issues)
----
-## 🗺️ ROADMAP - CEREBRO ZERO
-
-### ✅ COMPLETADO
-- [x] **FASE 0:** Estructura del proyecto
-- [x] **FASE 1:** Motor matemático (Tensor + Autograd)
-- [x] **FASE 2:** Capas y módulos (Linear, Sequential)
-- [x] **FASE 3:** Optimizadores (SGD, Adam)
-- [x] **FASE 4:** Redes clásicas (MLP, XOR)
-- [x] **FASE 5:** Visión (CNN con NumPy)
-
-### ⏳ EN PROGRESO
-- [ ] **FASE 6:** Lenguaje (tokenizador, vocabulario)
-- [ ] **FASE 7:** Transformer DE VERDAD
-- [ ] **FASE 8:** Entrenamiento de lenguaje
-- [ ] **FASE 9:** Memoria (corto/largo plazo)
-- [ ] **FASE 10:** Recuperación de memoria
-- [ ] **FASE 11:** Atención + memoria
-- [ ] **FASE 12:** Razonamiento
-- [ ] **FASE 13:** Herramientas (calculadora, archivos)
-- [ ] **FASE 14:** Agente (percepción → acción)
-- [ ] **FASE 15:** Aprendizaje continuo
-- [ ] **FASE 16:** Autoevaluación
-- [ ] **FASE 17:** Seguridad
-- [ ] **FASE 18:** Benchmark propio
-- [ ] **FASE 19:** Optimización (CPU/GPU)
-- [ ] **FASE 20:** 🧠 Cerebro Zero 1.0 🚀
 
 ---
-
-**Estado actual:** 🔄 FASE 6 - Lenguaje (siguiente)
 
 ## 📖 Descripción
 
-**Cerebro Zero** es un sistema de inteligencia artificial completo construido **desde cero** en un móvil Android usando Termux. Sin frameworks, sin TensorFlow, sin PyTorch. Solo **Python y NumPy**.
+**Cerebro Zero** es un **agente híbrido neuronal** construido **desde cero** en Python + NumPy. No usa frameworks como PyTorch o TensorFlow.
 
-El proyecto incluye:
-
-- ✅ Redes neuronales desde cero (MLP, CNN)
-- ✅ Autograd manual
-- ✅ Optimizadores (SGD, Adam)
-- ✅ Memoria persistente
-- ✅ Reconocimiento de voz
-- ✅ APIs de clima y noticias
-- ✅ Interfaz web
-- ✅ Chat interactivo
+La versión **2.0** se centra en la **coherencia, corrección y verificabilidad** del sistema, no en añadir más código.
 
 ---
 
-## 🚀 LOGROS
+## 🎯 Filosofía 2.0
 
-| Logro | Detalle |
-|-------|---------|
-| ✅ **12 opciones funcionales** | Menú unificado con diferentes cerebros |
-| ✅ **Cerebro de 1024 neuronas** | Entrenado con MNIST |
-| ✅ **78.95% de precisión** | Reconocimiento de dígitos |
-| ✅ **814,090 parámetros** | Entrenados en un móvil |
-| ✅ **Redes desde cero** | Sin frameworks externos |
-| ✅ **APIs reales** | Clima + Noticias |
+> **"No más código. Mejor código. Que cada pieza sea demostrable."**
 
----
-
-## 🛠️ TECNOLOGÍAS
-
-| Tecnología | Versión |
-|------------|---------|
-| Python | 3.14 |
-| NumPy | 2.4.4 |
-| Flask | 3.1.3 |
-| Termux | Última |
-| Git | 2.55.0 |
+- **Desde cero** — Sin frameworks de IA
+- **Verificado** — Cada operación tiene tests
+- **Modular** — Cada módulo tiene una responsabilidad
+- **Seguro** — Sandbox + permisos
+- **Coherente** — Documentación alineada con código
 
 ---
 
-## 📁 ESTRUCTURA DEL PROYECTO
+## 🏆 Estado Actual
 
-```
-
-cerebro-zero/
-├── 📁 cerebros/              # 7 implementaciones de redes neuronales
-├── 📁 core/                  # Núcleo: tensores, capas, activaciones, optimizadores
-├── 📁 datos/                 # Generadores y gestores de datasets
-├── 📁 datasets/              # Datasets (MNIST, etc.)
-├── 📁 entrenadores/          # Lógica de entrenamiento
-├── 📁 evaluation/            # Métricas y evaluación
-├── 📁 experiments/           # Scripts de experimentos y pruebas
-├── 📁 memory/                # Sistema de memoria persistente
-├── 📁 modelos_guardados/     # Modelos entrenados (.pkl)
-├── 📁 models/                # Modelos unificados (MLP, CNN, Transformer)
-├── 📁 pruebas/               # Pruebas unitarias
-├── 📁 scripts/               # Scripts ejecutables
-├── 📁 tools/                 # Herramientas integradas (clima, noticias, voz...)
-├── 📁 training/              # Lógica de entrenamiento avanzada
-├── 📁 utils/                 # Utilidades (visualización, autoencoder...)
-├── 📄 README.md              # Este archivo
-├── 📄 todo_en_uno.py         # Menú principal
-└── 📄 .gitignore             # Archivos ignorados
-
-```
+| Área | Estado |
+|------|--------|
+| **Autograd** | ✅ Verificado (25/25 tests) |
+| **Tests** | ✅ 69/69 pasando |
+| **Broadcasting** | ✅ Completo |
+| **Numérica** | ✅ Estable (float32/float64) |
+| **Seguridad** | ✅ Sandbox + permisos |
+| **CI/CD** | ✅ GitHub Actions |
 
 ---
 
-## 🧠 CEREBROS IMPLEMENTADOS
+## 🗺️ Roadmap 2.0 — 20 fases
 
-| # | Cerebro | Capas | Parámetros | Estado |
-|---|---------|-------|------------|--------|
-| 1 | **XOR (básico)** | [2, 8, 1] | 33 | ✅ |
-| 2 | **SENO (polinómico)** | N/A | N/A | ✅ |
-| 3 | **Profundo** | [2, 64, 32, 16, 1] | 2,817 | ⚠️ |
-| 4 | **Memoria** | Variable | Variable | ✅ |
-| 5 | **Premium** | [2, 16, 2] | 82 | ✅ |
-| 6 | **Autoencoder** | PCA | N/A | ✅ |
-| 7 | **Visión** | [9216, 32, 10] | 295,232 | ✅ |
-| 8 | **Reforzamiento** | Q-Learning | N/A | ✅ |
-| 9 | **Gigante** | [10, 64, 64, 1] | 4,929 | ✅ |
-| 10 | **Máximo** | [10, 512, 1] | 5,632 | ✅ |
-| 11 | **DIOS** | [10, 1000, 1] | 12,001 | ✅ |
-| 12 | **MNIST** | [784, 1024, 10] | 814,090 | ✅ |
+### 🔴 P0 — CORRECCIÓN ✅
+- [x] **FASE 21:** Autograd verificado (25/25 tests)
+- [x] **FASE 22:** Tests automáticos (28/28 tests)
+- [x] **FASE 23:** Broadcasting + Numérica (53/53 tests)
+- [x] **FASE 24:** Seguridad real (sandbox) (69/69 tests)
+- [x] **FASE 25:** Documentación coherente ← *actual*
 
----
+### 🟠 P1 — CEREBRO CENTRAL
+- [ ] **FASE 26:** Interfaz unificada `Brain`
+- [ ] **FASE 27:** Cerebro Central (pipeline limpio)
+- [ ] **FASE 28:** Memoria semántica
+- [ ] **FASE 29:** Planner + Verificador serios
+- [ ] **FASE 30:** Tool Registry con plugins
 
-## 🛠️ HERRAMIENTAS INTEGRADAS
+### 🟡 P2 — INTELIGENCIA
+- [ ] **FASE 31:** Transformer mejorado
+- [ ] **FASE 32:** Dataset real
+- [ ] **FASE 33:** Entrenamiento LM
+- [ ] **FASE 34:** Aprendizaje continuo real
+- [ ] **FASE 35:** Autoevaluación objetiva
 
-### Avanzadas
-- Fecha y hora
-- Búsqueda simulada
-- Traducción
-- Memorizar y recordar
+### 🔵 P3 — INGENIERÍA
+- [ ] **FASE 36:** Benchmark 2.0 (800 casos)
+- [ ] **FASE 37:** Configuración YAML
+- [ ] **FASE 38:** CI/CD real
+- [ ] **FASE 39:** Cerebro Zero Mobile
+- [ ] **FASE 40:** Dashboard web
 
-### Extra
-- Clima (simulado y real con OpenWeatherMap)
-- Web simulada
-- Cálculo de edad
-- Conversor de moneda
-- Dado y moneda
-- Número aleatorio
-
-### API (Reales)
-- **Clima**: OpenWeatherMap (configurable)
-- **Noticias**: NewsAPI (configurable)
-- **Chistes**: Simulados
-- **Citas**: Simuladas
-- **Definiciones**: Diccionario interno
-
-### Voz
-- Reconocimiento de voz (Termux-API)
-- Modo simulado para pruebas
+**Progreso:** 🔄 **5/20 fases (25%)**
 
 ---
 
-## 🚀 INSTALACIÓN Y USO
-
-### 1. Instalar Termux
-```bash
-pkg update && pkg upgrade -y
-pkg install python python-pip git nano -y
-pip install numpy flask
-```
-
-2. Clonar el repositorio
+## 🚀 Instalación
 
 ```bash
+# Clonar
 git clone https://github.com/lecodev-26/cerebro-zero.git
 cd cerebro-zero
+
+# Instalar dependencias
+pip install -r requirements.txt
+
+# Ejecutar tests
+pytest tests/ -v
 ```
-
-3. Ejecutar el menú principal
-
-```bash
-python todo_en_uno.py
-```
-
-4. Ejecutar el chat interactivo
-
-```bash
-python experiments/chat_ultimate.py
-```
-
-5. Ejecutar la interfaz web
-
-```bash
-python experiments/interfaz_web.py
-```
-
-Abrir en navegador: http://localhost:5000
 
 ---
 
-🌤️ CONFIGURAR APIs REALES
+🧪 Tests
 
-Clima (OpenWeatherMap)
+```bash
+# Todos los tests
+pytest tests/ -v
 
-1. Regístrate en: https://openweathermap.org/api
-2. Obtén tu API key
-3. Edita tools/clima_real.py:
+# Gradient checking (autograd)
+python tests/test_gradient_check.py
+
+# Seguridad
+pytest tests/test_security.py -v
+```
+
+Estado: ✅ 69/69 tests pasan
+
+---
+
+📁 Estructura
+
+```
+cerebro-zero/
+├── core/           # Tensor, capas, losses, optimizers
+├── security/       # Permisos, sandbox, parser
+├── tools/          # Herramientas + registry
+├── memory/         # Memoria (corto/largo/episódico)
+├── reasoning/      # Planner + verifier
+├── training/       # Aprendizaje continuo
+├── evaluation/     # Evaluación
+├── agent/          # Agente completo
+├── language/       # Tokenizador
+├── models/         # Modelos (MLP, CNN, Transformer)
+├── experiments/    # Experimentos
+├── tests/          # 69 tests
+└── docs/           # Documentación técnica
+```
+
+---
+
+📚 Documentación
+
+· ARCHITECTURE.md — Arquitectura completa
+· TESTING.md — Guía de testing
+· API.md — Referencia de API
+· CHANGELOG.md — Historial de cambios
+· ROADMAP.md — Roadmap completo
+
+---
+
+🧠 Ejemplo de uso
 
 ```python
-self.api_key = "TU_API_KEY"
-```
+from agent.cerebro_zero_v1 import CerebroZero
 
-Noticias (NewsAPI)
+cerebro = CerebroZero()
 
-1. Regístrate en: https://newsapi.org/register
-2. Obtén tu API key
-3. Edita tools/noticias_real.py:
+# Enseñar
+cerebro.enseñar("hola", "Hola, soy Cerebro Zero 2.0")
 
-```python
-self.api_key = "TU_API_KEY"
-```
+# Procesar
+respuesta = cerebro.procesar("hola")
+print(respuesta)  # "Hola, soy Cerebro Zero 2.0"
 
----
+# Matemáticas (usa herramientas)
+respuesta = cerebro.procesar("¿Cuánto es 5 + 3?")
+print(respuesta)  # "5.0 + 3.0 = 8.0"
 
-📊 EJEMPLOS DE USO
-
-Menú principal
-
-```
-🧠 CEREBRO ZERO - SISTEMA COMPLETO
-====================================
-1. XOR (básico) - ✅
-2. SENO - ✅
-3. Cargar cerebro guardado - ✅
-4. Memoria - ✅
-5. CEREBRO PREMIUM - ✅
-...
-```
-
-Chat interactivo
-
-```
-🧑 Tú: clima Madrid
-🧠 Cerebro Zero: 🌡️ Clima en Madrid: 28°C, ☀️ soleado
-
-🧑 Tú: noticias tecnologia
-🧠 Cerebro Zero: 📰 Internet 6G en desarrollo (TechNews)
-
-🧑 Tú: memorizar color = azul
-🧠 Cerebro Zero: 🧠 Memorizado: color = azul
-
-🧑 Tú: recordar color
-🧠 Cerebro Zero: azul
+# Seguridad (bloquea entradas peligrosas)
+respuesta = cerebro.procesar("rm -rf /")
+print(respuesta)  # "🔒 Entrada bloqueada por seguridad"
 ```
 
 ---
 
-📤 SUBIR A GITHUB
-
-```bash
-git add .
-git commit -m "🧠 CEREBRO ZERO - SISTEMA COMPLETO"
-git push
-```
-
----
-
-📄 LICENCIA
-
-Este proyecto es de código abierto. Puedes usarlo, modificarlo y distribuirlo libremente.
-
----
-
-👨‍💻 AUTOR
+👨‍💻 Autor
 
 Manuel (lecodev-26)
 
-· GitHub: lecodev-26
+· GitHub: @lecodev-26
 · Email: axiomsystemsechepares@gmail.com
 
 ---
 
-🙏 AGRADECIMIENTOS
+📄 Licencia
 
-· NumPy por la computación numérica
-· Termux por hacer posible Python en Android
-· OpenWeatherMap y NewsAPI por las APIs
-· La comunidad de código abierto
+MIT — ver LICENSE
 
 ---
 
-🧠 ESTADO DEL PROYECTO
+⭐ Contribuir
 
-COMPLETO ✅
-
-Fase Estado
-Red neuronal desde cero ✅
-MNIST ✅
-Memoria persistente ✅
-Autograd ✅
-Transformer ✅
-Lenguaje ✅
-Herramientas ✅
-APIs reales ✅
-Voz ✅
-Interfaz web ✅
-
----
-
-⭐ ¡Si te gusta este proyecto, dale una estrella en GitHub! ⭐
+Ver CONTRIBUTING.md
 
 ---
 
 Construido con 🧠 y ☕ desde un Samsung A16
-EOF

@@ -2,42 +2,70 @@
 
 Todos los cambios importantes en Cerebro Zero.
 
-## [1.0.0] - 2026-09-08
+## [2.0.0-alpha] - En desarrollo
 
-### Añadido
-- FASE 1: Motor matemático (Tensor + Autograd)
-- FASE 2: Capas y módulos (Linear, Sequential)
-- FASE 3: Optimizadores (SGD, Adam)
-- FASE 4: Redes clásicas (MLP, XOR)
-- FASE 5: Visión (CNN con NumPy)
-- Estructura completa del proyecto en carpetas
-- README profesional con documentación
-- LICENSE (MIT)
-- CONTRIBUTING.md
-- CODE_OF_CONDUCT.md
-- requirements.txt
-- Interfaz web con Flask
-- Chat interactivo
-- APIs de clima y noticias
-- Reconocimiento de voz (Termux-API)
+### 🔴 P0 — CORRECCIÓN
 
-### Mejorado
-- Organización del código en módulos
-- Documentación de funciones
+#### Añadido — FASE 25 (Documentación)
+- **`docs/ARCHITECTURE.md`** — Arquitectura completa
+- **`docs/TESTING.md`** — Guía de testing
+- **`docs/API.md`** — Referencia de API
+- README, ROADMAP y CHANGELOG alineados
 
-### Corregido
-- Errores en autograd
-- Problemas de inicialización de pesos
+#### Añadido — FASE 24 (Seguridad)
+- **`security/permissions.py`** — 15 permisos atómicos
+- **`security/sandbox.py`** — Sandbox con audit log
+- **`security/parser.py`** — Detección de 15 patrones peligrosos
+- **`tools/registry.py`** — Tool Registry con permisos
+- **`tests/test_security.py`** — 15 tests
+
+#### Corregido — FASE 23 (Broadcasting + Numérica)
+- Broadcasting completo en backward
+- Softmax, sigmoid, exp numéricamente estables
+- `mean()` lanza `ValueError` en tensor vacío
+- Soporte float32/float64 configurable
+- **`tests/test_broadcasting.py`** — 10 tests
+- **`tests/test_numerics.py`** — 14 tests
+
+#### Corregido — FASE 22 (Tests automáticos)
+- **`tests/test_layers.py`** — 7 tests
+- **`tests/test_losses.py`** — 6 tests
+- **`tests/test_optimizers.py`** — 4 tests
+- **`tests/test_models.py`** — 3 tests
+- **`pytest.ini`** configurado
+- **`.github/workflows/tests.yml`** — CI/CD
+
+#### Corregido — FASE 21 (Autograd)
+- `log()` — dominio correcto (x > 0)
+- `sqrt()` — dominio correcto (x ≥ 0)
+- Broadcasting en backward
+- `sum()` con axis y keepdims
+- `mean()` con axis y keepdims
+- **`tests/test_gradient_check.py`** — 25 tests
 
 ---
 
-## [0.9.0] - 2026-09-07
+## [1.0.0] - 2026-09-08
 
 ### Añadido
-- Primeras redes neuronales desde cero
-- Entrenamiento XOR
-- Guardado y carga de modelos
-- Menú principal con 12 opciones
+- Redes neuronales desde cero (MLP, CNN, Transformer)
+- 12 cerebros funcionales
+- Cerebro de 1024 neuronas (MNIST)
+- 78.95% de precisión
+- Interfaz web con Flask
+- Chat interactivo
+- APIs reales (clima, noticias)
+- Reconocimiento de voz
+
+### Documentación inicial
+- LICENSE (MIT)
+- README
+- CONTRIBUTING
+- CODE_OF_CONDUCT
+- SECURITY
+- AUTHORS
+- CITATION
+- Makefile, setup.py, pyproject.toml, Dockerfile
 
 ---
 
