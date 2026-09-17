@@ -1,10 +1,10 @@
 """
-Tensor V3.2 - Con soporte float32/float64 y numérica estable
+Tensor V3.0 - Autograd completo para Transformer
+Añade: gather, embedding, batch matmul, stack, concat, where, mask
 """
 
 import numpy as np
 
-# Dtype global (float64 por defecto, float32 para móvil)
 DEFAULT_DTYPE = np.float64
 
 
@@ -12,7 +12,6 @@ def set_dtype(dtype):
     """Configura el dtype por defecto (float32 o float64)"""
     global DEFAULT_DTYPE
     DEFAULT_DTYPE = dtype
-    print(f"🔧 Dtype global: {dtype}")
 
 
 def get_dtype():
@@ -78,6 +77,10 @@ class Tensor:
     def __neg__(self):
         return Tensor(-self.data, requires_grad=self.requires_grad, _children=(self,))
     
+    # ============================================
+    # MATMUL (2D)
+    # ============================================
+    
     def matmul(self, other):
         other = other if isinstance(other, Tensor) else Tensor(other)
         out = Tensor(np.dot(self.data, other.data),
@@ -86,6 +89,127 @@ class Tensor:
         out._op = 'matmul'
         out._backward = self._make_backward_matmul(other, out)
         return out
+    
+    # ============================================
+    # BATCH MATMUL (N-D)
+    # ============================================
+    
+    def batch_matmul(self, other):
+        """
+        Producto matricial con batch.
+        Soporta (..., n, m) @ (..., m, p) -> (..., n, p)
+        """
+        other = other if isinstance(other, Tensor) else Tensor(other)
+        out_data = np.matmul(self.data, other.data)
+        out = Tensor(out_data,
+                     requires_grad=self.requires_grad or other.requires_grad,
+                     _children=(self, other))
+        out._op = 'batch_matmul'
+        out._backward = self._make_backward_batch_matmul(other, out)
+        return out
+    
+    # ============================================
+    # GATHER (indexado diferenciable)
+    # ============================================
+    
+    def gather(self, indices):
+        """
+        Indexa el tensor por la primera dimensión.
+        indices: array de índices
+        out[i] = self[indices[i]]
+        """
+        indices = np.array(indices, dtype=int)
+        out_data = self.data[indices]
+        out = Tensor(out_data, requires_grad=self.requires_grad, _children=(self,))
+        out._op = 'gather'
+        out._backward = self._make_backward_gather(indices, out)
+        return out
+    
+    # ============================================
+    # EMBEDDING
+    # ============================================
+    
+    def embedding(self, vocab_size: int, embed_dim: int):
+        """
+        Crea una capa de embedding y aplica self como índices.
+        self debe ser un tensor de índices enteros.
+        """
+        # Inicializar pesos del embedding
+        lim = 1.0 / np.sqrt(embed_dim)
+        weight_data = np.random.uniform(-lim, lim, (vocab_size, embed_dim))
+        weight = Tensor(weight_data, requires_grad=True)
+        
+        # Aplicar gather
+        indices = self.data.astype(int)
+        out = weight.gather(indices)
+        out._op = 'embedding'
+        
+        # Guardar referencia al peso para el grafo
+        out._embedding_weight = weight
+        
+        return out, weight
+    
+    # ============================================
+    # STACK / CONCAT
+    # ============================================
+    
+    @staticmethod
+    def stack(tensors, axis=0):
+        """Apila tensores a lo largo de un nuevo eje"""
+        if not tensors:
+            raise ValueError("Lista vacía")
+        
+        data = np.stack([t.data for t in tensors], axis=axis)
+        out = Tensor(data, requires_grad=any(t.requires_grad for t in tensors))
+        out._op = 'stack'
+        out._backward = Tensor._make_backward_stack(tensors, axis, out)
+        return out
+    
+    @staticmethod
+    def concat(tensors, axis=0):
+        """Concatena tensores a lo largo de un eje existente"""
+        if not tensors:
+            raise ValueError("Lista vacía")
+        
+        data = np.concatenate([t.data for t in tensors], axis=axis)
+        out = Tensor(data, requires_grad=any(t.requires_grad for t in tensors))
+        out._op = 'concat'
+        out._backward = Tensor._make_backward_concat(tensors, axis, out)
+        return out
+    
+    # ============================================
+    # WHERE / MASK
+    # ============================================
+    
+    def where(self, condition, other):
+        """
+        where(condition, self, other)
+        Devuelve self donde condition=True, other donde condition=False
+        """
+        other = other if isinstance(other, Tensor) else Tensor(other)
+        cond = np.array(condition)
+        out_data = np.where(cond, self.data, other.data)
+        out = Tensor(out_data,
+                     requires_grad=self.requires_grad or other.requires_grad,
+                     _children=(self, other))
+        out._op = 'where'
+        out._backward = self._make_backward_where(cond, other, out)
+        return out
+    
+    def mask(self, mask_array):
+        """
+        Aplica una máscara: donde mask=0, el tensor se pone a 0.
+        """
+        mask_array = np.array(mask_array)
+        out_data = self.data * mask_array
+        out = Tensor(out_data, requires_grad=self.requires_grad, _children=(self,))
+        out._op = 'mask'
+        out._backward = self._make_backward_mask(mask_array, out)
+        return out
+    
+    # ============================================
+    # RESHAPE / TRANSPOSE
+    # ============================================
     
     def reshape(self, *shape):
         out = Tensor(self.data.reshape(*shape),
@@ -107,6 +231,10 @@ class Tensor:
     def T(self):
         return self.transpose()
     
+    def permute(self, *dims):
+        """Alias de transpose"""
+        return self.transpose(*dims)
+    
     # ============================================
     # REDUCCIONES
     # ============================================
@@ -119,13 +247,20 @@ class Tensor:
         return out
     
     def mean(self, axis=None, keepdims=False):
-        # Verificar que no está vacío
         if self.data.size == 0:
             raise ValueError("mean() no funciona en tensor vacío")
         out_data = np.mean(self.data, axis=axis, keepdims=keepdims)
         out = Tensor(out_data, requires_grad=self.requires_grad, _children=(self,))
         out._op = 'mean'
         out._backward = self._make_backward_mean(axis, keepdims, out)
+        return out
+    
+    def max(self, axis=None, keepdims=False):
+        """Max con backward (gradiente solo al máximo)"""
+        out_data = np.max(self.data, axis=axis, keepdims=keepdims)
+        out = Tensor(out_data, requires_grad=self.requires_grad, _children=(self,))
+        out._op = 'max'
+        out._backward = self._make_backward_max(axis, keepdims, out)
         return out
     
     # ============================================
@@ -172,9 +307,7 @@ class Tensor:
         return out
     
     def sigmoid(self):
-        """Sigmoid numéricamente estable (evita overflow)"""
         data = self.data
-        # Clipear para evitar overflow
         data_clipped = np.clip(data, -500, 500)
         out_data = np.where(
             data_clipped >= 0,
@@ -194,7 +327,6 @@ class Tensor:
         return out
     
     def softmax(self, axis=-1):
-        """Softmax numéricamente estable (resta el máximo)"""
         data = self.data
         data_max = np.max(data, axis=axis, keepdims=True)
         data_shifted = data - data_max
@@ -206,19 +338,16 @@ class Tensor:
         return out
     
     # ============================================
-    # HELPER: REDUCIR GRADIENTE (broadcasting)
+    # HELPER: REDUCIR GRADIENTE
     # ============================================
     
     def _reduce_grad(self, grad, original_shape):
-        """Reduce un gradiente a la forma original después de broadcasting"""
         if grad.shape == original_shape:
             return grad
         
-        # Sumar dimensiones extra añadidas al principio
         while len(grad.shape) > len(original_shape):
             grad = np.sum(grad, axis=0)
         
-        # Sumar dimensiones que eran 1
         for i, dim in enumerate(original_shape):
             if dim == 1 and grad.shape[i] != 1:
                 grad = np.sum(grad, axis=i, keepdims=True)
@@ -289,6 +418,92 @@ class Tensor:
                 other.grad = g if other.grad is None else other.grad + g
         return backward
     
+    def _make_backward_batch_matmul(self, other, out):
+        def backward():
+            if out.grad is None:
+                return
+            if self.requires_grad:
+                # (..., n, m) @ (..., m, p) -> grad_self = grad_out @ other^T
+                g = np.matmul(out.grad, other.data.swapaxes(-2, -1))
+                # Reducir broadcasting en batch dims
+                g = self._reduce_grad(g, self.data.shape)
+                self.grad = g if self.grad is None else self.grad + g
+            if other.requires_grad:
+                g = np.matmul(self.data.swapaxes(-2, -1), out.grad)
+                # Reducir broadcasting en batch dims
+                g = other._reduce_grad(g, other.data.shape)
+                other.grad = g if other.grad is None else other.grad + g
+        return backward
+    
+    def _make_backward_gather(self, indices, out):
+        def backward():
+            if out.grad is None:
+                return
+            if self.requires_grad:
+                # Acumular gradientes en los índices correspondientes
+                if self.grad is None:
+                    self.grad = np.zeros_like(self.data)
+                
+                # Reducir out.grad a la forma de indices si es necesario
+                grad_to_scatter = out.grad
+                # Si out.grad tiene más dimensiones que indices, agregar
+                if grad_to_scatter.shape != indices.shape + self.data.shape[1:]:
+                    # Sumar ejes extra
+                    while len(grad_to_scatter.shape) > len(indices.shape) + len(self.data.shape) - 1:
+                        grad_to_scatter = np.sum(grad_to_scatter, axis=0)
+                
+                # Scatter add
+                np.add.at(self.grad, indices, grad_to_scatter)
+        return backward
+    
+    @staticmethod
+    def _make_backward_stack(tensors, axis, out):
+        def backward():
+            if out.grad is None:
+                return
+            # Dividir out.grad a lo largo del eje
+            n = len(tensors)
+            splits = np.split(out.grad, n, axis=axis)
+            for t, g in zip(tensors, splits):
+                if t.requires_grad:
+                    # Eliminar el eje añadido por stack
+                    g = np.squeeze(g, axis=axis)
+                    t.grad = g if t.grad is None else t.grad + g
+        return backward
+    
+    @staticmethod
+    def _make_backward_concat(tensors, axis, out):
+        def backward():
+            if out.grad is None:
+                return
+            sizes = [t.data.shape[axis] for t in tensors]
+            splits = np.split(out.grad, np.cumsum(sizes)[:-1], axis=axis)
+            for t, g in zip(tensors, splits):
+                if t.requires_grad:
+                    t.grad = g if t.grad is None else t.grad + g
+        return backward
+    
+    def _make_backward_where(self, cond, other, out):
+        def backward():
+            if out.grad is None:
+                return
+            if self.requires_grad:
+                g = np.where(cond, out.grad, 0)
+                self.grad = g if self.grad is None else self.grad + g
+            if other.requires_grad:
+                g = np.where(cond, 0, out.grad)
+                other.grad = g if other.grad is None else other.grad + g
+        return backward
+    
+    def _make_backward_mask(self, mask_array, out):
+        def backward():
+            if out.grad is None:
+                return
+            if self.requires_grad:
+                g = out.grad * mask_array
+                self.grad = g if self.grad is None else self.grad + g
+        return backward
+    
     def _make_backward_reshape(self, out):
         def backward():
             if out.grad is None:
@@ -339,6 +554,24 @@ class Tensor:
                 n = self.data.shape[axis]
             grad = grad / n
             g = np.broadcast_to(grad, self.data.shape).copy()
+            self.grad = g if self.grad is None else self.grad + g
+        return backward
+    
+    def _make_backward_max(self, axis, keepdims, out):
+        def backward():
+            if out.grad is None:
+                return
+            if not self.requires_grad:
+                return
+            # El gradiente va solo al máximo
+            if axis is None:
+                mask = (self.data == out.data)
+                g = np.where(mask, out.grad, 0)
+            else:
+                out_expanded = np.expand_dims(out.data, axis) if not keepdims else out.data
+                mask = (self.data == out_expanded)
+                out_grad_expanded = np.expand_dims(out.grad, axis) if not keepdims else out.grad
+                g = np.where(mask, out_grad_expanded, 0)
             self.grad = g if self.grad is None else self.grad + g
         return backward
     
@@ -466,9 +699,7 @@ class Tensor:
         return self.data.dtype
     
     def astype(self, dtype):
-        """Convierte el tensor a otro dtype"""
-        return Tensor(self.data.astype(dtype), 
-                     requires_grad=self.requires_grad)
+        return Tensor(self.data.astype(dtype), requires_grad=self.requires_grad)
     
     def __repr__(self):
         return f"Tensor(shape={self.shape}, dtype={self.dtype}, grad={self.grad is not None})"
