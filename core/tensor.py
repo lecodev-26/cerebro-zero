@@ -1,6 +1,5 @@
 """
-Tensor propio para Cerebro Zero
-Mini-PyTorch desde cero - Versión corregida
+Tensor V3.1 - Autograd correcto con broadcasting
 """
 
 import numpy as np
@@ -14,295 +13,471 @@ class Tensor:
         self._prev = set(_children)
         self._op = ''
     
+    # ============================================
+    # OPERACIONES BÁSICAS
+    # ============================================
+    
     def __add__(self, other):
         other = other if isinstance(other, Tensor) else Tensor(other)
         out = Tensor(self.data + other.data, 
-                     requires_grad=self.requires_grad or other.requires_grad, 
+                     requires_grad=self.requires_grad or other.requires_grad,
                      _children=(self, other))
         out._op = '+'
-        out._backward = self._create_backward_add(other, out)
+        out._backward = self._make_backward_add(other, out)
         return out
     
     def __mul__(self, other):
         other = other if isinstance(other, Tensor) else Tensor(other)
-        out = Tensor(self.data * other.data, 
-                     requires_grad=self.requires_grad or other.requires_grad, 
+        out = Tensor(self.data * other.data,
+                     requires_grad=self.requires_grad or other.requires_grad,
                      _children=(self, other))
         out._op = '*'
-        out._backward = self._create_backward_mul(other, out)
+        out._backward = self._make_backward_mul(other, out)
         return out
     
     def __sub__(self, other):
         other = other if isinstance(other, Tensor) else Tensor(other)
-        out = Tensor(self.data - other.data, 
-                     requires_grad=self.requires_grad or other.requires_grad, 
+        out = Tensor(self.data - other.data,
+                     requires_grad=self.requires_grad or other.requires_grad,
                      _children=(self, other))
         out._op = '-'
-        out._backward = self._create_backward_sub(other, out)
+        out._backward = self._make_backward_sub(other, out)
         return out
     
     def __truediv__(self, other):
         other = other if isinstance(other, Tensor) else Tensor(other)
-        out = Tensor(self.data / (other.data + 1e-10), 
-                     requires_grad=self.requires_grad or other.requires_grad, 
+        out = Tensor(self.data / other.data,
+                     requires_grad=self.requires_grad or other.requires_grad,
                      _children=(self, other))
         out._op = '/'
-        out._backward = self._create_backward_div(other, out)
+        out._backward = self._make_backward_div(other, out)
         return out
+    
+    def __pow__(self, n):
+        return self.pow(n)
+    
+    def __neg__(self):
+        return Tensor(-self.data, requires_grad=self.requires_grad, _children=(self,))
+    
+    # ============================================
+    # MATMUL / RESHAPE / TRANSPOSE
+    # ============================================
     
     def matmul(self, other):
         other = other if isinstance(other, Tensor) else Tensor(other)
-        out = Tensor(np.dot(self.data, other.data), 
-                     requires_grad=self.requires_grad or other.requires_grad, 
+        out = Tensor(np.dot(self.data, other.data),
+                     requires_grad=self.requires_grad or other.requires_grad,
                      _children=(self, other))
         out._op = 'matmul'
-        out._backward = self._create_backward_matmul(other, out)
+        out._backward = self._make_backward_matmul(other, out)
         return out
     
-    def reshape(self, shape):
-        out = Tensor(self.data.reshape(shape), 
-                     requires_grad=self.requires_grad, 
+    def reshape(self, *shape):
+        out = Tensor(self.data.reshape(*shape),
+                     requires_grad=self.requires_grad,
                      _children=(self,))
         out._op = 'reshape'
-        out._backward = self._create_backward_reshape(shape, out)
+        out._backward = self._make_backward_reshape(out)
         return out
     
-    def transpose(self):
-        out = Tensor(self.data.T, 
-                     requires_grad=self.requires_grad, 
+    def transpose(self, *axes):
+        out = Tensor(self.data.transpose(*axes),
+                     requires_grad=self.requires_grad,
                      _children=(self,))
         out._op = 'transpose'
-        out._backward = self._create_backward_transpose(out)
+        out._backward = self._make_backward_transpose(out, axes)
         return out
     
-    def sum(self, axis=None):
-        out = Tensor(np.sum(self.data, axis=axis), 
-                     requires_grad=self.requires_grad, 
-                     _children=(self,))
+    @property
+    def T(self):
+        return self.transpose()
+    
+    # ============================================
+    # REDUCCIONES
+    # ============================================
+    
+    def sum(self, axis=None, keepdims=False):
+        out_data = np.sum(self.data, axis=axis, keepdims=keepdims)
+        out = Tensor(out_data, requires_grad=self.requires_grad, _children=(self,))
         out._op = 'sum'
-        out._backward = self._create_backward_sum(axis, out)
+        out._backward = self._make_backward_sum(axis, keepdims, out)
         return out
     
-    def mean(self, axis=None):
-        out = Tensor(np.mean(self.data, axis=axis), 
-                     requires_grad=self.requires_grad, 
-                     _children=(self,))
+    def mean(self, axis=None, keepdims=False):
+        out_data = np.mean(self.data, axis=axis, keepdims=keepdims)
+        out = Tensor(out_data, requires_grad=self.requires_grad, _children=(self,))
         out._op = 'mean'
-        out._backward = self._create_backward_mean(axis, out)
+        out._backward = self._make_backward_mean(axis, keepdims, out)
         return out
+    
+    # ============================================
+    # FUNCIONES MATEMÁTICAS
+    # ============================================
     
     def exp(self):
-        out = Tensor(np.exp(self.data), 
-                     requires_grad=self.requires_grad, 
-                     _children=(self,))
+        out_data = np.exp(self.data)
+        out = Tensor(out_data, requires_grad=self.requires_grad, _children=(self,))
         out._op = 'exp'
-        out._backward = self._create_backward_exp(out)
+        out._backward = self._make_backward_exp(out)
         return out
     
     def log(self):
-        out = Tensor(np.log(np.abs(self.data) + 1e-10), 
-                     requires_grad=self.requires_grad, 
-                     _children=(self,))
+        if np.any(self.data <= 0):
+            raise ValueError("log() requiere x > 0")
+        out_data = np.log(self.data)
+        out = Tensor(out_data, requires_grad=self.requires_grad, _children=(self,))
         out._op = 'log'
-        out._backward = self._create_backward_log(out)
+        out._backward = self._make_backward_log(out)
         return out
     
     def sqrt(self):
-        out = Tensor(np.sqrt(np.abs(self.data) + 1e-10), 
-                     requires_grad=self.requires_grad, 
-                     _children=(self,))
+        if np.any(self.data < 0):
+            raise ValueError("sqrt() requiere x >= 0")
+        out_data = np.sqrt(self.data)
+        out = Tensor(out_data, requires_grad=self.requires_grad, _children=(self,))
         out._op = 'sqrt'
-        out._backward = self._create_backward_sqrt(out)
+        out._backward = self._make_backward_sqrt(out)
         return out
     
     def pow(self, n):
-        out = Tensor(self.data ** n, 
-                     requires_grad=self.requires_grad, 
-                     _children=(self,))
-        out._op = 'pow'
-        out._backward = self._create_backward_pow(n, out)
+        out_data = self.data ** n
+        out = Tensor(out_data, requires_grad=self.requires_grad, _children=(self,))
+        out._op = f'pow({n})'
+        out._backward = self._make_backward_pow(n, out)
         return out
     
-    # === BACKWARD FUNCTIONS ===
+    def relu(self):
+        out_data = np.maximum(0, self.data)
+        out = Tensor(out_data, requires_grad=self.requires_grad, _children=(self,))
+        out._op = 'relu'
+        out._backward = self._make_backward_relu(out)
+        return out
     
-    def _create_backward_add(self, other, out):
+    def sigmoid(self):
+        data = self.data
+        out_data = np.where(
+            data >= 0,
+            1 / (1 + np.exp(-np.clip(data, -500, 500))),
+            np.exp(np.clip(data, -500, 0)) / (1 + np.exp(np.clip(data, -500, 0)))
+        )
+        out = Tensor(out_data, requires_grad=self.requires_grad, _children=(self,))
+        out._op = 'sigmoid'
+        out._backward = self._make_backward_sigmoid(out_data, out)
+        return out
+    
+    def tanh(self):
+        out_data = np.tanh(self.data)
+        out = Tensor(out_data, requires_grad=self.requires_grad, _children=(self,))
+        out._op = 'tanh'
+        out._backward = self._make_backward_tanh(out_data, out)
+        return out
+    
+    def softmax(self, axis=-1):
+        data = self.data
+        data_max = np.max(data, axis=axis, keepdims=True)
+        data_shifted = data - data_max
+        exp_data = np.exp(data_shifted)
+        out_data = exp_data / np.sum(exp_data, axis=axis, keepdims=True)
+        out = Tensor(out_data, requires_grad=self.requires_grad, _children=(self,))
+        out._op = 'softmax'
+        out._backward = self._make_backward_softmax(out_data, axis, out)
+        return out
+    
+    # ============================================
+    # HELPER: REDUCIR GRADIENTE A FORMA ORIGINAL (broadcasting)
+    # ============================================
+    
+    def _reduce_grad(self, grad, original_shape):
+        """
+        Reduce un gradiente a la forma original cuando hay broadcasting.
+        Ejemplo: grad de shape (2,2) se reduce a (1,) si original_shape es (1,)
+        """
+        if grad.shape == original_shape:
+            return grad
+        
+        # Sumar las dimensiones que se añadieron por broadcasting
+        while len(grad.shape) > len(original_shape):
+            grad = np.sum(grad, axis=0)
+        
+        # Sumar las dimensiones que eran 1 y ahora son > 1
+        for i, dim in enumerate(original_shape):
+            if dim == 1 and grad.shape[i] != 1:
+                grad = np.sum(grad, axis=i, keepdims=True)
+        
+        return grad.reshape(original_shape)
+    
+    # ============================================
+    # BACKWARD FUNCTIONS
+    # ============================================
+    
+    def _make_backward_add(self, other, out):
         def backward():
             if out.grad is None:
                 return
             if self.requires_grad:
-                self.grad = out.grad if self.grad is None else self.grad + out.grad
+                g = self._reduce_grad(out.grad, self.data.shape)
+                self.grad = g if self.grad is None else self.grad + g
             if other.requires_grad:
-                other.grad = out.grad if other.grad is None else other.grad + out.grad
+                g = other._reduce_grad(out.grad, other.data.shape)
+                other.grad = g if other.grad is None else other.grad + g
         return backward
     
-    def _create_backward_mul(self, other, out):
+    def _make_backward_mul(self, other, out):
         def backward():
             if out.grad is None:
                 return
             if self.requires_grad:
-                self.grad = (other.data * out.grad) if self.grad is None else self.grad + (other.data * out.grad)
+                g = self._reduce_grad(other.data * out.grad, self.data.shape)
+                self.grad = g if self.grad is None else self.grad + g
             if other.requires_grad:
-                other.grad = (self.data * out.grad) if other.grad is None else other.grad + (self.data * out.grad)
+                g = other._reduce_grad(self.data * out.grad, other.data.shape)
+                other.grad = g if other.grad is None else other.grad + g
         return backward
     
-    def _create_backward_sub(self, other, out):
+    def _make_backward_sub(self, other, out):
         def backward():
             if out.grad is None:
                 return
             if self.requires_grad:
-                self.grad = out.grad if self.grad is None else self.grad + out.grad
+                g = self._reduce_grad(out.grad, self.data.shape)
+                self.grad = g if self.grad is None else self.grad + g
             if other.requires_grad:
-                other.grad = -out.grad if other.grad is None else other.grad - out.grad
+                g = other._reduce_grad(-out.grad, other.data.shape)
+                other.grad = g if other.grad is None else other.grad + g
         return backward
     
-    def _create_backward_div(self, other, out):
+    def _make_backward_div(self, other, out):
         def backward():
             if out.grad is None:
                 return
             if self.requires_grad:
-                self.grad = (out.grad / other.data) if self.grad is None else self.grad + (out.grad / other.data)
+                g = self._reduce_grad(out.grad / other.data, self.data.shape)
+                self.grad = g if self.grad is None else self.grad + g
             if other.requires_grad:
-                other.grad = (-out.grad * self.data / (other.data ** 2)) if other.grad is None else other.grad + (-out.grad * self.data / (other.data ** 2))
+                g = other._reduce_grad(-out.grad * self.data / (other.data ** 2), other.data.shape)
+                other.grad = g if other.grad is None else other.grad + g
         return backward
     
-    def _create_backward_matmul(self, other, out):
+    def _make_backward_matmul(self, other, out):
         def backward():
             if out.grad is None:
                 return
             if self.requires_grad:
-                grad = np.dot(out.grad, other.data.T)
-                self.grad = grad if self.grad is None else self.grad + grad
+                g = np.dot(out.grad, other.data.T)
+                self.grad = g if self.grad is None else self.grad + g
             if other.requires_grad:
-                grad = np.dot(self.data.T, out.grad)
-                other.grad = grad if other.grad is None else other.grad + grad
+                g = np.dot(self.data.T, out.grad)
+                other.grad = g if other.grad is None else other.grad + g
         return backward
     
-    def _create_backward_reshape(self, shape, out):
+    def _make_backward_reshape(self, out):
         def backward():
             if out.grad is None:
                 return
             if self.requires_grad:
-                grad = out.grad.reshape(self.data.shape)
-                self.grad = grad if self.grad is None else self.grad + grad
+                g = out.grad.reshape(self.data.shape)
+                self.grad = g if self.grad is None else self.grad + g
         return backward
     
-    def _create_backward_transpose(self, out):
+    def _make_backward_transpose(self, out, axes):
         def backward():
             if out.grad is None:
                 return
             if self.requires_grad:
-                grad = out.grad.T
-                self.grad = grad if self.grad is None else self.grad + grad
-        return backward
-    
-    def _create_backward_sum(self, axis, out):
-        def backward():
-            if out.grad is None:
-                return
-            if self.requires_grad:
-                if axis is None:
-                    grad = np.full_like(self.data, out.grad)
+                if axes:
+                    inv_axes = np.argsort(axes)
+                    g = out.grad.transpose(*inv_axes)
                 else:
-                    grad = np.expand_dims(out.grad, axis)
-                self.grad = grad if self.grad is None else self.grad + grad
+                    g = out.grad.T
+                self.grad = g if self.grad is None else self.grad + g
         return backward
     
-    def _create_backward_mean(self, axis, out):
+    def _make_backward_sum(self, axis, keepdims, out):
+        def backward():
+            if out.grad is None:
+                return
+            if not self.requires_grad:
+                return
+            grad = out.grad
+            if axis is not None and not keepdims:
+                grad = np.expand_dims(grad, axis)
+            g = np.broadcast_to(grad, self.data.shape).copy()
+            self.grad = g if self.grad is None else self.grad + g
+        return backward
+    
+    def _make_backward_mean(self, axis, keepdims, out):
+        def backward():
+            if out.grad is None:
+                return
+            if not self.requires_grad:
+                return
+            grad = out.grad
+            if axis is not None and not keepdims:
+                grad = np.expand_dims(grad, axis)
+            if axis is None:
+                n = self.data.size
+            else:
+                n = self.data.shape[axis]
+            grad = grad / n
+            g = np.broadcast_to(grad, self.data.shape).copy()
+            self.grad = g if self.grad is None else self.grad + g
+        return backward
+    
+    def _make_backward_exp(self, out):
         def backward():
             if out.grad is None:
                 return
             if self.requires_grad:
-                if axis is None:
-                    n = self.data.size
-                    grad = np.full_like(self.data, out.grad / n)
-                else:
-                    n = self.data.shape[axis]
-                    grad = np.expand_dims(out.grad / n, axis)
-                self.grad = grad if self.grad is None else self.grad + grad
+                g = out.grad * out.data
+                self.grad = g if self.grad is None else self.grad + g
         return backward
     
-    def _create_backward_exp(self, out):
+    def _make_backward_log(self, out):
         def backward():
             if out.grad is None:
                 return
             if self.requires_grad:
-                grad = out.grad * np.exp(self.data)
-                self.grad = grad if self.grad is None else self.grad + grad
+                g = out.grad / self.data
+                self.grad = g if self.grad is None else self.grad + g
         return backward
     
-    def _create_backward_log(self, out):
+    def _make_backward_sqrt(self, out):
         def backward():
             if out.grad is None:
                 return
             if self.requires_grad:
-                grad = out.grad / self.data
-                self.grad = grad if self.grad is None else self.grad + grad
+                g = out.grad / (2 * out.data)
+                self.grad = g if self.grad is None else self.grad + g
         return backward
     
-    def _create_backward_sqrt(self, out):
+    def _make_backward_pow(self, n, out):
         def backward():
             if out.grad is None:
                 return
             if self.requires_grad:
-                grad = out.grad * 0.5 / np.sqrt(self.data + 1e-10)
-                self.grad = grad if self.grad is None else self.grad + grad
+                g = out.grad * n * (self.data ** (n - 1))
+                self.grad = g if self.grad is None else self.grad + g
         return backward
     
-    def _create_backward_pow(self, n, out):
+    def _make_backward_relu(self, out):
         def backward():
             if out.grad is None:
                 return
             if self.requires_grad:
-                grad = out.grad * n * (self.data ** (n-1))
-                self.grad = grad if self.grad is None else self.grad + grad
+                g = out.grad * (self.data > 0).astype(float)
+                self.grad = g if self.grad is None else self.grad + g
         return backward
+    
+    def _make_backward_sigmoid(self, sig_out, out):
+        def backward():
+            if out.grad is None:
+                return
+            if self.requires_grad:
+                g = out.grad * sig_out * (1 - sig_out)
+                self.grad = g if self.grad is None else self.grad + g
+        return backward
+    
+    def _make_backward_tanh(self, tanh_out, out):
+        def backward():
+            if out.grad is None:
+                return
+            if self.requires_grad:
+                g = out.grad * (1 - tanh_out ** 2)
+                self.grad = g if self.grad is None else self.grad + g
+        return backward
+    
+    def _make_backward_softmax(self, softmax_out, axis, out):
+        def backward():
+            if out.grad is None:
+                return
+            if not self.requires_grad:
+                return
+            sum_grad = np.sum(out.grad * softmax_out, axis=axis, keepdims=True)
+            g = softmax_out * (out.grad - sum_grad)
+            self.grad = g if self.grad is None else self.grad + g
+        return backward
+    
+    # ============================================
+    # BACKWARD PRINCIPAL
+    # ============================================
     
     def backward(self):
+        # Resetear gradientes
+        visited = set()
+        def reset_grads(v):
+            if v in visited:
+                return
+            visited.add(v)
+            v.grad = None
+            for prev in v._prev:
+                reset_grads(prev)
+        reset_grads(self)
+        
+        # Gradiente inicial
         self.grad = np.ones_like(self.data)
-        self._propagar()
-    
-    def _propagar(self):
+        
+        # Topological sort
         topo = []
         visited = set()
-        def build(v):
+        def build_topo(v):
             if v not in visited:
                 visited.add(v)
                 for prev in v._prev:
-                    build(prev)
+                    build_topo(prev)
                 topo.append(v)
-        build(self)
+        build_topo(self)
+        
+        # Backward en orden inverso
         for v in reversed(topo):
             if v.requires_grad:
                 v._backward()
     
     def zero_grad(self):
         self.grad = None
-        for prev in self._prev:
-            if hasattr(prev, 'zero_grad'):
-                prev.zero_grad()
+    
+    def detach(self):
+        return Tensor(self.data.copy(), requires_grad=False)
+    
+    # ============================================
+    # UTILIDADES
+    # ============================================
+    
+    @property
+    def shape(self):
+        return self.data.shape
+    
+    @property
+    def size(self):
+        return self.data.size
     
     def __repr__(self):
-        return f"Tensor(data={self.data.shape}, grad={self.grad is not None})"
+        return f"Tensor(shape={self.shape}, grad={self.grad is not None})"
+    
+    def __len__(self):
+        return len(self.data)
 
-# === FUNCIONES DE CREACIÓN ===
 
-def ones(shape):
-    return Tensor(np.ones(shape))
+# ============================================
+# FUNCIONES DE CREACIÓN
+# ============================================
 
-def zeros(shape):
-    return Tensor(np.zeros(shape))
+def tensor(data, requires_grad=False):
+    return Tensor(data, requires_grad=requires_grad)
 
-def randn(shape):
-    return Tensor(np.random.randn(*shape))
+def zeros(shape, requires_grad=False):
+    return Tensor(np.zeros(shape), requires_grad=requires_grad)
 
-def rand(shape):
-    return Tensor(np.random.rand(*shape))
+def ones(shape, requires_grad=False):
+    return Tensor(np.ones(shape), requires_grad=requires_grad)
 
-def arange(start, stop, step=1):
-    return Tensor(np.arange(start, stop, step))
+def randn(*shape, requires_grad=False):
+    return Tensor(np.random.randn(*shape), requires_grad=requires_grad)
 
-def eye(n):
-    return Tensor(np.eye(n))
+def rand(*shape, requires_grad=False):
+    return Tensor(np.random.rand(*shape), requires_grad=requires_grad)
 
-def tensor(data):
-    return Tensor(data)
+def arange(start, stop, step=1, requires_grad=False):
+    return Tensor(np.arange(start, stop, step), requires_grad=requires_grad)
+
+def eye(n, requires_grad=False):
+    return Tensor(np.eye(n), requires_grad=requires_grad)
