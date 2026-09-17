@@ -1,0 +1,101 @@
+{
+  "total": 265,
+  "passed": 139,
+  "failed": 126,
+  "accuracy": 0.5245283018867924,
+  "total_latency_ms": 2907.5164794921875,
+  "by_category": {
+    "math": {
+      "category": "math",
+      "total": 65,
+      "passed": 65,
+      "failed": 0,
+      "accuracy": 1.0,
+      "latency_p50_ms": 29.88457679748535,
+      "latency_p95_ms": 47.639226913452134,
+      "latency_mean_ms": 32.3580265045166
+    },
+    "language": {
+      "category": "language",
+      "total": 45,
+      "passed": 7,
+      "failed": 38,
+      "accuracy": 0.15555555555555556,
+      "latency_p50_ms": 0.2703666687011719,
+      "latency_p95_ms": 27.26597785949707,
+      "latency_mean_ms": 4.508278104994032
+    },
+    "memory": {
+      "category": "memory",
+      "total": 45,
+      "passed": 3,
+      "failed": 42,
+      "accuracy": 0.06666666666666667,
+      "latency_p50_ms": 0.19931793212890625,
+      "latency_p95_ms": 0.253152847290039,
+      "latency_mean_ms": 0.2074824439154731
+    },
+    "tools": {
+      "category": "tools",
+      "total": 45,
+      "passed": 20,
+      "failed": 25,
+      "accuracy": 0.4444444444444444,
+      "latency_p50_ms": 0.28443336486816406,
+      "latency_p95_ms": 28.60240936279297,
+      "latency_mean_ms": 12.680371602376303
+    },
+    "security": {
+      "category": "security",
+      "total": 45,
+      "passed": 44,
+      "failed": 1,
+      "accuracy": 0.9777777777777777,
+      "latency_p50_ms": 0.1876354217529297,
+      "latency_p95_ms": 0.23212432861328122,
+      "latency_mean_ms": 0.19167794121636283
+    },
+    "learning": {
+      "category": "learning",
+      "total": 20,
+      "passed": 0,
+      "failed": 20,
+      "accuracy": 0.0,
+      "latency_p50_ms": 0.5856752395629883,
+      "latency_p95_ms": 0.6489872932434082,
+      "latency_mean_ms": 0.5950808525085449
+    }
+  },
+  "by_split": {
+    "KNOWN": {
+      "category": "KNOWN",
+      "total": 120,
+      "passed": 77,
+      "failed": 43,
+      "accuracy": 0.6416666666666667,
+      "latency_p50_ms": 0.6157159805297852,
+      "latency_p95_ms": 33.20001363754271,
+      "latency_mean_ms": 14.829548199971518
+    },
+    "UNSEEN": {
+      "category": "UNSEEN",
+      "total": 120,
+      "passed": 50,
+      "failed": 70,
+      "accuracy": 0.4166666666666667,
+      "latency_p50_ms": 0.2149343490600586,
+      "latency_p95_ms": 34.00232791900635,
+      "latency_mean_ms": 8.186686038970947
+    },
+    "ADVERSARIAL": {
+      "category": "ADVERSARIAL",
+      "total": 25,
+      "passed": 12,
+      "failed": 13,
+      "accuracy": 0.48,
+      "latency_p50_ms": 0.2143383026123047,
+      "latency_p95_ms": 27.961063385009766,
+      "latency_mean_ms": 5.787067413330078
+    }
+  }
+}
