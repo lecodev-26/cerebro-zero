@@ -1,12 +1,31 @@
 """
-Tensor V3.1 - Autograd correcto con broadcasting
+Tensor V3.2 - Con soporte float32/float64 y numérica estable
 """
 
 import numpy as np
 
+# Dtype global (float64 por defecto, float32 para móvil)
+DEFAULT_DTYPE = np.float64
+
+
+def set_dtype(dtype):
+    """Configura el dtype por defecto (float32 o float64)"""
+    global DEFAULT_DTYPE
+    DEFAULT_DTYPE = dtype
+    print(f"🔧 Dtype global: {dtype}")
+
+
+def get_dtype():
+    return DEFAULT_DTYPE
+
+
 class Tensor:
-    def __init__(self, data, requires_grad=False, _children=()):
-        self.data = np.array(data, dtype=np.float64)
+    def __init__(self, data, requires_grad=False, _children=(), dtype=None):
+        if isinstance(data, Tensor):
+            data = data.data
+        
+        target_dtype = dtype if dtype is not None else DEFAULT_DTYPE
+        self.data = np.array(data, dtype=target_dtype)
         self.requires_grad = requires_grad
         self.grad = None
         self._backward = lambda: None
@@ -19,7 +38,7 @@ class Tensor:
     
     def __add__(self, other):
         other = other if isinstance(other, Tensor) else Tensor(other)
-        out = Tensor(self.data + other.data, 
+        out = Tensor(self.data + other.data,
                      requires_grad=self.requires_grad or other.requires_grad,
                      _children=(self, other))
         out._op = '+'
@@ -58,10 +77,6 @@ class Tensor:
     
     def __neg__(self):
         return Tensor(-self.data, requires_grad=self.requires_grad, _children=(self,))
-    
-    # ============================================
-    # MATMUL / RESHAPE / TRANSPOSE
-    # ============================================
     
     def matmul(self, other):
         other = other if isinstance(other, Tensor) else Tensor(other)
@@ -104,6 +119,9 @@ class Tensor:
         return out
     
     def mean(self, axis=None, keepdims=False):
+        # Verificar que no está vacío
+        if self.data.size == 0:
+            raise ValueError("mean() no funciona en tensor vacío")
         out_data = np.mean(self.data, axis=axis, keepdims=keepdims)
         out = Tensor(out_data, requires_grad=self.requires_grad, _children=(self,))
         out._op = 'mean'
@@ -115,7 +133,7 @@ class Tensor:
     # ============================================
     
     def exp(self):
-        out_data = np.exp(self.data)
+        out_data = np.exp(np.clip(self.data, -700, 700))
         out = Tensor(out_data, requires_grad=self.requires_grad, _children=(self,))
         out._op = 'exp'
         out._backward = self._make_backward_exp(out)
@@ -154,11 +172,14 @@ class Tensor:
         return out
     
     def sigmoid(self):
+        """Sigmoid numéricamente estable (evita overflow)"""
         data = self.data
+        # Clipear para evitar overflow
+        data_clipped = np.clip(data, -500, 500)
         out_data = np.where(
-            data >= 0,
-            1 / (1 + np.exp(-np.clip(data, -500, 500))),
-            np.exp(np.clip(data, -500, 0)) / (1 + np.exp(np.clip(data, -500, 0)))
+            data_clipped >= 0,
+            1 / (1 + np.exp(-data_clipped)),
+            np.exp(data_clipped) / (1 + np.exp(data_clipped))
         )
         out = Tensor(out_data, requires_grad=self.requires_grad, _children=(self,))
         out._op = 'sigmoid'
@@ -173,6 +194,7 @@ class Tensor:
         return out
     
     def softmax(self, axis=-1):
+        """Softmax numéricamente estable (resta el máximo)"""
         data = self.data
         data_max = np.max(data, axis=axis, keepdims=True)
         data_shifted = data - data_max
@@ -184,22 +206,19 @@ class Tensor:
         return out
     
     # ============================================
-    # HELPER: REDUCIR GRADIENTE A FORMA ORIGINAL (broadcasting)
+    # HELPER: REDUCIR GRADIENTE (broadcasting)
     # ============================================
     
     def _reduce_grad(self, grad, original_shape):
-        """
-        Reduce un gradiente a la forma original cuando hay broadcasting.
-        Ejemplo: grad de shape (2,2) se reduce a (1,) si original_shape es (1,)
-        """
+        """Reduce un gradiente a la forma original después de broadcasting"""
         if grad.shape == original_shape:
             return grad
         
-        # Sumar las dimensiones que se añadieron por broadcasting
+        # Sumar dimensiones extra añadidas al principio
         while len(grad.shape) > len(original_shape):
             grad = np.sum(grad, axis=0)
         
-        # Sumar las dimensiones que eran 1 y ahora son > 1
+        # Sumar dimensiones que eran 1
         for i, dim in enumerate(original_shape):
             if dim == 1 and grad.shape[i] != 1:
                 grad = np.sum(grad, axis=i, keepdims=True)
@@ -364,7 +383,7 @@ class Tensor:
             if out.grad is None:
                 return
             if self.requires_grad:
-                g = out.grad * (self.data > 0).astype(float)
+                g = out.grad * (self.data > 0).astype(self.data.dtype)
                 self.grad = g if self.grad is None else self.grad + g
         return backward
     
@@ -402,7 +421,6 @@ class Tensor:
     # ============================================
     
     def backward(self):
-        # Resetear gradientes
         visited = set()
         def reset_grads(v):
             if v in visited:
@@ -413,10 +431,8 @@ class Tensor:
                 reset_grads(prev)
         reset_grads(self)
         
-        # Gradiente inicial
         self.grad = np.ones_like(self.data)
         
-        # Topological sort
         topo = []
         visited = set()
         def build_topo(v):
@@ -427,7 +443,6 @@ class Tensor:
                 topo.append(v)
         build_topo(self)
         
-        # Backward en orden inverso
         for v in reversed(topo):
             if v.requires_grad:
                 v._backward()
@@ -438,10 +453,6 @@ class Tensor:
     def detach(self):
         return Tensor(self.data.copy(), requires_grad=False)
     
-    # ============================================
-    # UTILIDADES
-    # ============================================
-    
     @property
     def shape(self):
         return self.data.shape
@@ -450,8 +461,17 @@ class Tensor:
     def size(self):
         return self.data.size
     
+    @property
+    def dtype(self):
+        return self.data.dtype
+    
+    def astype(self, dtype):
+        """Convierte el tensor a otro dtype"""
+        return Tensor(self.data.astype(dtype), 
+                     requires_grad=self.requires_grad)
+    
     def __repr__(self):
-        return f"Tensor(shape={self.shape}, grad={self.grad is not None})"
+        return f"Tensor(shape={self.shape}, dtype={self.dtype}, grad={self.grad is not None})"
     
     def __len__(self):
         return len(self.data)
@@ -461,23 +481,23 @@ class Tensor:
 # FUNCIONES DE CREACIÓN
 # ============================================
 
-def tensor(data, requires_grad=False):
-    return Tensor(data, requires_grad=requires_grad)
+def tensor(data, requires_grad=False, dtype=None):
+    return Tensor(data, requires_grad=requires_grad, dtype=dtype)
 
 def zeros(shape, requires_grad=False):
-    return Tensor(np.zeros(shape), requires_grad=requires_grad)
+    return Tensor(np.zeros(shape, dtype=DEFAULT_DTYPE), requires_grad=requires_grad)
 
 def ones(shape, requires_grad=False):
-    return Tensor(np.ones(shape), requires_grad=requires_grad)
+    return Tensor(np.ones(shape, dtype=DEFAULT_DTYPE), requires_grad=requires_grad)
 
 def randn(*shape, requires_grad=False):
-    return Tensor(np.random.randn(*shape), requires_grad=requires_grad)
+    return Tensor(np.random.randn(*shape).astype(DEFAULT_DTYPE), requires_grad=requires_grad)
 
 def rand(*shape, requires_grad=False):
-    return Tensor(np.random.rand(*shape), requires_grad=requires_grad)
+    return Tensor(np.random.rand(*shape).astype(DEFAULT_DTYPE), requires_grad=requires_grad)
 
 def arange(start, stop, step=1, requires_grad=False):
-    return Tensor(np.arange(start, stop, step), requires_grad=requires_grad)
+    return Tensor(np.arange(start, stop, step, dtype=DEFAULT_DTYPE), requires_grad=requires_grad)
 
 def eye(n, requires_grad=False):
-    return Tensor(np.eye(n), requires_grad=requires_grad)
+    return Tensor(np.eye(n, dtype=DEFAULT_DTYPE), requires_grad=requires_grad)
