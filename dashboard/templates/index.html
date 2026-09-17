@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 Cerebro Zero 2.0 — Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .chat-container {
+            height: calc(100vh - 350px);
+            overflow-y: auto;
+        }
+        .message {
+            animation: fadeIn 0.3s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+    <!-- Header -->
+    <header class="bg-gray-800 border-b border-gray-700 p-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="text-3xl">🧠</span>
+                <div>
+                    <h1 class="text-xl font-bold">Cerebro Zero 2.0</h1>
+                    <p class="text-xs text-gray-400">Small Hybrid Neural Agent</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2">
+                <span class="inline-block w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                <span class="text-sm text-green-400">Online</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <div class="max-w-7xl mx-auto p-4">
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                <div class="text-xs text-gray-400 uppercase">Uptime</div>
+                <div id="uptime" class="text-2xl font-bold text-blue-400">{{ stats.uptime_human }}</div>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                <div class="text-xs text-gray-400 uppercase">Experiencias</div>
+                <div id="experiences" class="text-2xl font-bold text-green-400">{{ stats.experiences }}</div>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                <div class="text-xs text-gray-400 uppercase">Memoria Total</div>
+                <div id="memory-total" class="text-2xl font-bold text-yellow-400">
+                    {{ stats.memory.short_term + stats.memory.long_term + stats.memory.episodic + stats.memory.semantic }}
+                </div>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                <div class="text-xs text-gray-400 uppercase">RAM</div>
+                <div id="ram" class="text-2xl font-bold text-purple-400">{{ "%.1f"|format(stats.ram_mb) }} MB</div>
+            </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="bg-gray-800 rounded-lg p-4 border border-gray-700 mb-6">
+            <div class="text-xs text-gray-400 uppercase mb-2">🔧 Herramientas disponibles ({{ stats.tools }})</div>
+            <div id="tools" class="flex flex-wrap gap-2">
+                {% for tool in stats.tools_list %}
+                <span class="bg-blue-900 text-blue-200 px-2 py-1 rounded text-xs">{{ tool }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Chat -->
+        <div class="bg-gray-800 rounded-lg border border-gray-700 overflow-hidden">
+            <div class="bg-gray-750 border-b border-gray-700 p-3 flex items-center justify-between">
+                <div class="font-bold">💬 Chat</div>
+                <button onclick="resetChat()" class="text-xs text-gray-400 hover:text-red-400">
+                    🗑️ Limpiar
+                </button>
+            </div>
+            
+            <div id="chat" class="chat-container p-4 space-y-3">
+                <!-- Los mensajes se añaden aquí dinámicamente -->
+                <div class="message flex justify-start">
+                    <div class="bg-gray-700 rounded-lg p-3 max-w-2xl">
+                        <div class="text-xs text-gray-400 mb-1">🤖 Cerebro Zero</div>
+                        <div>¡Hola! Soy Cerebro Zero 2.0. Prueba a preguntarme cosas como "5 + 3", "qué hora es", o "qué es la IA".</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 p-3">
+                <div class="flex space-x-2">
+                    <input type="text" id="input" 
+                           placeholder="Escribe tu mensaje..." 
+                           class="flex-1 bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500"
+                           onkeypress="if(event.key==='Enter') sendMessage()">
+                    <button onclick="sendMessage()" 
+                            id="send-btn"
+                            class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-bold transition">
+                        Enviar
+                    </button>
+                </div>
+                <div class="text-xs text-gray-500 mt-2">
+                    💡 El agente aprenderá de cada conversación
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const chatEl = document.getElementById('chat');
+        const inputEl = document.getElementById('input');
+
+        function addMessage(role, content) {
+            const div = document.createElement('div');
+            div.className = `message flex ${role === 'user' ? 'justify-end' : 'justify-start'}`;
+            
+            const bubble = document.createElement('div');
+            bubble.className = role === 'user' 
+                ? 'bg-blue-600 rounded-lg p-3 max-w-2xl'
+                : 'bg-gray-700 rounded-lg p-3 max-w-2xl';
+            
+            const label = role === 'user' ? '👤 Tú' : '🤖 Cerebro Zero';
+            bubble.innerHTML = `
+                <div class="text-xs text-gray-300 mb-1">${label}</div>
+                <div>${escapeHtml(content)}</div>
+            `;
+            
+            div.appendChild(bubble);
+            chatEl.appendChild(div);
+            chatEl.scrollTop = chatEl.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        async function sendMessage() {
+            const message = inputEl.value.trim();
+            if (!message) return;
+            
+            addMessage('user', message);
+            inputEl.value = '';
+            
+            // Mostrar spinner
+            const sendBtn = document.getElementById('send-btn');
+            sendBtn.disabled = true;
+            sendBtn.innerHTML = '<div class="spinner mx-auto"></div>';
+            
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message })
+                });
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    addMessage('assistant', '❌ Error: ' + data.error);
+                } else {
+                    addMessage('assistant', data.response);
+                    updateStats(data.stats);
+                }
+            } catch (e) {
+                addMessage('assistant', '❌ Error de conexión');
+            } finally {
+                sendBtn.disabled = false;
+                sendBtn.innerHTML = 'Enviar';
+                inputEl.focus();
+            }
+        }
+
+        function updateStats(stats) {
+            document.getElementById('uptime').textContent = stats.uptime_human;
+            document.getElementById('experiences').textContent = stats.experiences;
+            document.getElementById('memory-total').textContent = 
+                stats.memory.short_term + stats.memory.long_term + 
+                stats.memory.episodic + stats.memory.semantic;
+            document.getElementById('ram').textContent = stats.ram_mb.toFixed(1) + ' MB';
+        }
+
+        async function resetChat() {
+            if (!confirm('¿Limpiar el historial de chat?')) return;
+            
+            await fetch('/api/reset', { method: 'POST' });
+            
+            chatEl.innerHTML = `
+                <div class="message flex justify-start">
+                    <div class="bg-gray-700 rounded-lg p-3 max-w-2xl">
+                        <div class="text-xs text-gray-400 mb-1">🤖 Cerebro Zero</div>
+                        <div>Historial limpiado. ¿En qué puedo ayudarte?</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Auto-refresh de stats cada 10 segundos
+        setInterval(async () => {
+            try {
+                const r = await fetch('/api/stats');
+                const stats = await r.json();
+                updateStats(stats);
+            } catch (e) {}
+        }, 10000);
+
+        // Foco al cargar
+        inputEl.focus();
+    </script>
+
+</body>
+</html>
