@@ -1,5 +1,95 @@
 # 📝 CHANGELOG
 
+## [3.0.0] - 2026-09-17
+
+### 🧠 AUTONOMOUS LEARNING COGNITIVE AGENT
+
+#### FASE 3.13 — Documentación + Release 3.0
+- README actualizado al estado real (792 tests)
+- ROADMAP con las 13 fases del bloque 3.x
+- CHANGELOG con todas las fases 3.x
+- Documentación específica en docs/CEREBRO_V3.md
+
+#### FASE 3.12 — Packaging
+- CLI completa: `info`, `chat`, `plan`, `benchmark`, `test`
+- `pyproject.toml` con entry point `cerebro-zero`
+- `python cli.py --version` → Cerebro Zero 3.0.0
+- `__main__.py` para `python -m cerebro_zero`
+
+#### FASE 3.11 — Integración final
+- `CerebroV3`: agente cognitivo unificado
+- Pipeline completo: input → tokenizer → world → planner → tool → learning
+- Respuesta tipada con traza (plan, tool, confianza, latencia)
+- 5 tools básicas integradas (suma, resta, multiplica, recordar, aprender)
+
+#### FASE 3.10 — Reproducibilidad
+- `hash_estructura` determinista (orden de claves ignorado)
+- `hash_archivo` SHA256 chunked
+- `EntornoCaptura`: Python, NumPy, plataforma, hardware, git
+- `RegistroExperimento` con fingerprint único
+- Comparación y verificación de reproducibilidad con tolerancia
+
+#### FASE 3.9 — Tool System 3.0
+- `Schema` simplificado (tipos, min/max, requerido, default)
+- `ToolSpec`: contrato declarativo
+- `ToolRegistryV3`: búsqueda por capacidad y texto
+- `ToolResult` tipado (ok/error/latencia)
+- Validación de input y permisos con callback
+
+#### FASE 3.8 — Tokenizer 3.0
+- `ByteTokenizer`: 256 bytes + 4 especiales
+- `BPETokenizer`: Byte Pair Encoding desde cero
+- Entrenamiento sobre corpus con aprendizaje de fusiones
+- Maneja cualquier texto: emojis, acentos, chino, zero-width
+- Compresión real (hasta 6.5x en palabras vistas)
+
+#### FASE 3.7 — Benchmark 4.0
+- Categorías nuevas: planning, rl, learning
+- Métricas científicas: accuracy, exact_match, error_rate, latency_p50/p95
+- Splits KNOWN/UNSEEN/ADVERSARIAL
+- Reproducibilidad con `random.Random` local
+
+#### FASE 3.6 — RL básico
+- `GridWorld` NxN con obstáculos, meta, timeout
+- `QLearning` tabular con epsilon-greedy
+- `EntrenadorRL` con evaluación sin exploración
+- Aprendizaje real verificado (tasa éxito sube con entrenamiento)
+
+#### FASE 3.5 — Learning Engine
+- `Experiencia`: state, action, result, reward, error, verified
+- `ExperienceBuffer` con límite y muestreo
+- `EvaluadorMejora`: accept/reject con umbral
+- Regla de oro: el modelo NUNCA se actualiza sin mejora objetiva
+
+#### FASE 3.4 — Planner 3.0
+- `Plan` con orden topológico (Kahn's algorithm)
+- Detección de ciclos y dependencias rotas
+- 3 plantillas: entrenar, evaluar, recordar
+- Plan genérico para goals desconocidos
+- Persistencia JSON de planes
+
+#### FASE 3.3 — World Model
+- `WorldModel` con rutas anidadas (`user.nombre`)
+- set/get/update/delete/existe
+- `incrementar`, `append`
+- Historial de cambios (límite 200)
+- Suscripciones con notificación a padres
+- Persistencia JSON
+
+#### FASE 3.2 — Procedural Memory
+- `Procedimiento` con pasos (`Step`)
+- Aprender de éxito y de instrucciones
+- Búsqueda por trigger y tasa de éxito
+- Ejecución con ejecutores externos
+
+#### FASE 3.1 — Working Memory
+- `WorkingItem` con prioridad, TTL, refuerzo
+- Capacidad limitada (`max_items`)
+- Expulsión por menor relevancia
+- Relevancia calculada (prioridad + decay + refuerzo)
+
+---
+
 ## [2.1.0] - 2026-09-17
 
 ### 🔴 TECHNICAL INTEGRITY RELEASE

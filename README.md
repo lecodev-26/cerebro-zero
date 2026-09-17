@@ -1,10 +1,10 @@
-# 🧠 CEREBRO ZERO 2.1
+# 🧠 CEREBRO ZERO 3.0
 
 ## Autonomous Learning Cognitive Agent
 
 [![Python](https://img.shields.io/badge/Python-3.14-blue.svg)](https://www.python.org/)
 [![NumPy](https://img.shields.io/badge/NumPy-2.4.4-green.svg)](https://numpy.org/)
-[![Tests](https://img.shields.io/badge/Tests-308%2F308-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-792%2F792-brightgreen.svg)](tests/)
 [![CI](https://github.com/lecodev-26/cerebro-zero/actions/workflows/tests.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/tests.yml)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -12,28 +12,36 @@
 
 ## 📖 Descripción
 
-**Cerebro Zero 2.1** es un **agente híbrido neuronal** construido **desde cero** en Python + NumPy. Sin frameworks de IA. Sin `pickle`. Todo verificado con gradient checking.
+**Cerebro Zero 3.0** es un **agente cognitivo integrado** construido **desde cero** en Python + NumPy. Sin frameworks de IA. Sin `pickle`. Todo verificado con gradient checking y tests.
 
-**Filosofía 2.1 — Technical Integrity:**
-> No más código. Mejor código. Que cada pieza sea demostrable.
+**Filosofía 3.0 — Autonomous Learning:**
+> 2.1 = sistema verificable.
+> 3.0 = sistema que aprende, planifica y actúa de forma verificable.
 
 ---
 
-## 🏆 Logros 2.1
+## 🏆 Logros 3.0
 
 | Área | Estado |
 |------|--------|
-| **Tests** | ✅ 308/308 pasan |
+| **Tests** | ✅ 792/792 pasan |
 | **Autograd** | ✅ Verificado con gradient checking |
 | **Transformer** | ✅ Backprop REAL (17/17 gradientes correctos) |
-| **Pipeline** | ✅ 97.74% accuracy (benchmark honesto) |
+| **Pipeline 3.0** | ✅ CerebroV3 integrado (10 componentes) |
+| **Planner 3.0** | ✅ Goal → Subgoals → Dependencies → Actions |
+| **Learning Engine** | ✅ Accept/Reject con verificación objetiva |
+| **RL básico** | ✅ Q-Learning + GridWorld (99% éxito) |
+| **Tokenizer 3.0** | ✅ Byte-level + BPE desde cero |
+| **Tool System 3.0** | ✅ Contratos + permisos + schemas |
+| **Reproducibilidad** | ✅ Fingerprints de entorno + config |
 | **Sandbox** | ✅ Subprocess aislado + timeout |
 | **Persistencia** | ✅ Formato JSON+NPY (sin pickle) |
-| **CI/CD** | ✅ 4 workflows en GitHub Actions |
+| **CI/CD** | ✅ 5 workflows en GitHub Actions |
+| **CLI** | ✅ `cerebro-zero info/chat/plan/benchmark` |
 
 ---
 
-## 🎯 Lo que funciona en 2.1
+## 🎯 Lo que funciona en 3.0
 
 ### **Motor matemático**
 - Tensor con autograd completo
@@ -47,21 +55,55 @@
 - Residuales y FFN
 - **Verificado: 17/17 parámetros con gradient correcto**
 
-### **Benchmark honesto** (265 casos)
-| Categoría | Accuracy |
-|-----------|----------|
-| **math** | 100.0% ✅ |
-| **learning** | 100.0% ✅ |
-| **memory** | 97.8% ✅ |
-| **security** | 97.8% ✅ |
-| **language** | 95.6% ✅ |
-| **tools** | 95.6% ✅ |
-| **TOTAL** | **97.74%** 🚀 |
+### **Memorias cognitivas**
+- **Working Memory**: capacidad limitada, TTL, prioridad, refuerzo
+- **Procedural Memory**: aprender cómo hacer cosas
+- **Semantic Memory**: búsqueda por similitud
+- **World Model**: estado persistente del mundo con rutas anidadas
 
-**Splits:**
-- KNOWN: 100.0%
-- UNSEEN: 100.0%
-- ADVERSARIAL: 76.0%
+### **Planner 3.0**
+- Descomposición: Goal → Subgoals → Dependencies → Actions
+- Orden topológico (Kahn's algorithm)
+- Detección de ciclos y dependencias rotas
+- Plantillas de dominio: entrenar, evaluar, recordar
+- Ejecución paso a paso
+
+### **Learning Engine**
+- Registro de experiencias (state, action, result, reward, error)
+- Experience replay
+- **Regla de oro:** el modelo NUNCA se actualiza sin mejora objetiva
+- Accept/Reject con umbral configurable
+
+### **RL básico**
+- GridWorld NxN con obstáculos
+- Q-Learning tabular con epsilon-greedy
+- Entrenamiento y evaluación sin exploración
+- ~99% de éxito tras entrenamiento
+
+### **Tokenizer 3.0**
+- **ByteTokenizer**: 256 bytes + 4 especiales, maneja cualquier texto
+- **BPETokenizer**: Byte Pair Encoding desde cero
+- Compresión real (hasta 6.5x en palabras vistas)
+- Maneja emojis, acentos, chino, símbolos raros
+
+### **Tool System 3.0**
+- `ToolSpec`: contrato declarativo (input, output, permisos, capacidades)
+- Validación de schemas (tipos, min/max, requerido, default)
+- Búsqueda por capacidad y texto
+- Historial y stats de ejecuciones
+
+### **Benchmark 4.0**
+- 7 categorías: math, memory, language, tools, security, planning, rl, learning
+- Métricas científicas: accuracy, exact_match, error_rate, latency_p50/p95
+- Splits: KNOWN, UNSEEN, ADVERSARIAL
+- Reproducible con seed
+
+### **Reproducibilidad**
+- `hash_estructura`: determinista, orden ignorado
+- `hash_archivo`: SHA256 chunked
+- `EntornoCaptura`: Python, NumPy, plataforma, hardware, git commit
+- `RegistroExperimento`: fingerprint único por experimento
+- Verificación de reproducibilidad con tolerancia
 
 ### **Sandbox real**
 - Subprocess aislado
@@ -88,23 +130,29 @@ pytest tests/ -v
 
 ---
 
-📁 Estructura
+🖥️ CLI
 
-```
-cerebro-zero/
-├── core/           # Tensor, layers, serialization
-├── models/         # Brain, MLP, Transformer
-├── memory/         # Short/Long/Episodic/Semantic
-├── reasoning/      # Planner, verifier
-├── security/       # Permissions, sandbox, process, limits
-├── tools/          # Plugins + registry
-├── training/       # LM trainer, continuous learning
-├── evaluation/     # Benchmark, objective evaluator
-├── agent/          # Cerebro Central
-├── dashboard/      # Flask web
-├── mobile/         # Optimizer, metrics, quantizer
-├── tests/          # 308 tests
-└── docs/           # Documentación
+```bash
+# Ver versión
+python cli.py --version
+
+# Estado del sistema
+python cli.py info
+
+# Chat one-shot
+python cli.py chat "5 + 3"
+
+# Chat interactivo
+python cli.py chat
+
+# Generar plan
+python cli.py plan "Entrenar el modelo"
+
+# Ejecutar benchmark
+python cli.py benchmark
+
+# Ejecutar tests
+python cli.py test
 ```
 
 ---
@@ -112,51 +160,100 @@ cerebro-zero/
 🧠 Ejemplo de uso
 
 ```python
-from agent.central import CerebroCentral
+from agent.cerebro_v3 import CerebroV3
 
-cerebro = CerebroCentral()
+cerebro = CerebroV3(nombre="Zero")
 
-# Matemáticas
-cerebro.procesar("¿Cuánto es 5 + 3?")  # → "5 + 3 = 8"
+# Matemáticas (tool)
+cerebro.procesar("5 + 3")           # → "5.0 + 3.0 = 8.0"
 
-# Memoria
-cerebro.procesar("recuerda color = azul")
-cerebro.procesar("recordar color")     # → "💭 Recuerdo: color = azul"
+# Aprender / recordar (world model)
+cerebro.procesar("aprende color = azul")
+cerebro.procesar("recordar color")   # → "💭 Recuerdo: color = azul"
 
-# Aprendizaje
-cerebro.procesar("aprende python")     # → "🎓 Aprendido: python"
+# Planificar (planner 3.0)
+r = cerebro.procesar("Entrenar el modelo")
+r.plan                                # → Plan con 8 subgoals
 
-# Seguridad
-cerebro.procesar("rm -rf /")           # → "🔒 Bloqueado por seguridad"
+# Stats
+cerebro.stats()
 ```
 
 ---
 
-🗺️ Roadmap completado
+📁 Estructura
 
-P0 — CORRECCIÓN ✅
+```
+cerebro-zero/
+├── agent/            # CerebroV3 (integración)
+├── config/           # Configuración YAML
+├── core/             # Tensor, autograd, capas, transformer
+├── dashboard/        # Flask web
+├── datasets/         # Datasets
+├── docs/             # Documentación
+├── evaluation/       # Benchmark, reproducibilidad
+├── experiments/      # Scripts de prueba
+├── language/         # Tokenizer 3.0, vocabulario
+├── memory/           # Working, Procedural, World, Semantic
+├── mobile/           # Optimizer, métricas, quantizer
+├── models/           # Brain, MLP, Transformer
+├── reasoning/        # Planner 3.0
+├── security/         # Permissions, sandbox, process
+├── tests/            # 792 tests
+├── tools/            # Tool System 3.0
+├── training/         # LM Trainer, Learning Engine, RL
+├── cli.py            # CLI
+└── pyproject.toml    # Packaging
+```
 
-· FASE 21: Autograd verificado
-· FASE 22: Tests automáticos
-· FASE 23: Broadcasting + numérica
-· FASE 24: Seguridad real
-· FASE 25: Documentación
+---
 
-P1 — CEREBRO CENTRAL ✅
+📊 Benchmark 4.0
 
-· FASE 26-30: Brain, pipeline, memoria semántica, planner, plugins
+Ejecutar:
 
-P2 — INTELIGENCIA ✅
+```bash
+python cli.py benchmark
+```
 
-· FASE 31-35: Transformer, dataset, entrenamiento, aprendizaje continuo, autoevaluación
+Métricas:
 
-P3 — INGENIERÍA ✅
+· Global accuracy
+· Por categoría (math, memory, planning, rl, learning, ...)
+· Por split (KNOWN, UNSEEN, ADVERSARIAL)
+· Latencia p50, p95
+· Error rate
 
-· FASE 36-40: Benchmark, config YAML, CI/CD, mobile, dashboard
+---
 
-2.1 — TECHNICAL INTEGRITY ✅
+🗺️ Roadmap
 
-· FASE 2.1.1-8: Autograd 3.0, backprop real, LMTrainer limpio, benchmark honesto, pipeline arreglado, sandbox real, persistencia segura, documentación
+Ver ROADMAP.md para el detalle completo.
+
+Completado
+
+· ✅ Fases 1-20: Núcleo neuronal
+· ✅ Fases 21-40: P0-P3 (corrección, cerebro central, inteligencia, ingeniería)
+· ✅ Fases 2.1.1-2.1.8: Technical Integrity Release
+· ✅ Fases 3.1-3.13: Autonomous Learning Cognitive Agent
+
+Estado
+
+· Total: 61/61 fases
+· Tests: 792/792
+· Versión: 3.0.0
+
+---
+
+🤝 Contribuir
+
+Ver CONTRIBUTING.md.
+
+---
+
+📄 Licencia
+
+MIT — ver LICENSE.
 
 ---
 
@@ -166,12 +263,6 @@ Manuel (lecodev-26)
 
 · GitHub: @lecodev-26
 · Email: axiomsystemsechepares@gmail.com
-
----
-
-📄 Licencia
-
-MIT — ver LICENSE
 
 ---
 
