@@ -1,0 +1,37 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        python-version: ['3.11', '3.12']
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Instalar dependencias
+      run: |
+        python -m pip install --upgrade pip
+        pip install numpy pytest
+    
+    - name: Ejecutar tests de Tensor
+      run: python tests/test_tensor.py
+    
+    - name: Ejecutar gradient checking
+      run: python tests/test_gradient_check.py
+    
+    - name: Ejecutar pytest
+      run: pytest tests/ -v

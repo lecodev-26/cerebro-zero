@@ -8,6 +8,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from core.tensor import Tensor
 
+
 class Module:
     """Módulo base para todas las capas y modelos"""
     
@@ -25,10 +26,8 @@ class Module:
     def parameters(self):
         """Devuelve todos los parámetros del módulo y sus hijos"""
         params = []
-        # Parámetros propios
         for param in self._params:
             params.append(param)
-        # Parámetros de los hijos
         for child in self._children:
             params.extend(child.parameters())
         return params

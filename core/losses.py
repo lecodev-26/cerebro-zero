@@ -1,5 +1,5 @@
 """
-Funciones de pérdida (loss functions) - Completas
+Funciones de pérdida - Compatibles con Tensor V3.1
 """
 
 import sys
@@ -10,38 +10,50 @@ import numpy as np
 from core.module import Module
 from core.tensor import Tensor
 
+
 class MSELoss(Module):
+    """Mean Squared Error Loss"""
+    
     def forward(self, pred, target):
+        if not isinstance(pred, Tensor):
+            pred = Tensor(pred)
+        if not isinstance(target, Tensor):
+            target = Tensor(target)
+        
         diff = pred - target
-        n = target.data.size
-        loss_data = np.mean(diff.data ** 2)
-        
-        loss = Tensor(loss_data, requires_grad=True)
-        
-        def backward():
-            if pred.requires_grad:
-                grad = 2 * diff.data / n
-                pred.grad = grad if pred.grad is None else pred.grad + grad
-        
-        loss._backward = backward
+        # MSE = mean(diff^2)
+        squared = diff.pow(2)
+        loss = squared.mean()
         return loss
     
     def __repr__(self):
         return "MSELoss()"
 
+
 class BCELoss(Module):
+    """Binary Cross Entropy Loss"""
+    
     def forward(self, pred, target):
-        eps = 1e-10
-        self.pred = pred
-        self.target = target
-        pred_clip = np.clip(pred.data, eps, 1 - eps)
-        loss_data = -np.mean(target.data * np.log(pred_clip) + (1 - target.data) * np.log(1 - pred_clip))
+        if not isinstance(pred, Tensor):
+            pred = Tensor(pred)
+        if not isinstance(target, Tensor):
+            target = Tensor(target)
         
-        loss = Tensor(loss_data, requires_grad=True)
+        eps = 1e-10
+        # Loss = -mean(target * log(pred) + (1-target) * log(1-pred))
+        pred_clipped = Tensor(np.clip(pred.data, eps, 1 - eps), requires_grad=False)
+        
+        # Crear loss manualmente con backward
+        term1 = target.data * np.log(pred_clipped.data)
+        term2 = (1 - target.data) * np.log(1 - pred_clipped.data)
+        loss_data = -np.mean(term1 + term2)
+        
+        loss = Tensor(loss_data, requires_grad=True, _children=(pred,))
         
         def backward():
-            if pred.requires_grad:
-                grad = -(target.data / (pred.data + eps) - (1 - target.data) / (1 - pred.data + eps)) / pred.data.size
+            if pred.requires_grad and loss.grad is not None:
+                n = pred.data.size
+                grad = -(target.data / (pred.data + eps) - (1 - target.data) / (1 - pred.data + eps)) / n
                 pred.grad = grad if pred.grad is None else pred.grad + grad
         
         loss._backward = backward
@@ -50,10 +62,16 @@ class BCELoss(Module):
     def __repr__(self):
         return "BCELoss()"
 
+
 class CrossEntropyLoss(Module):
     """Cross Entropy Loss (con softmax implícito)"""
     
     def forward(self, logits, targets):
+        if not isinstance(logits, Tensor):
+            logits = Tensor(logits)
+        if not isinstance(targets, Tensor):
+            targets = Tensor(targets)
+        
         # Softmax
         max_val = np.max(logits.data, axis=1, keepdims=True)
         exp_data = np.exp(logits.data - max_val)
@@ -73,60 +91,12 @@ class CrossEntropyLoss(Module):
         loss = Tensor(loss_data, requires_grad=True, _children=(logits,))
         
         def backward():
-            if logits.requires_grad:
+            if logits.requires_grad and loss.grad is not None:
                 grad = (probs - targets_onehot) / logits.data.shape[0]
-                if logits.grad is None:
-                    logits.grad = grad
-                else:
-                    logits.grad = logits.grad + grad
+                logits.grad = grad if logits.grad is None else logits.grad + grad
         
         loss._backward = backward
         return loss
     
     def __repr__(self):
         return "CrossEntropyLoss()"
-
-class L1Loss(Module):
-    def forward(self, pred, target):
-        diff = pred - target
-        n = target.data.size
-        loss_data = np.mean(np.abs(diff.data))
-        
-        loss = Tensor(loss_data, requires_grad=True)
-        
-        def backward():
-            if pred.requires_grad:
-                grad = np.sign(diff.data) / n
-                pred.grad = grad if pred.grad is None else pred.grad + grad
-        
-        loss._backward = backward
-        return loss
-    
-    def __repr__(self):
-        return "L1Loss()"
-
-class SmoothL1Loss(Module):
-    def __init__(self, beta=1.0):
-        super().__init__()
-        self.beta = beta
-    
-    def forward(self, pred, target):
-        diff = pred - target
-        abs_diff = np.abs(diff.data)
-        n = target.data.size
-        loss_data = np.mean(np.where(abs_diff < self.beta, 
-                                     0.5 * diff.data**2 / self.beta,
-                                     abs_diff - 0.5 * self.beta))
-        
-        loss = Tensor(loss_data, requires_grad=True)
-        
-        def backward():
-            if pred.requires_grad:
-                grad = np.where(abs_diff < self.beta, diff.data / self.beta, np.sign(diff.data)) / n
-                pred.grad = grad if pred.grad is None else pred.grad + grad
-        
-        loss._backward = backward
-        return loss
-    
-    def __repr__(self):
-        return f"SmoothL1Loss(beta={self.beta})"

@@ -1,41 +1,55 @@
+"""
+Funciones de activación - Compatibles con Tensor V3.1
+"""
+
 import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import numpy as np
 from core.module import Module
-from core.tensor_v2 import Tensor
+from core.tensor import Tensor
+
 
 class ReLU(Module):
     def forward(self, x):
-        data = x.data
-        out_data = np.maximum(0, data)
-        out = Tensor(out_data, requires_grad=x.requires_grad, _children=(x,))
-        
-        def backward():
-            if x.requires_grad and out.grad is not None:
-                grad = out.grad * (data > 0).astype(float)
-                x.grad = grad if x.grad is None else x.grad + grad
-        
-        out._backward = backward
-        return out
+        if not isinstance(x, Tensor):
+            x = Tensor(x)
+        return x.relu()
     
     def __repr__(self):
         return "ReLU()"
 
+
 class Sigmoid(Module):
     def forward(self, x):
-        data = x.data
-        out_data = 1 / (1 + np.exp(-np.clip(data, -500, 500)))
-        out = Tensor(out_data, requires_grad=x.requires_grad, _children=(x,))
-        
-        def backward():
-            if x.requires_grad and out.grad is not None:
-                grad = out.grad * out_data * (1 - out_data)
-                x.grad = grad if x.grad is None else x.grad + grad
-        
-        out._backward = backward
-        return out
+        if not isinstance(x, Tensor):
+            x = Tensor(x)
+        return x.sigmoid()
     
     def __repr__(self):
         return "Sigmoid()"
+
+
+class Tanh(Module):
+    def forward(self, x):
+        if not isinstance(x, Tensor):
+            x = Tensor(x)
+        return x.tanh()
+    
+    def __repr__(self):
+        return "Tanh()"
+
+
+class Softmax(Module):
+    def __init__(self, dim=-1):
+        super().__init__()
+        self.dim = dim
+    
+    def forward(self, x):
+        if not isinstance(x, Tensor):
+            x = Tensor(x)
+        return x.softmax(axis=self.dim)
+    
+    def __repr__(self):
+        return f"Softmax(dim={self.dim})"
