@@ -8,7 +8,7 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import numpy as np
-import pickle
+from core.serialization import safe_save_dict
 from datetime import datetime
 from training.replay_buffer import ReplayBuffer
 from training.lm_trainer import LMTrainer
@@ -159,14 +159,20 @@ class ContinuousLearner:
         }
     
     def save(self, path: str):
-        """Guarda el estado"""
+        """Guarda el estado (formato seguro JSON+NPY, sin pickle)"""
+        if path.endswith(".pkl") or path.endswith(".pickle"):
+            path = path.rsplit(".", 1)[0]
+
+        weights = [p.data.copy() for p in self.model.parameters()]
+        weights_dict = {f"weight_{i}": w for i, w in enumerate(weights)}
+
         state = {
             'history': self.history,
             'buffer_stats': self.buffer.stats(),
-            'model_weights': [p.data.copy() for p in self.model.parameters()],
+            'num_weights': len(weights),
         }
-        with open(path, 'wb') as f:
-            pickle.dump(state, f)
+        state.update(weights_dict)
+        safe_save_dict(state, path)
         print(f"💾 Learner guardado en {path}")
     
     def __repr__(self):

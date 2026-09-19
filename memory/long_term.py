@@ -3,7 +3,6 @@ Memoria a largo plazo (Long-Term Memory)
 """
 
 import numpy as np
-import pickle
 import json
 import os
 from datetime import datetime

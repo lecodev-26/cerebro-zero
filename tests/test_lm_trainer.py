@@ -57,18 +57,24 @@ def test_trainer_history(model):
 
 
 def test_trainer_save_load(model, tmp_path):
-    import tempfile
+    """Test: guardar y cargar trainer (formato seguro JSON+NPY)"""
     trainer = LMTrainer(model)
-    
-    path = str(tmp_path / "test_model.pkl")
+
+    # Sin extensión .pkl → safe_save_dict crea un directorio
+    path = str(tmp_path / "test_model")
     trainer.save(path)
-    assert os.path.exists(path)
-    
-    # Cargar
+    assert os.path.isdir(path)
+    assert os.path.exists(os.path.join(path, "metadata.json"))
+
+    # Cargar en un modelo nuevo
     model2 = Transformer(vocab_size=20, d_model=16, num_heads=2,
                         d_ff=32, num_layers=1, max_len=8)
     trainer2 = LMTrainer(model2)
     trainer2.load(path)
+
+    # Verificar que los pesos coinciden
+    for p1, p2 in zip(trainer.model.parameters(), trainer2.model.parameters()):
+        assert np.allclose(p1.data, p2.data)
 
 
 def test_gradient_flow_real(model):

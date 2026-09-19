@@ -8,7 +8,7 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import numpy as np
-import pickle
+from core.serialization import safe_save_dict, safe_load_dict
 import time
 from core.tensor import Tensor
 from core.optimizers import Adam
@@ -229,9 +229,17 @@ class LMTrainer:
     # ============================================
     
     def save(self, path: str):
-        """Guarda el modelo y el histórico"""
+        """Guarda el modelo y el histórico (formato seguro JSON+NPY, sin pickle)"""
+        # Si path acaba en .pkl, quitamos extensión
+        if path.endswith(".pkl") or path.endswith(".pickle"):
+            path = path.rsplit(".", 1)[0]
+
+        # Convertir lista de ndarrays a dict con claves únicas
+        # (safe_save_dict espera dict, no list)
+        weights = [p.data.copy() for p in self.model.parameters()]
+        weights_dict = {f"weight_{i}": w for i, w in enumerate(weights)}
+
         state = {
-            'model_weights': [p.data.copy() for p in self.model.parameters()],
             'history': self.history,
             'best_val_loss': self.best_val_loss,
             'best_epoch': self.best_epoch,
@@ -239,60 +247,77 @@ class LMTrainer:
             'd_model': self.model.d_model,
             'num_heads': self.model.num_heads,
             'num_layers': self.model.num_layers,
+            'num_weights': len(weights),
         }
-        with open(path, 'wb') as f:
-            pickle.dump(state, f)
+        state.update(weights_dict)
+        safe_save_dict(state, path)
         print(f"💾 Modelo guardado en {path}")
     
     def load(self, path: str):
-        """Carga el modelo y el histórico"""
-        with open(path, 'rb') as f:
-            state = pickle.load(f)
-        
+        """Carga el modelo y el histórico (formato seguro JSON+NPY, sin pickle)"""
+        if path.endswith(".pkl") or path.endswith(".pickle"):
+            path = path.rsplit(".", 1)[0]
+
+        state = safe_load_dict(path)
+
+        # Reconstruir pesos desde el dict
+        num_weights = state.get('num_weights', 0)
         params = self.model.parameters()
-        for p, w in zip(params, state['model_weights']):
-            p.data = w.copy()
-        
+        for i, p in enumerate(params):
+            key = f"weight_{i}"
+            if key in state:
+                p.data = state[key].copy()
+
         self.history = state.get('history', self.history)
         self.best_val_loss = state.get('best_val_loss', float('inf'))
         self.best_epoch = state.get('best_epoch', -1)
         print(f"📂 Modelo cargado desde {path}")
 
 
-# ============================================
-# TEST
-# ============================================
-
 if __name__ == "__main__":
-    print("🧪 PROBANDO LM TRAINER V3.0 (backprop REAL)")
-    print("="*60)
-    
-    from language.tokenizer import Tokenizer
     from language.dataset import TextDataset
-    
-    # Cargar datos
-    all_texts = []
-    for split in ['train', 'validation', 'test']:
-        for prefix in ['', '../']:
-            path = f"{prefix}datasets/{split}.txt"
-            if os.path.exists(path):
-                with open(path, 'r', encoding='utf-8') as f:
-                    all_texts.append(f.read())
-                break
-    
-    tok = Tokenizer()
-    tok.build_vocab(all_texts, vocab_size=200)
-    
+    from language.tokenizer_v3 import BPETokenizer
+    import glob
+
+    # Cargar tokenizer entrenado
+    vocab_file = "vocab.json"
+    if not os.path.exists(vocab_file):
+        print("⚠️ No hay vocab.json. Generando uno...")
+        corpus = "la inteligencia artificial aprende de los datos " * 200
+        tok = BPETokenizer(vocab_size=260)
+        tok.entrenar(corpus)
+    else:
+        from language.vocabulary import Vocabulary
+        tok = Vocabulary()
+        # Compatibilidad: si Vocabulary no tiene vocab_size, usamos BPETokenizer
+        if not hasattr(tok, 'vocab_size'):
+            tok = BPETokenizer(vocab_size=260)
+            tok.entrenar("la inteligencia artificial " * 200)
+
     def find_path(name):
         for prefix in ['', '../']:
             p = f"{prefix}datasets/{name}.txt"
             if os.path.exists(p):
                 return p
         return None
+
+    train_path = find_path('train')
+    val_path = find_path('validation')
     
-    train_ds = TextDataset(find_path('train'), tok, context_len=8)
-    val_ds = TextDataset(find_path('validation'), tok, context_len=8)
-    
+    if not train_path or not val_path:
+        print("⚠️ No hay datasets/train.txt ni datasets/validation.txt")
+        print("   Creando dataset de ejemplo...")
+        os.makedirs("datasets", exist_ok=True)
+        with open("datasets/train.txt", "w") as f:
+            f.write("la inteligencia artificial aprende de los datos " * 100)
+        with open("datasets/validation.txt", "w") as f:
+            f.write("la inteligencia artificial aprende de los datos " * 20)
+        train_path = "datasets/train.txt"
+        val_path = "datasets/validation.txt"
+
+    train_ds = TextDataset(train_path, tok, context_len=8)
+    val_ds = TextDataset(val_path, tok, context_len=8)
+
     # Modelo más pequeño para móvil
     model = Transformer(
         vocab_size=tok.vocab_size,
@@ -303,9 +328,9 @@ if __name__ == "__main__":
         max_len=8,
     )
     model.summary()
-    
+
     trainer = LMTrainer(model, learning_rate=0.01)
-    
+
     print("\n🏋️ ENTRENANDO CON BACKPROP REAL...\n")
     history = trainer.train(
         train_ds, val_ds,
@@ -315,19 +340,19 @@ if __name__ == "__main__":
         verbose=True,
         early_stopping_patience=5,
     )
-    
+
     print("\n📊 Estadísticas:")
     if history['train_loss']:
         print(f"   Loss inicial: {history['train_loss'][0]:.4f}")
         print(f"   Loss final:   {history['train_loss'][-1]:.4f}")
         mejora = (history['train_loss'][0] - history['train_loss'][-1]) / history['train_loss'][0]
         print(f"   Mejora:       {mejora*100:.1f}%")
-    
+
     print("\n🔮 Generación de ejemplo:")
     prompt = tok.encode("la inteligencia")
     generated = model.generate(prompt, max_new_tokens=8, temperature=0.8)
     texto = tok.decode(generated)
     print(f"   Prompt: 'la inteligencia'")
     print(f"   Generado: {texto}")
-    
+
     print("\n✅ LM TRAINER V3.0 FUNCIONANDO CON BACKPROP REAL")

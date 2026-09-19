@@ -8,6 +8,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from abc import ABC, abstractmethod
 from typing import Any, Dict, Optional
+from core.serialization_v2 import safe_save_dict_v2, safe_load_dict_v2
 
 
 class Brain(ABC):
@@ -97,18 +98,23 @@ class Brain(ABC):
         return self._training_history
     
     def save(self, path: str):
-        """Guarda el modelo en disco"""
-        import pickle
+        """Guarda el modelo en disco (formato seguro JSON+NPY, sin pickle)"""
+        # Si path acaba en .pkl o .pickle, quitamos la extensión
+        # safe_save_dict espera un directorio
+        if path.endswith(".pkl") or path.endswith(".pickle"):
+            path = path.rsplit(".", 1)[0]
+        
         state = self._get_state()
-        with open(path, 'wb') as f:
-            pickle.dump(state, f)
+        safe_save_dict_v2(state, path)
         print(f"💾 {self.name} guardado en {path}")
     
     def load(self, path: str):
-        """Carga el modelo desde disco"""
-        import pickle
-        with open(path, 'rb') as f:
-            state = pickle.load(f)
+        """Carga el modelo desde disco (formato seguro JSON+NPY, sin pickle)"""
+        # Compatibilidad: si acaba en .pkl, usamos el nombre sin extensión
+        if path.endswith(".pkl") or path.endswith(".pickle"):
+            path = path.rsplit(".", 1)[0]
+        
+        state = safe_load_dict_v2(path)
         self._set_state(state)
         self._trained = True
         print(f"📂 {self.name} cargado desde {path}")
