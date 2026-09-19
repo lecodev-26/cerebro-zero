@@ -1,0 +1,43 @@
+{
+  "estado": {
+    "cerebro": {
+      "nombre": "plan",
+      "version": "3.0",
+      "creado": 1789811231.5169516
+    },
+    "ultimo_input": "5 + 3",
+    "stats": {
+      "inputs_procesados": 302
+    },
+    "color": "rojo",
+    "nombre": "Manuel",
+    "edad": 25,
+    "pi": 3.14,
+    "ciudad": "Madrid",
+    "nueva_key": "nueva_valor"
+  },
+  "historial": [
+    {
+      "ruta": "cerebro.nombre",
+      "valor_anterior": "plan",
+      "valor_nuevo": "plan",
+      "razon": "init",
+      "timestamp": 1789811231.5173037
+    },
+    {
+      "ruta": "cerebro.version",
+      "valor_anterior": "3.0",
+      "valor_nuevo": "3.0",
+      "razon": "init",
+      "timestamp": 1789811231.517783
+    },
+    {
+      "ruta": "cerebro.creado",
+      "valor_anterior": "1789811231.31143",
+      "valor_nuevo": "1789811231.5169516",
+      "razon": "init",
+      "timestamp": 1789811231.5182111
+    }
+  ],
+  "guardado": "2026-09-19T11:47:11.518268"
+}

@@ -3037,6 +3037,1042 @@
       "correcto": false,
       "feedback": null,
       "fecha": "2026-09-17T18:39:51.162786"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.0. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T18:53:59.097882"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T18:53:59.122424"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "La inteligencia artificial es un campo de la computaci\u00f3n que busca crear sistemas capaces de aprender.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T18:53:59.135201"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.293398"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.307205"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.378421"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.394917"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.415387"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.433088"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.457992"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.473039"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 18:54:13",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.486904"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.506274"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.0. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:20.852417"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:20.869533"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "La inteligencia artificial es un campo de la computaci\u00f3n que busca crear sistemas capaces de aprender.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:20.882718"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.333110"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.347302"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.412611"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.429527"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.450483"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.468103"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.494639"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.510167"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 18:56:35",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.524806"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.538517"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.0. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:22.215148"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:22.228672"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "La inteligencia artificial es un campo de la computaci\u00f3n que busca crear sistemas capaces de aprender.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:22.242487"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Central.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:22.471015"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Central.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:22.527699"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.0. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:36.035453"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:36.049679"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "La inteligencia artificial es un campo de la computaci\u00f3n que busca crear sistemas capaces de aprender.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:36.064233"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.590471"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.605262"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.654321"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.670450"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.691422"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.709396"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.736294"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.752811"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 18:57:50",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.767657"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.782399"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.0. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:26.141306"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:26.160441"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "La inteligencia artificial es un campo de la computaci\u00f3n que busca crear sistemas capaces de aprender.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:26.174254"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:40.984690"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:41.000066"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:41.067334"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:41.084291"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:41.106395"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:41.125366"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:41.151529"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:41.167755"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 19:01:41",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:41.182831"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:41.197478"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.0. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:41.129250"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:41.143065"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "La inteligencia artificial es un campo de la computaci\u00f3n que busca crear sistemas capaces de aprender.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:41.156954"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:55.989004"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:56.004340"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:56.055095"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:56.072593"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:56.094362"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:56.113298"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:56.140934"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:56.157063"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 19:03:56",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:56.171910"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:56.186260"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.0. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:04:50.073343"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:04:50.087999"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "La inteligencia artificial es un campo de la computaci\u00f3n que busca crear sistemas capaces de aprender.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:04:50.103171"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.499533"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.516548"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.567870"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.585998"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.608947"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.628857"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.656637"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.673861"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 19:05:05",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.689350"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.704604"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.0. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:06:54.556205"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:06:54.582277"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "La inteligencia artificial es un campo de la computaci\u00f3n que busca crear sistemas capaces de aprender.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:06:54.597510"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:09.797034"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:09.813338"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:09.887583"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:09.906928"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:09.930079"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:09.950148"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:09.979374"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:09.997251"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 19:07:10",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:10.013348"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:10.029241"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.0. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:08:56.243623"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:08:56.260743"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "La inteligencia artificial es un campo de la computaci\u00f3n que busca crear sistemas capaces de aprender.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:08:56.276111"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.644361"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.661193"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.728341"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.747425"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.770372"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.790960"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.819935"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.838263"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 19:09:11",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.854842"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.870943"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.0. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:10:51.986051"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:10:52.003706"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "La inteligencia artificial es un campo de la computaci\u00f3n que busca crear sistemas capaces de aprender.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:10:52.019573"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.674362"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.691598"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.758353"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.777232"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.800667"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.821758"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.855314"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.873607"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 19:11:07",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.889446"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.904943"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.0. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:35.171961"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:35.189828"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "La inteligencia artificial es un campo de la computaci\u00f3n que busca crear sistemas capaces de aprender.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:35.205506"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.546809"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.564130"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.632775"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.652017"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.674822"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.695285"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.724175"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.740739"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 19:15:51",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.758847"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.775169"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.0. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:13.112473"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:13.132363"
+    },
+    {
+      "entrada": "qu\u00e9 es la ia",
+      "salida": "La inteligencia artificial es un campo de la computaci\u00f3n que busca crear sistemas capaces de aprender.",
+      "correcto": true,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:13.148819"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.700278"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.718208"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.785739"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.805083"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.829472"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.850879"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.879087"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.897697"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 19:18:32",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.915011"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.931382"
     }
   ],
   "errores": [
@@ -5433,14 +6469,784 @@
       "correcto": false,
       "feedback": null,
       "fecha": "2026-09-17T18:39:51.162786"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.293398"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.307205"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.378421"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.394917"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.415387"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.433088"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.457992"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.473039"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 18:54:13",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.486904"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:54:13.506274"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.333110"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.347302"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.412611"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.429527"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.450483"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.468103"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.494639"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.510167"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 18:56:35",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.524806"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:56:35.538517"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.590471"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.605262"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.654321"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.670450"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.691422"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.709396"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.736294"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.752811"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 18:57:50",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.767657"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T18:57:50.782399"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:40.984690"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:41.000066"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:41.067334"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:41.084291"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:41.106395"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:41.125366"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:41.151529"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:41.167755"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 19:01:41",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:41.182831"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:01:41.197478"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:55.989004"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:56.004340"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:56.055095"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:56.072593"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:56.094362"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:56.113298"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:56.140934"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:56.157063"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 19:03:56",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:56.171910"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:03:56.186260"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.499533"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.516548"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.567870"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.585998"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.608947"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.628857"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.656637"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.673861"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 19:05:05",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.689350"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:05:05.704604"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:09.797034"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:09.813338"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:09.887583"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:09.906928"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:09.930079"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:09.950148"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:09.979374"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:09.997251"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 19:07:10",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:10.013348"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:07:10.029241"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.644361"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.661193"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.728341"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.747425"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.770372"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.790960"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.819935"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.838263"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 19:09:11",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.854842"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:09:11.870943"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.674362"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.691598"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.758353"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.777232"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.800667"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.821758"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.855314"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.873607"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 19:11:07",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.889446"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:11:07.904943"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.546809"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.564130"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.632775"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.652017"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.674822"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.695285"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.724175"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.740739"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 19:15:51",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.758847"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:15:51.775169"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.700278"
+    },
+    {
+      "entrada": "5 + 3",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.718208"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.785739"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.805083"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.829472"
+    },
+    {
+      "entrada": "test",
+      "salida": "No tengo informaci\u00f3n sobre eso.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.850879"
+    },
+    {
+      "entrada": "hola",
+      "salida": "\u00a1Hola! Soy Cerebro Zero 2.1. \u00bfEn qu\u00e9 puedo ayudarte?",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.879087"
+    },
+    {
+      "entrada": "\u00bfCu\u00e1nto es 5 + 3?",
+      "salida": "5.0 + 3.0 = 8.0",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.897697"
+    },
+    {
+      "entrada": "\u00bfQu\u00e9 hora es?",
+      "salida": "\ud83d\udd50 19:18:32",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.915011"
+    },
+    {
+      "entrada": "adi\u00f3s",
+      "salida": "\u00a1Hasta luego! Ha sido un placer.",
+      "correcto": false,
+      "feedback": null,
+      "fecha": "2026-09-17T19:18:32.931382"
     }
   ],
   "correcciones": [],
   "metricas": {
-    "total_experiencias": 434,
-    "aciertos": 92,
-    "errores": 342,
-    "tasa_acierto": 0.2119815668202765
+    "total_experiencias": 582,
+    "aciertos": 130,
+    "errores": 452,
+    "tasa_acierto": 0.22336769759450173
   },
-  "fecha_actualizacion": "2026-09-17T18:39:51.162799"
+  "fecha_actualizacion": "2026-09-17T19:18:32.931395"
 }
