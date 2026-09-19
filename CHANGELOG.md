@@ -100,7 +100,7 @@
 - Limpieza de archivos muertos
 
 #### FASE 2.1.7 — Persistencia segura
-- Formato JSON + NPY (sin pickle)
+- Formato JSON + NPY (persistencia nueva de 2.1; legacy conserva pickle)
 - Checksums SHA256
 - Detección de corrupción
 - `safe_save_model` / `safe_load_model`

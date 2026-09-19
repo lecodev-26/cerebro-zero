@@ -12,7 +12,7 @@
 
 ## 📖 Descripción
 
-**Cerebro Zero 3.0** es un **agente cognitivo integrado** construido **desde cero** en Python + NumPy. Sin frameworks de IA. Sin `pickle`. Todo verificado con gradient checking y tests.
+**Cerebro Zero 3.0** es un **agente cognitivo integrado** construido **desde cero** en Python + NumPy. Sin frameworks de IA. Persistencia nueva en JSON+NPY. Todo verificado con gradient checking y tests.
 
 **Filosofía 3.0 — Autonomous Learning:**
 > 2.1 = sistema verificable.
@@ -34,8 +34,8 @@
 | **Tokenizer 3.0** | ✅ Byte-level + BPE desde cero |
 | **Tool System 3.0** | ✅ Contratos + permisos + schemas |
 | **Reproducibilidad** | ✅ Fingerprints de entorno + config |
-| **Sandbox** | ✅ Subprocess aislado + timeout |
-| **Persistencia** | ✅ Formato JSON+NPY (sin pickle) |
+| **Sandbox** | ✅ Subprocess + timeout + cwd temporal |
+| **Persistencia** | ✅ JSON+NPY en 3.0 (legacy conserva pickle) |
 | **CI/CD** | ✅ 5 workflows en GitHub Actions |
 | **CLI** | ✅ `cerebro-zero info/chat/plan/benchmark` |
 
@@ -105,17 +105,19 @@
 - `RegistroExperimento`: fingerprint único por experimento
 - Verificación de reproducibilidad con tolerancia
 
-### **Sandbox real**
-- Subprocess aislado
+### **Sandbox por subprocess**
+- Subprocess aislado con cwd temporal
 - Timeout real (loop infinito se corta)
-- Límites de recursos (SAFE/STANDARD/GENEROUS)
+- Límites parciales de recursos (SAFE/STANDARD/GENEROUS)
 - Audit log persistente
+- ⚠️ No aísla filesystem/red a nivel OS (limitación conocida)
 
-### **Persistencia segura**
-- Formato JSON + NPY (sin pickle)
+### **Persistencia segura (3.0)**
+- Formato JSON+NPY (nuevo)
 - Checksums SHA256
 - Detección de corrupción
 - Inspeccionable con `cat`
+- ⚠️ `models/brain.py` aún usa pickle (a migrar en 4.2)
 
 ---
 
