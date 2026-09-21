@@ -343,6 +343,186 @@ class LearningEngine:
     # PERSISTENCIA
     # ============================================
     
+    # ============================================
+    # SNAPSHOT / ROLLBACK (FASE 4.3)
+    # ============================================
+
+    def snapshot(self, modelo) -> dict:
+        """
+        Captura el estado actual de los pesos de un modelo.
+        
+        Acepta:
+        - Objeto con .parameters() que devuelve lista de Tensores
+        - Objeto con .layers (Sequential con Linear dentro)
+        - Objeto con .Q (dict de QLearning)
+        
+        Devuelve un dict de copias profundas.
+        """
+        import copy
+        
+        if hasattr(modelo, "parameters"):
+            try:
+                params = modelo.parameters()
+                return {
+                    "tipo": "parameters",
+                    "num_params": len(params),
+                    "datos": [copy.deepcopy(p.data) for p in params],
+                }
+            except Exception:
+                pass
+        
+        # Fallback: .Q de QLearning
+        if hasattr(modelo, "Q"):
+            return {
+                "tipo": "Q",
+                "datos": copy.deepcopy(modelo.Q),
+            }
+        
+        # Fallback: copia del __dict__
+        return {
+            "tipo": "dict",
+            "datos": copy.deepcopy(modelo.__dict__),
+        }
+    
+    def rollback(self, modelo, snapshot: dict):
+        """
+        Restaura un modelo desde un snapshot.
+        Devuelve True si se pudo restaurar.
+        """
+        if snapshot is None:
+            return False
+        
+        tipo = snapshot.get("tipo")
+        
+        if tipo == "parameters":
+            try:
+                params = modelo.parameters()
+                datos = snapshot["datos"]
+                if len(params) != len(datos):
+                    return False
+                for p, d in zip(params, datos):
+                    p.data = d.copy() if hasattr(d, "copy") else d
+                return True
+            except Exception:
+                return False
+        
+        if tipo == "Q":
+            try:
+                modelo.Q = [list(fila) for fila in snapshot["datos"]]
+                return True
+            except Exception:
+                return False
+        
+        if tipo == "dict":
+            try:
+                modelo.__dict__.update(snapshot["datos"])
+                return True
+            except Exception:
+                return False
+        
+        return False
+    
+    def entrenar_con_replay_con_rollback(
+        self,
+        modelo,
+        modelo_entrenar: Callable,
+        evaluar_modelo: Callable,
+        n_replay: int = 32,
+    ) -> dict:
+        """
+        Entrena con replay y aplica COMMIT o ROLLBACK real.
+        
+        Pipeline:
+            1. Snapshot del modelo actual
+            2. Entrenar candidato (modifica modelo en sitio)
+            3. Evaluar
+            4. Si mejora → COMMIT
+            5. Si no → ROLLBACK (restaurar snapshot)
+        
+        Args:
+            modelo: objeto con pesos (.parameters() o .Q)
+            modelo_entrenar: función(lote) que entrena el modelo
+            evaluar_modelo: función() que devuelve score
+            n_replay: número de experiencias
+        
+        Returns:
+            dict con resultado completo
+        """
+        # 1. Score antes + snapshot
+        score_antes = evaluar_modelo()
+        snap = self.snapshot(modelo)
+        
+        # 2. Sample del buffer
+        lote = self.sample_replay(n_replay)
+        if not lote:
+            return {
+                "ok": False,
+                "razon": "Buffer vacío",
+                "score_antes": score_antes,
+                "rollback": False,
+            }
+        
+        # 3. Entrenar candidato
+        try:
+            modelo_entrenar(lote)
+        except Exception as e:
+            # Error durante el entrenamiento → rollback obligatorio
+            self.rollback(modelo, snap)
+            return {
+                "ok": False,
+                "razon": f"Error entrenando: {e}",
+                "score_antes": score_antes,
+                "score_despues": None,
+                "rollback": True,
+            }
+        
+        # 4. Score después
+        try:
+            score_despues = evaluar_modelo()
+        except Exception as e:
+            self.rollback(modelo, snap)
+            return {
+                "ok": False,
+                "razon": f"Error evaluando: {e}",
+                "score_antes": score_antes,
+                "score_despues": None,
+                "rollback": True,
+            }
+        
+        # 5. Decidir (comparar contra score_antes, NO contra version_actual)
+        resultado = self.evaluador.evaluar(score_antes, score_despues)
+        self.historial_evaluaciones.append(resultado)
+        
+        if resultado.aceptar:
+            # COMMIT
+            self.version_actual = {
+                "version": self.version_actual["version"] + 1,
+                "score": score_despues,
+                "timestamp": time.time(),
+            }
+            self.versiones.append(self.version_actual.copy())
+            return {
+                "ok": True,
+                "razon": f"COMMIT: {resultado.razon}",
+                "score_antes": score_antes,
+                "score_despues": score_despues,
+                "mejora": resultado.mejora,
+                "version": self.version_actual["version"],
+                "rollback": False,
+            }
+        else:
+            # ROLLBACK
+            rollback_ok = self.rollback(modelo, snap)
+            return {
+                "ok": False,
+                "razon": f"ROLLBACK: {resultado.razon}",
+                "score_antes": score_antes,
+                "score_despues": score_despues,
+                "mejora": resultado.mejora,
+                "version": self.version_actual["version"],
+                "rollback": rollback_ok,
+            }
+    
     def guardar(self, archivo: str):
         os.makedirs(os.path.dirname(archivo) or ".", exist_ok=True)
         data = {
