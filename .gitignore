@@ -39,3 +39,14 @@ env/
 # Modelos grandes
 modelos_guardados/*.pkl
 modelos_guardados/*.npy
+
+# Visual temporales
+learning_curve_demo.png
+test_*_tmp.json
+
+# Estado dinámico (no versionar)
+memoria_largo_plazo.json
+modelos_guardados/world_model.json
+cerebro_central.json
+cerebro_central_v3.json
+benchmark_v3_result.json

@@ -72,7 +72,8 @@ def test_cli_info_componentes():
 
 def test_cli_info_estado():
     r = run_cli("info")
-    assert "ESTADO DEL SISTEMA" in r.stdout
+    # La salida visual usa "Estado del sistema" (rich table)
+    assert "Estado del sistema" in r.stdout or "ESTADO DEL SISTEMA" in r.stdout
     assert "Tools" in r.stdout
 
 
@@ -122,7 +123,8 @@ def test_cli_plan_entrenar():
 def test_cli_plan_subgoals():
     r = run_cli("plan", "Entrenar el modelo")
     assert "8" in r.stdout  # 8 subgoals
-    assert "subgoals" in r.stdout
+    # Acepta "subgoals" o "Subgoals"
+    assert "subgoals" in r.stdout.lower()
 
 
 def test_cli_plan_evaluar():

@@ -314,6 +314,19 @@ class BPETokenizer(TokenizerBase):
     def vocab_size(self) -> int:
         return 260 + len(self.merges)
     
+    @property
+    def vocab(self) -> dict:
+        """
+        Compatibilidad con Tokenizer antiguo.
+        Devuelve un dict con tokens especiales.
+        """
+        return {
+            '<PAD>': self.PAD,
+            '<BOS>': self.BOS,
+            '<EOS>': self.EOS,
+            '<SEP>': 259,
+        }
+    
     def num_merges(self) -> int:
         return len(self.merges)
     

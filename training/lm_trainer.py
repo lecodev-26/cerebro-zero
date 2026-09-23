@@ -222,12 +222,40 @@ class LMTrainer:
                         print(f"   ✅ Mejores pesos restaurados")
         
         self.model._trained = True
+
+        # Generar gráfico automáticamente si hay historial
+        try:
+            if self.history.get('train_loss'):
+                self.guardar_grafico()
+        except Exception as e:
+            print(f"⚠️ No se pudo generar el gráfico: {e}")
+
         return self.history
     
     # ============================================
     # PERSISTENCIA
     # ============================================
     
+
+    def guardar_grafico(self, path: str = "learning_curve.png") -> str:
+        """
+        Genera y guarda el gráfico de la curva de aprendizaje.
+        
+        Returns:
+            Ruta del PNG generado.
+        """
+        from utils.plots import plot_learning_curve
+        
+        if not self.history.get('train_loss'):
+            raise ValueError("No hay historial de entrenamiento para graficar")
+        
+        return plot_learning_curve(
+            train_loss=self.history['train_loss'],
+            val_loss=self.history.get('val_loss', []),
+            path=path,
+            titulo="Cerebro Zero — Curva de aprendizaje",
+        )
+
     def save(self, path: str):
         """Guarda el modelo y el histórico (formato seguro JSON+NPY, sin pickle)"""
         # Si path acaba en .pkl, quitamos extensión
@@ -275,50 +303,60 @@ class LMTrainer:
 
 
 if __name__ == "__main__":
+    import sys as _sys
+    import os as _os
+    _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+    
+    from utils.visual import (
+        consola, titulo, ok, warn, error, info, dim,
+        seccion, bullet, kv, panel, tabla
+    )
     from language.dataset import TextDataset
     from language.tokenizer_v3 import BPETokenizer
-    import glob
-
-    # Cargar tokenizer entrenado
-    vocab_file = "vocab.json"
-    if not os.path.exists(vocab_file):
-        print("⚠️ No hay vocab.json. Generando uno...")
-        corpus = "la inteligencia artificial aprende de los datos " * 200
-        tok = BPETokenizer(vocab_size=260)
-        tok.entrenar(corpus)
-    else:
-        from language.vocabulary import Vocabulary
-        tok = Vocabulary()
-        # Compatibilidad: si Vocabulary no tiene vocab_size, usamos BPETokenizer
-        if not hasattr(tok, 'vocab_size'):
-            tok = BPETokenizer(vocab_size=260)
-            tok.entrenar("la inteligencia artificial " * 200)
-
-    def find_path(name):
-        for prefix in ['', '../']:
-            p = f"{prefix}datasets/{name}.txt"
-            if os.path.exists(p):
-                return p
-        return None
-
-    train_path = find_path('train')
-    val_path = find_path('validation')
     
-    if not train_path or not val_path:
-        print("⚠️ No hay datasets/train.txt ni datasets/validation.txt")
-        print("   Creando dataset de ejemplo...")
-        os.makedirs("datasets", exist_ok=True)
-        with open("datasets/train.txt", "w") as f:
-            f.write("la inteligencia artificial aprende de los datos " * 100)
-        with open("datasets/validation.txt", "w") as f:
-            f.write("la inteligencia artificial aprende de los datos " * 20)
-        train_path = "datasets/train.txt"
-        val_path = "datasets/validation.txt"
-
+    titulo("LM TRAINER — Entrenamiento visual")
+    
+    # ============================================
+    # PREPARAR DATOS
+    # ============================================
+    seccion("📚 Preparando datos")
+    
+    # Corpus de ejemplo
+    corpus_texto = (
+        "la inteligencia artificial aprende de los datos "
+        "cerebro zero es un proyecto en python y numpy "
+        "entrenar un modelo requiere paciencia y datos "
+        "aprender es el proceso de mejorar con la experiencia "
+    ) * 50
+    
+    # Tokenizer
+    tok = BPETokenizer(vocab_size=260)
+    tok.entrenar(corpus_texto)
+    kv("Vocab size", tok.vocab_size, color="cyan")
+    kv("Compresión", f"{tok.compresion_media(corpus_texto):.2f}x", color="green")
+    
+    # Datasets
+    train_path = "datasets/train.txt"
+    val_path = "datasets/validation.txt"
+    
+    if not _os.path.exists(train_path):
+        _os.makedirs("datasets", exist_ok=True)
+        with open(train_path, "w") as f:
+            f.write(corpus_texto)
+        with open(val_path, "w") as f:
+            f.write(corpus_texto[:len(corpus_texto)//5])
+        info(f"Creado {train_path} y {val_path}")
+    
     train_ds = TextDataset(train_path, tok, context_len=8)
     val_ds = TextDataset(val_path, tok, context_len=8)
-
-    # Modelo más pequeño para móvil
+    kv("Train samples", len(train_ds))
+    kv("Val samples", len(val_ds))
+    
+    # ============================================
+    # MODELO
+    # ============================================
+    seccion("🧠 Creando modelo Transformer")
+    
     model = Transformer(
         vocab_size=tok.vocab_size,
         d_model=16,
@@ -327,32 +365,80 @@ if __name__ == "__main__":
         num_layers=1,
         max_len=8,
     )
-    model.summary()
-
+    kv("Parámetros", model.num_parameters(), color="cyan")
+    kv("d_model", model.d_model)
+    kv("num_heads", model.num_heads)
+    kv("num_layers", model.num_layers)
+    
+    # ============================================
+    # ENTRENAMIENTO
+    # ============================================
+    seccion("🏋️  Entrenando")
+    
     trainer = LMTrainer(model, learning_rate=0.01)
-
-    print("\n🏋️ ENTRENANDO CON BACKPROP REAL...\n")
+    
+    info("Entrenando con backprop REAL...")
     history = trainer.train(
         train_ds, val_ds,
         epochs=20,
         batch_size=8,
         batches_per_epoch=10,
-        verbose=True,
+        verbose=False,
         early_stopping_patience=5,
     )
-
-    print("\n📊 Estadísticas:")
+    
+    # ============================================
+    # RESULTADOS
+    # ============================================
+    seccion("📊 Resultados")
+    
     if history['train_loss']:
-        print(f"   Loss inicial: {history['train_loss'][0]:.4f}")
-        print(f"   Loss final:   {history['train_loss'][-1]:.4f}")
-        mejora = (history['train_loss'][0] - history['train_loss'][-1]) / history['train_loss'][0]
-        print(f"   Mejora:       {mejora*100:.1f}%")
-
-    print("\n🔮 Generación de ejemplo:")
+        loss_ini = history['train_loss'][0]
+        loss_fin = history['train_loss'][-1]
+        mejora = (loss_ini - loss_fin) / loss_ini * 100
+        
+        tabla(
+            ["Métrica", "Valor"],
+            [
+                ["Loss inicial", f"{loss_ini:.4f}"],
+                ["Loss final", f"[green]{loss_fin:.4f}[/green]"],
+                ["Mejora", f"[green]{mejora:+.2f}%[/green]"],
+                ["Épocas", len(history['train_loss'])],
+                ["Mejor val_loss", f"[cyan]{trainer.best_val_loss:.4f}[/cyan]"],
+            ],
+            titulo="Métricas de entrenamiento"
+        )
+    
+    # ============================================
+    # GENERACIÓN DE EJEMPLO
+    # ============================================
+    seccion("🔮 Generación de ejemplo")
+    
     prompt = tok.encode("la inteligencia")
     generated = model.generate(prompt, max_new_tokens=8, temperature=0.8)
     texto = tok.decode(generated)
-    print(f"   Prompt: 'la inteligencia'")
-    print(f"   Generado: {texto}")
-
-    print("\n✅ LM TRAINER V3.0 FUNCIONANDO CON BACKPROP REAL")
+    
+    consola.print()
+    kv("Prompt", "la inteligencia", color="yellow")
+    kv("Generado", texto, color="green")
+    
+    # ============================================
+    # GRÁFICO
+    # ============================================
+    seccion("📈 Gráfico")
+    
+    png_path = trainer.guardar_grafico("learning_curve.png")
+    kv("PNG generado", png_path, color="cyan")
+    kv("Tamaño", f"{_os.path.getsize(png_path)/1024:.1f} KB")
+    
+    # ============================================
+    # FINAL
+    # ============================================
+    consola.print()
+    panel(
+        "[bold green]LM TRAINER 4.0 FUNCIONANDO[/bold green]\n"
+        f"[dim]Loss: {history['train_loss'][0]:.4f} → {history['train_loss'][-1]:.4f}[/dim]\n"
+        f"[dim]Gráfico: {png_path}[/dim]",
+        titulo="✅ Éxito",
+        color="green"
+    )

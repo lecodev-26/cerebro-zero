@@ -18,6 +18,11 @@ import argparse
 # Asegurar que podemos importar módulos del proyecto
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+from utils.visual import (
+    consola, titulo, ok, warn, error, info, dim,
+    seccion, bullet, kv, panel, tabla
+)
+
 VERSION = "3.0.0"
 
 
@@ -27,31 +32,32 @@ VERSION = "3.0.0"
 
 def cmd_info(args):
     """Muestra información del proyecto"""
-    print("=" * 60)
-    print(f"🧠 CEREBRO ZERO {VERSION}")
-    print("=" * 60)
-    print()
-    print("Autonomous Learning Cognitive Agent")
-    print("Construido desde cero en Python + NumPy")
-    print("Sin frameworks. Sin trampas. Solo código.")
-    print()
+    titulo(f"CEREBRO ZERO {VERSION}")
+    
+    info("Autonomous Learning Cognitive Agent")
+    dim("Construido desde cero en Python + NumPy")
+    dim("Sin frameworks. Sin trampas. Solo código.")
+    consola.print()
     
     try:
         from agent.cerebro_v3 import CerebroV3
         cerebro = CerebroV3(nombre="info", verbose=False)
         stats = cerebro.stats()
         
-        print("📊 ESTADO DEL SISTEMA")
-        print("-" * 60)
-        print(f"  Nombre:        {stats['nombre']}")
-        print(f"  Versión:       {stats['version']}")
-        print(f"  Tools:         {stats['tools_registradas']}")
-        print(f"  Tokenizer:     {stats['tokenizer_vocab']} tokens")
-        print(f"  Working mem:   {stats['working']}")
-        print()
+        seccion("📊 Estado del sistema")
+        tabla(
+            ["Campo", "Valor"],
+            [
+                ["Nombre", stats["nombre"]],
+                ["Versión", stats["version"]],
+                ["Tools", stats["tools_registradas"]],
+                ["Tokenizer", f"{stats['tokenizer_vocab']} tokens"],
+                ["Working mem", stats["working"]],
+            ],
+            titulo="Sistema"
+        )
         
-        print("🧩 COMPONENTES 3.0")
-        print("-" * 60)
+        seccion("🧩 Componentes 3.0")
         componentes = [
             ("3.1", "Working Memory", "✅"),
             ("3.2", "Procedural Memory", "✅"),
@@ -66,11 +72,14 @@ def cmd_info(args):
             ("3.11", "Integración final", "✅"),
             ("3.12", "Packaging", "✅"),
         ]
-        for num, nombre, estado in componentes:
-            print(f"  {estado} {num}: {nombre}")
-        print()
+        tabla(
+            ["#", "Componente", "Estado"],
+            [[num, nombre, estado] for num, nombre, estado in componentes],
+            titulo="Fases del bloque 3.x"
+        )
+        
     except Exception as e:
-        print(f"⚠️ Error cargando componentes: {e}")
+        error(f"Error cargando componentes: {e}")
 
 
 def cmd_chat(args):
@@ -82,35 +91,44 @@ def cmd_chat(args):
     if args.texto:
         # Modo one-shot
         r = cerebro.procesar(args.texto)
-        print(f"👤 {args.texto}")
-        print(f"🤖 {r.output}")
+        
+        consola.print(f"\n  [bold]👤[/bold] [white]{args.texto}[/white]")
+        consola.print(f"  [bold]🤖[/bold] [green]{r.output}[/green]")
+        
+        detalles = []
         if r.tool_usada:
-            print(f"   [tool={r.tool_usada}, conf={r.confianza:.2f}, "
-                  f"lat={r.latencia*1000:.1f}ms]")
+            detalles.append(f"tool=[cyan]{r.tool_usada}[/cyan]")
+            detalles.append(f"conf=[green]{r.confianza:.2f}[/green]")
+            detalles.append(f"lat=[dim]{r.latencia*1000:.1f}ms[/dim]")
         if r.plan:
-            print(f"   [plan={len(r.plan.subgoals)} subgoals]")
+            detalles.append(f"plan=[yellow]{len(r.plan.subgoals)} subgoals[/yellow]")
+        
+        if detalles:
+            consola.print(f"       [dim]({' | '.join(detalles)})[/dim]")
+        consola.print()
     else:
         # Modo interactivo
-        print(f"🧠 Cerebro Zero {VERSION} — Modo chat")
-        print("Escribe 'salir' para terminar")
-        print()
+        titulo(f"Cerebro Zero {VERSION} — Modo chat")
+        dim("Escribe 'salir' para terminar")
+        consola.print()
         
         while True:
             try:
-                texto = input("👤 > ").strip()
+                texto = consola.input("[bold cyan]👤 >[/bold cyan] ").strip()
                 if texto.lower() in ("salir", "exit", "quit", "q"):
                     break
                 if not texto:
                     continue
                 
                 r = cerebro.procesar(texto)
-                print(f"🤖 {r.output}")
-                print()
+                consola.print(f"[bold]🤖[/bold] [green]{r.output}[/green]")
+                consola.print()
             except (KeyboardInterrupt, EOFError):
-                print()
+                consola.print()
                 break
         
-        print(f"\n👋 Hasta luego. Procesados: {cerebro.num_procesados}")
+        consola.print()
+        ok(f"Hasta luego. Procesados: {cerebro.num_procesados}")
 
 
 def cmd_plan(args):
@@ -120,16 +138,17 @@ def cmd_plan(args):
     cerebro = CerebroV3(nombre="plan", verbose=False)
     plan = cerebro.planificar(args.goal)
     
-    print(f"🎯 Objetivo: {plan.goal}")
-    print(f"📋 Plan con {len(plan.subgoals)} subgoals")
-    print()
+    titulo("PLANIFICACIÓN")
+    kv("Objetivo", plan.goal, color="yellow")
+    kv("Subgoals", len(plan.subgoals), color="cyan")
+    consola.print()
     
     orden = plan.orden_topologico()
     for i, sg_id in enumerate(orden, 1):
         sg = plan.get_subgoal(sg_id)
-        deps = f" (deps: {sg.depende_de})" if sg.depende_de else ""
-        print(f"  {i}. {sg.id}{deps}")
-        print(f"     → {sg.descripcion}")
+        deps_str = f" [dim](deps: {sg.depende_de})[/dim]" if sg.depende_de else ""
+        consola.print(f"  [bold cyan]{i:>2}.[/bold cyan] {sg.id}{deps_str}")
+        consola.print(f"      [dim]→ {sg.descripcion}[/dim]")
 
 
 def cmd_benchmark(args):
@@ -139,8 +158,9 @@ def cmd_benchmark(args):
         handler_planning, handler_rl, handler_learning,
     )
     
-    print("📊 Ejecutando benchmark...")
-    print()
+    titulo("BENCHMARK 4.0")
+    info("Ejecutando benchmark...")
+    consola.print()
     
     bench = Benchmark(seed=42)
     bench.registrar_handler("math", handler_math)
@@ -151,7 +171,44 @@ def cmd_benchmark(args):
     bench.cargar_casos()
     
     reporte = bench.ejecutar()
-    print(reporte.resumen_texto())
+    
+    # Mostrar tabla global
+    g = reporte.global_metrics()
+    seccion("🌍 Resultados globales")
+    tabla(
+        ["Métrica", "Valor"],
+        [
+            ["Total", g.total],
+            ["Accuracy", f"[green]{g.accuracy*100:.2f}%[/green]"],
+            ["Exact match", f"[green]{g.exact_match_rate*100:.2f}%[/green]"],
+            ["Error rate", f"[red]{g.error_rate*100:.2f}%[/red]"],
+            ["Latency p50", f"[cyan]{g.latency_p50*1000:.2f}ms[/cyan]"],
+            ["Latency p95", f"[cyan]{g.latency_p95*1000:.2f}ms[/cyan]"],
+        ],
+        titulo="Métricas globales"
+    )
+    
+    # Tabla por categoría
+    seccion("📂 Resultados por categoría")
+    filas = []
+    for cat, m in sorted(reporte.por_categoria().items()):
+        filas.append([
+            cat,
+            f"{m.correctos}/{m.total}",
+            f"[green]{m.accuracy*100:.2f}%[/green]",
+        ])
+    tabla(["Categoría", "Correctos", "Accuracy"], filas, titulo="Por categoría")
+    
+    # Tabla por split
+    seccion("🔀 Resultados por split")
+    filas = []
+    for split, m in sorted(reporte.por_split().items()):
+        filas.append([
+            split,
+            f"{m.correctos}/{m.total}",
+            f"[green]{m.accuracy*100:.2f}%[/green]",
+        ])
+    tabla(["Split", "Correctos", "Accuracy"], filas, titulo="Por split")
 
 
 def cmd_test(args):

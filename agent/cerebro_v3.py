@@ -411,98 +411,130 @@ class CerebroV3:
 # ============================================
 
 if __name__ == "__main__":
-    print("🧪 PROBANDO CEREBRO V3 (INTEGRACIÓN FINAL)")
-    print("=" * 60)
-    
-    # Crear cerebro con corpus para tokenizer
-    corpus = "hola mundo cerebro cero aprende recordar suma resta multiplica " * 10
-    
-    cerebro = CerebroV3(
-        nombre="Zero",
-        tokenizer_corpus=corpus,
-        verbose=True,
+    from utils.visual import (
+        consola, titulo, ok, warn, error, info, dim,
+        seccion, bullet, kv, panel, tabla
     )
-    
+
+    titulo("CEREBRO V3 — Integración Cognitiva")
+
     # ============================================
-    # PRUEBAS
+    # INICIALIZACIÓN
     # ============================================
-    print(f"\n📋 Tools registradas: {cerebro.tools.listar()}")
+    seccion("🧠 Inicializando CerebroV3")
     
-    print(f"\n🧪 Probando pipeline completo:")
+    corpus = "hola mundo cerebro cero aprende recordar suma resta multiplica " * 10
+    cerebro = CerebroV3(nombre="Zero", tokenizer_corpus=corpus, verbose=False)
+    
+    kv("Nombre", cerebro.nombre, color="cyan")
+    kv("Tokenizer vocab", cerebro.tokenizer.vocab_size)
+    kv("Tools registradas", len(cerebro.tools.listar()), color="green")
+
+    # ============================================
+    # PIPELINE
+    # ============================================
+    seccion("🧪 Pipeline cognitivo completo")
+    
     entradas = [
         "5 + 3",
         "10 * 4",
         "20 - 7",
         "aprende color = azul",
         "recordar color",
-        "recordar no_existe",
         "Entrenar el modelo",
-        "evaluar el test",
         "xyzzy foobar",
     ]
     
     for texto in entradas:
         r = cerebro.procesar(texto)
-        print(f"\n   👤 '{texto}'")
-        print(f"   🤖 {r.output}")
+        
+        # Cabecera: input + output
+        consola.print(f"\n  [bold]👤[/bold] [white]'{texto}'[/white]")
+        consola.print(f"  [bold]🤖[/bold] [green]{r.output}[/green]")
+        
+        # Detalles
+        detalles = []
         if r.tool_usada:
-            print(f"      (tool: {r.tool_usada}, conf: {r.confianza:.2f}, "
-                  f"lat: {r.latencia*1000:.2f}ms)")
-        elif r.plan:
-            print(f"      (plan: {len(r.plan.subgoals)} subgoals, "
-                  f"conf: {r.confianza:.2f})")
+            detalles.append(f"tool=[cyan]{r.tool_usada}[/cyan]")
+            detalles.append(f"conf=[green]{r.confianza:.2f}[/green]")
+            detalles.append(f"lat=[dim]{r.latencia*1000:.2f}ms[/dim]")
+        if r.plan:
+            detalles.append(f"plan=[yellow]{len(r.plan.subgoals)} subgoals[/yellow]")
+        
+        if detalles:
+            consola.print(f"       [dim]({' | '.join(detalles)})[/dim]")
+
+    # ============================================
+    # PLAN
+    # ============================================
+    seccion("📋 Plan explícito — Entrenar el modelo")
     
-    # ============================================
-    # PLANIFICACIÓN EXPLÍCITA
-    # ============================================
-    print(f"\n📋 Plan explícito:")
     plan = cerebro.planificar("Entrenar el modelo y comprobar si mejoró")
-    print(f"   {plan}")
-    for sg_id in plan.orden_topologico():
-        sg = plan.get_subgoal(sg_id)
-        deps = f" (deps: {sg.depende_de})" if sg.depende_de else ""
-        print(f"      {sg.id}{deps}")
     
+    for i, sg_id in enumerate(plan.orden_topologico(), 1):
+        sg = plan.get_subgoal(sg_id)
+        deps_str = f" [dim](deps: {sg.depende_de})[/dim]" if sg.depende_de else ""
+        consola.print(f"  [bold cyan]{i:>2}.[/bold cyan] {sg.id}{deps_str}")
+        consola.print(f"      [dim]→ {sg.descripcion}[/dim]")
+
     # ============================================
-    # APRENDER PROCEDIMIENTO
+    # PROCEDIMIENTO
     # ============================================
-    print(f"\n🎓 Aprender procedimiento:")
-    ok = cerebro.aprender_procedimiento(
+    seccion("🎓 Aprender procedimiento")
+    
+    ok_aprendido = cerebro.aprender_procedimiento(
         nombre="sumar_lista",
         pasos=["iniciar contador=0", "recorrer lista", "sumar cada elemento",
                 "devolver contador"],
     )
-    print(f"   Procedimiento 'sumar_lista' aprendido: {ok}")
     
+    if ok_aprendido:
+        ok("Procedimiento 'sumar_lista' aprendido")
+    else:
+        warn("No se pudo aprender el procedimiento")
+
     # ============================================
     # WORLD MODEL
     # ============================================
-    print(f"\n🌍 World Model:")
-    print(f"   Keys: {cerebro.world.keys()}")
-    print(f"   nombre: {cerebro.world.get('cerebro.nombre')}")
-    print(f"   color:  {cerebro.world.get('color')}")
-    print(f"   inputs procesados: {cerebro.world.get('stats.inputs_procesados')}")
+    seccion("🌍 World Model")
     
+    tabla(
+        ["Clave", "Valor"],
+        [
+            ["cerebro.nombre", cerebro.world.get("cerebro.nombre")],
+            ["color", cerebro.world.get("color")],
+            ["inputs procesados", cerebro.world.get("stats.inputs_procesados")],
+        ],
+        titulo="Estado del mundo"
+    )
+
     # ============================================
-    # WORKING MEMORY
+    # ESTADO COGNITIVO
     # ============================================
-    print(f"\n🧠 Working Memory:")
-    print(f"   Items: {cerebro.working.size()}/{cerebro.working.max_items}")
+    seccion("🧬 Estado cognitivo")
     
-    # ============================================
-    # LEARNING ENGINE
-    # ============================================
-    print(f"\n🧬 Learning Engine:")
     stats_learning = cerebro.learning.buffer.stats()
-    print(f"   Experiencias: {stats_learning.get('total', 0)}")
-    print(f"   Verificadas:  {stats_learning.get('verificadas', 0)}")
     
+    tabla(
+        ["Componente", "Valor"],
+        [
+            ["Working Memory", f"{cerebro.working.size()}/{cerebro.working.max_items}"],
+            ["Experiencias", stats_learning.get("total", 0)],
+            ["Verificadas", stats_learning.get("verificadas", 0)],
+            ["Procedimientos", len(getattr(cerebro.procedural, "procedimientos", {}))],
+            ["Tools", len(cerebro.tools.listar())],
+            ["Confianza media", f"{cerebro.stats()['confianza_media']:.2f}"],
+        ],
+        titulo="Memorias y aprendizaje"
+    )
+
     # ============================================
-    # STATS GLOBALES
+    # FINAL
     # ============================================
-    print(f"\n📊 Stats del cerebro:")
-    for k, v in cerebro.stats().items():
-        print(f"   {k}: {v}")
-    
-    print("\n✅ CEREBRO V3 INTEGRADO Y FUNCIONANDO")
-    print(f"   {cerebro}")
+    consola.print()
+    panel(
+        "[bold green]CEREBRO V3 INTEGRADO Y FUNCIONANDO[/bold green]\n"
+        f"[dim]{cerebro}[/dim]",
+        titulo="✅ Éxito",
+        color="green"
+    )

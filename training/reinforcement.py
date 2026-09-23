@@ -414,79 +414,166 @@ class EntrenadorRL:
 # ============================================
 
 if __name__ == "__main__":
-    print("🧪 PROBANDO RL BÁSICO")
-    print("=" * 60)
+    from utils.visual import (
+        consola, titulo, ok, warn, error, info, dim,
+        seccion, bullet, kv, panel, tabla, crear_progress
+    )
+    import time
+
+    titulo("RL BÁSICO — Q-Learning en GridWorld")
+
+    # ============================================
+    # GRIDWORLD 3x3
+    # ============================================
+    seccion("🌍 GridWorld 3x3")
     
-    # GridWorld pequeño 3x3 sin obstáculos
-    print("\n🌍 GridWorld 3x3:")
     env = GridWorld(filas=3, columnas=3, inicio=(0, 0), meta=(2, 2))
-    print(f"   {env}")
-    print(f"   Estado inicial: {env.reset()}")
-    print(f"   Meta: {env.meta}")
-    print(f"   Estados totales: {env.num_estados()}")
-    print(f"   Acciones: {env.num_acciones()}")
     
-    print(f"\n   Render inicial:")
-    print(env.render())
+    consola.print()
+    consola.print(env.render())
+    consola.print()
     
-    # Step manual
-    print(f"\n🎮 Steps manuales (derecha, derecha, abajo, abajo):")
+    kv("Estado inicial", env.reset(), color="cyan")
+    kv("Meta", env.meta, color="yellow")
+    kv("Estados totales", env.num_estados())
+    kv("Acciones", env.num_acciones())
+
+    # ============================================
+    # STEPS MANUALES
+    # ============================================
+    seccion("🎮 Steps manuales (→ → ↓ ↓)")
+    
     for accion in [3, 3, 1, 1]:
         estado, r, term, info = env.step(accion)
-        print(f"   accion={accion} → estado={estado} recompensa={r:.2f} terminado={term}")
+        flecha = ["↑", "↓", "←", "→"][accion]
+        color = "green" if r > 0 else "dim"
+        consola.print(
+            f"  [bold]{flecha}[/bold] → "
+            f"estado=[cyan]{estado}[/cyan]  "
+            f"recompensa=[{color}]{r:+.2f}[/{color}]  "
+            f"terminado=[yellow]{term}[/yellow]"
+        )
     
-    print(f"\n   Render final:")
-    print(env.render())
+    consola.print()
+    consola.print(env.render())
+
+    # ============================================
+    # ENTRENAMIENTO
+    # ============================================
+    seccion("🧠 Entrenando Q-Learning en GridWorld 5x5")
     
-    # Q-Learning rápido
-    print(f"\n🧠 Q-Learning en GridWorld 5x5:")
     env2 = GridWorld(filas=5, columnas=5)
-    print(f"   {env2}")
-    
     agente = QLearning(num_estados=25, num_acciones=4, epsilon=0.5)
     entrenador = EntrenadorRL(env2, agente, epsilon_decay=0.99)
     
-    print(f"\n🏋️ Entrenando 200 episodios...")
-    metricas = entrenador.entrenar(num_episodios=200)
-    for k, v in metricas.items():
-        if isinstance(v, float):
-            print(f"   {k}: {v:.3f}")
-        else:
-            print(f"   {k}: {v}")
+    num_episodios = 200
+    progress, task = crear_progress(num_episodios, "Entrenando")
     
-    # Evaluación sin exploración
-    print(f"\n🎯 Evaluación (sin exploración, 20 episodios):")
+    exitos_recientes = []
+    
+    with progress:
+        for i in range(num_episodios):
+            ep = entrenador.ejecutar_episodio(i)
+            exitos_recientes.append(1 if ep.exito else 0)
+            if len(exitos_recientes) > 20:
+                exitos_recientes.pop(0)
+            
+            # Mostrar recompensa actual como descripción
+            progress.update(
+                task,
+                advance=1,
+                description=(
+                    f"[bold]Ep {i+1:>3}/{num_episodios}[/bold]  "
+                    f"R=[cyan]{ep.recompensa_total:+6.2f}[/cyan]  "
+                    f"ε=[yellow]{ep.epsilon:.3f}[/yellow]  "
+                    f"éxito últimos 20: [green]{sum(exitos_recientes)}/20[/green]"
+                )
+            )
+    
+    consola.print()
+    
+    # ============================================
+    # MÉTRICAS
+    # ============================================
+    seccion("📊 Métricas de entrenamiento")
+    
+    metricas = entrenador.metricas()
+    tabla(
+        ["Métrica", "Valor"],
+        [
+            ["Episodios totales", metricas["episodios"]],
+            ["Éxitos", f"[green]{metricas['exitos']}[/green]"],
+            ["Tasa de éxito", f"[green]{metricas['tasa_exito']*100:.2f}%[/green]"],
+            ["Éxito últimos 20", f"[green]{metricas['tasa_exito_ultimos_20']*100:.2f}%[/green]"],
+            ["Recompensa media", f"[cyan]{metricas['recompensa_media']:.3f}[/cyan]"],
+            ["Recompensa máxima", f"[cyan]{metricas['recompensa_max']:.3f}[/cyan]"],
+            ["Pasos medios (éxito)", metricas["pasos_medios_exitosos"]],
+            ["Epsilon final", f"[yellow]{metricas['epsilon_final']:.4f}[/yellow]"],
+        ],
+        titulo="Resultados del entrenamiento"
+    )
+
+    # ============================================
+    # EVALUACIÓN SIN EXPLORACIÓN
+    # ============================================
+    seccion("🎯 Evaluación sin exploración")
+    
     eval_metrics = entrenador.evaluar(num_episodios=20)
-    for k, v in eval_metrics.items():
-        if isinstance(v, float):
-            print(f"   {k}: {v:.3f}")
-        else:
-            print(f"   {k}: {v}")
+    tabla(
+        ["Métrica", "Valor"],
+        [
+            ["Episodios de evaluación", eval_metrics["episodios"]],
+            ["Éxitos", f"[green]{eval_metrics['exitos']}[/green]"],
+            ["Tasa de éxito", f"[green]{eval_metrics['tasa_exito']*100:.2f}%[/green]"],
+            ["Pasos medios", eval_metrics["pasos_medios"]],
+            ["Recompensa media", f"[cyan]{eval_metrics['recompensa_media']:.3f}[/cyan]"],
+        ],
+        titulo="Evaluación (política aprendida)"
+    )
+
+    # ============================================
+    # POLÍTICA APRENDIDA
+    # ============================================
+    seccion("🗺️  Política aprendida")
     
-    # Política aprendida
-    print(f"\n🗺️ Política aprendida (flechas):")
     flechas = ["↑", "↓", "←", "→"]
     politica = entrenador.agente.politica()
+    
+    consola.print()
     for f in range(5):
-        linea = ""
+        linea = "  "
         for c in range(5):
             idx = f * 5 + c
             if (f, c) == env2.meta:
-                linea += " 🎯 "
+                linea += " [bold yellow]🎯[/bold yellow] "
             else:
-                linea += f" {flechas[politica[idx]]} "
-        print(linea)
+                color = "green" if flechas[politica[idx]] in ["→", "↓"] else "cyan"
+                linea += f" [{color}]{flechas[politica[idx]]}[/{color}] "
+        consola.print(linea)
+    consola.print()
+
+    # ============================================
+    # PERSISTENCIA
+    # ============================================
+    seccion("💾 Persistencia")
     
-    # Persistencia
-    print(f"\n💾 Test persistencia:")
     tmp = os.path.join(
         os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
         "test_rl_tmp.json"
     )
     entrenador.guardar(tmp)
-    print(f"   Guardado: {tmp}")
-    print(f"   Existe: {os.path.exists(tmp)}")
+    kv("Guardado en", os.path.basename(tmp), color="cyan")
+    kv("Existe", "✅" if os.path.exists(tmp) else "❌")
     os.unlink(tmp)
-    
-    print("\n✅ RL BÁSICO FUNCIONANDO")
-    print(f"   {entrenador}")
+    dim("(archivo temporal eliminado)")
+
+    # ============================================
+    # FINAL
+    # ============================================
+    consola.print()
+    panel(
+        "[bold green]RL BÁSICO FUNCIONANDO[/bold green]\n"
+        f"[dim]{entrenador}[/dim]",
+        titulo="✅ Éxito",
+        color="green"
+    )
