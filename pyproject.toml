@@ -8,7 +8,7 @@ version = "4.0.0"
 description = "Autonomous Learning Cognitive Agent — IA desde cero en Python + NumPy"
 readme = "README.md"
 requires-python = ">=3.10"
-license = {text = "MIT"}
+license = "MIT"
 authors = [
     {name = "Manuel", email = "axiomsystemsechepares@gmail.com"},
 ]
@@ -23,11 +23,15 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 
 dependencies = [
-    "numpy>=1.20",
+    "numpy>=2.0,<3",
+    "rich>=15.0",
+    "tqdm>=4.70",
+    "pillow>=12.0",
 ]
 
 [project.optional-dependencies]
@@ -51,10 +55,7 @@ packages = [
     "agent",
     "config",
     "core",
-    "dashboard",
-    "datasets",
     "evaluation",
-    "experiments",
     "language",
     "memory",
     "mobile",
@@ -62,8 +63,14 @@ packages = [
     "reasoning",
     "security",
     "tools",
+    "tools.plugins",
     "training",
+    "utils",
 ]
+py-modules = ["cli"]
+
+[tool.setuptools.package-data]
+config = ["*.yaml", "*.yml"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

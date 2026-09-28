@@ -36,7 +36,7 @@ def run_cli(*args, timeout=30):
 def test_cli_version():
     r = run_cli("--version")
     assert r.returncode == 0
-    assert "3.0.0" in r.stdout
+    assert "4.0.0" in r.stdout
 
 
 def test_cli_help():
@@ -59,7 +59,7 @@ def test_cli_info():
     r = run_cli("info")
     assert r.returncode == 0
     assert "CEREBRO ZERO" in r.stdout
-    assert "3.0.0" in r.stdout
+    assert "4.0.0" in r.stdout
 
 
 def test_cli_info_componentes():
@@ -148,7 +148,7 @@ def test_cli_no_depende_de_cwd():
         capture_output=True, text=True, timeout=10,
     )
     assert r.returncode == 0
-    assert "3.0.0" in r.stdout
+    assert "4.0.0" in r.stdout
 
 
 # ============================================
@@ -171,7 +171,7 @@ def test_pyproject_tiene_nombre():
     with open(path) as f:
         contenido = f.read()
     assert 'name = "cerebro-zero"' in contenido
-    assert "3.0.0" in contenido
+    assert "4.0.0" in contenido
 
 
 def test_pyproject_tiene_script():

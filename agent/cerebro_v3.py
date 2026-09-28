@@ -387,7 +387,7 @@ class CerebroV3:
     def stats(self) -> dict:
         return {
             "nombre": self.nombre,
-            "version": "3.0",
+            "version": "4.0",
             "num_procesados": self.num_procesados,
             "world_keys": self.world.keys(),
             "working": f"{self.working.size()}/{self.working.max_items}",
