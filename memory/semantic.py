@@ -8,6 +8,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import numpy as np
 import json
+import re
+from collections import defaultdict
 from datetime import datetime
 from memory.embeddings import TextEmbedder, cosine_similarity
 
@@ -30,6 +32,8 @@ class SemanticMemory:
         self.umbral = umbral  # Similitud mínima para devolver
         self.embedder = TextEmbedder(dim=dim)
         self.entradas = []  # Lista de dicts con 'texto', 'metadata', 'embedding'
+        self._token_index: dict[str, set[int]] = defaultdict(set)
+        self._embedding_matrix = np.empty((0, dim), dtype=np.float32)
         self.cargar()
     
     def add(self, texto: str, metadata: dict = None):
@@ -47,6 +51,10 @@ class SemanticMemory:
         }
         
         self.entradas.append(entrada)
+        idx = len(self.entradas) - 1
+        for token in self._tokens(texto):
+            self._token_index[token].add(idx)
+        self._rebuild_matrix()
         self.guardar()
     
     def search(self, query: str, k: int = 3, umbral: float = None):
@@ -69,16 +77,26 @@ class SemanticMemory:
         
         query_vec = self.embedder.embed(query)
         
-        # Calcular similitud con todas las entradas
+        # Prefiltrar por índice léxico y calcular similitudes en bloque.
+        tokens = self._tokens(query)
+        candidatos = set()
+        for token in tokens:
+            candidatos.update(self._token_index.get(token, set()))
+        if not candidatos:
+            candidatos = set(range(len(self.entradas)))
+
+        indices = np.fromiter(sorted(candidatos), dtype=np.int64)
+        matriz = self._embedding_matrix[indices]
+        scores = matriz @ query_vec.astype(np.float32)
+
         resultados = []
-        for entrada in self.entradas:
-            vec = np.array(entrada['embedding'])
-            sim = cosine_similarity(query_vec, vec)
-            if sim >= umbral:
+        for local_idx, sim in enumerate(scores):
+            if float(sim) >= umbral:
+                entrada = self.entradas[int(indices[local_idx])]
                 resultados.append({
                     'texto': entrada['texto'],
                     'metadata': entrada['metadata'],
-                    'similitud': sim,
+                    'similitud': float(sim),
                 })
         
         # Ordenar por similitud descendente
@@ -91,8 +109,33 @@ class SemanticMemory:
     
     def clear(self):
         self.entradas = []
+        self._token_index.clear()
+        self._rebuild_matrix()
         self.guardar()
-    
+
+    @staticmethod
+    def _tokens(texto: str) -> set[str]:
+        return {
+            token for token in re.findall(r"[\wáéíóúüñ]+", texto.lower())
+            if len(token) >= 2
+        }
+
+    def _rebuild_matrix(self) -> None:
+        if not self.entradas:
+            self._embedding_matrix = np.empty((0, self.dim), dtype=np.float32)
+            return
+        self._embedding_matrix = np.asarray(
+            [entrada['embedding'] for entrada in self.entradas],
+            dtype=np.float32,
+        )
+
+    def _rebuild_index(self) -> None:
+        self._token_index = defaultdict(set)
+        for idx, entrada in enumerate(self.entradas):
+            for token in self._tokens(entrada['texto']):
+                self._token_index[token].add(idx)
+        self._rebuild_matrix()
+
     def guardar(self):
         """Guarda en disco"""
         path = os.path.join("../modelos_guardados", self.archivo)
@@ -119,6 +162,7 @@ class SemanticMemory:
                     self.entradas = json.load(f)
             except Exception:
                 self.entradas = []
+        self._rebuild_index()
     
     def __repr__(self):
         return f"SemanticMemory({len(self.entradas)} entradas, dim={self.dim})"

@@ -116,6 +116,16 @@ def test_semantic_clear():
     assert mem.size() == 0
 
 
+def test_semantic_index_is_built():
+    mem = SemanticMemory(archivo="test_mem_sem.json")
+    mem.clear()
+    mem.add("el sol es una estrella")
+    mem.add("python es un lenguaje")
+    assert mem._embedding_matrix.shape == (2, 128)
+    assert "sol" in mem._token_index
+    assert 0 in mem._token_index["sol"]
+
+
 def test_semantic_search_returns_ordered():
     """Los resultados deben estar ordenados por similitud"""
     mem = SemanticMemory(archivo="test_mem_sem.json")
