@@ -1,7 +1,7 @@
 # CEREBRO ZERO
 
 <p align="center">
-  <img src="./public/og-image.jpg" width="120" alt="Cerebro Zero" />
+  <img src="./cerebro_zero_final_white.png" width="120" alt="Cerebro Zero" />
 </p>
 
 
