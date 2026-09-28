@@ -101,6 +101,32 @@ class MultiHeadAttention:
     def __call__(self, x, causal_mask=True):
         return self.forward(x, causal_mask)
 
+    def forward_cached(self, x, cache=None):
+        """Inference-only attention step using an incremental KV cache."""
+        if not isinstance(x, Tensor):
+            x = Tensor(x)
+        batch, seq_len, _ = x.data.shape
+        q = x.data @ self.W_q.data
+        k = x.data @ self.W_k.data
+        v = x.data @ self.W_v.data
+
+        q = q.reshape(batch, seq_len, self.num_heads, self.d_k).transpose(0, 2, 1, 3)
+        k = k.reshape(batch, seq_len, self.num_heads, self.d_k).transpose(0, 2, 1, 3)
+        v = v.reshape(batch, seq_len, self.num_heads, self.d_k).transpose(0, 2, 1, 3)
+
+        if cache is not None:
+            k = np.concatenate([cache["k"], k], axis=2)
+            v = np.concatenate([cache["v"], v], axis=2)
+
+        scores = q @ k.transpose(0, 1, 3, 2) / np.sqrt(self.d_k)
+        scores = scores - np.max(scores, axis=-1, keepdims=True)
+        attention = np.exp(scores)
+        attention /= np.sum(attention, axis=-1, keepdims=True) + 1e-10
+        out = attention @ v
+        out = out.transpose(0, 2, 1, 3).reshape(batch, seq_len, self.d_model)
+        out = out @ self.W_o.data
+        return Tensor(out), {"k": k, "v": v}
+
 
 # ============================================
 # FEED FORWARD (autograd completo)
@@ -177,6 +203,15 @@ class TransformerBlock:
     
     def __call__(self, x, causal_mask=True):
         return self.forward(x, causal_mask)
+
+    def forward_cached(self, x, cache=None):
+        attn_cache = None if cache is None else cache["attention"]
+        h = self.ln1.forward(x)
+        attn_out, new_attn_cache = self.attention.forward_cached(h, attn_cache)
+        x = x + attn_out
+        h = self.ln2.forward(x)
+        x = x + self.ff.forward(h)
+        return x, {"attention": new_attn_cache}
 
 
 # ============================================
@@ -277,6 +312,55 @@ class Transformer(Brain):
         
         return logits
     
+    def forward_cached(self, token_ids, cache=None, position=0):
+        """Run one or more autoregressive tokens while reusing K/V states."""
+        ids = np.asarray(token_ids, dtype=int)
+        if ids.ndim == 1:
+            ids = ids.reshape(1, -1)
+        batch, seq_len = ids.shape
+        if position + seq_len > self.max_len:
+            raise ValueError("KV cache exceeds max_len")
+
+        tok = self.token_emb.gather(ids.reshape(-1)).reshape(batch, seq_len, self.d_model)
+        pos = self.pos_emb.gather(np.arange(position, position + seq_len)).reshape(1, seq_len, self.d_model)
+        h = tok + pos
+
+        old_cache = cache or [None] * self.num_layers
+        new_cache = []
+        for block, block_cache in zip(self.blocks, old_cache):
+            h, block_state = block.forward_cached(h, block_cache)
+            new_cache.append(block_state)
+
+        h = self.ln_final.forward(h)
+        logits = h.batch_matmul(self.lm_head)
+        return logits, new_cache
+
+    def generate_cached(self, prompt_ids, max_new_tokens=20, temperature=1.0, top_k=None):
+        """Generate autoregressively with incremental K/V caching."""
+        ids = list(prompt_ids)
+        cache = None
+        position = 0
+        for token in ids:
+            logits, cache = self.forward_cached([token], cache=cache, position=position)
+            position += 1
+
+        for _ in range(max_new_tokens):
+            last_logits = logits.data[0, -1] / temperature
+            if top_k is not None:
+                top_indices = np.argsort(last_logits)[-top_k:]
+                mask = np.full_like(last_logits, -1e9)
+                mask[top_indices] = last_logits[top_indices]
+                last_logits = mask
+            exp_l = np.exp(last_logits - np.max(last_logits))
+            probs = exp_l / np.sum(exp_l)
+            next_id = int(np.random.choice(self.vocab_size, p=probs))
+            ids.append(next_id)
+            logits, cache = self.forward_cached(
+                [next_id], cache=cache, position=position
+            )
+            position += 1
+        return ids, cache
+
     def generate(self, prompt_ids, max_new_tokens=20, temperature=1.0, top_k=None):
         """Genera tokens a partir de un prompt"""
         ids = list(prompt_ids)

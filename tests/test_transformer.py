@@ -138,6 +138,25 @@ def test_transformer_generate_top_k():
     assert len(generated) == 7
 
 
+def test_transformer_kv_cache_shapes():
+    model = Transformer(vocab_size=10, d_model=8, num_heads=2,
+                        d_ff=16, num_layers=2, max_len=8)
+    logits, cache = model.forward_cached([1, 2, 3], position=0)
+    assert logits.data.shape == (1, 3, 10)
+    assert len(cache) == 2
+    assert cache[0]["attention"]["k"].shape[2] == 3
+    assert cache[1]["attention"]["v"].shape[2] == 3
+
+
+def test_transformer_cached_generation():
+    model = Transformer(vocab_size=10, d_model=8, num_heads=2,
+                        d_ff=16, num_layers=2, max_len=8)
+    generated, cache = model.generate_cached([1, 2], max_new_tokens=3)
+    assert len(generated) == 5
+    assert generated[:2] == [1, 2]
+    assert cache[0]["attention"]["k"].shape[2] == 5
+
+
 def test_transformer_different_seeds():
     """Dos instancias con distinta inicialización deben generar cosas distintas"""
     model1 = Transformer(vocab_size=10, d_model=8, num_heads=2, d_ff=16, num_layers=1)
