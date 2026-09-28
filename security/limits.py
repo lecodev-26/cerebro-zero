@@ -39,31 +39,24 @@ LIMITS_GENEROUS = ResourceLimits(
 )
 
 
-def apply_limits():
-    """
-    Aplica límites de recursos al proceso actual.
-    Usa `resource` de Python (Unix).
-    Debe llamarse DENTRO del subprocess.
-    """
+def apply_limits(limits: ResourceLimits = LIMITS_STANDARD):
+    """Apply best-effort POSIX resource limits inside the child process."""
     try:
         import resource
-        
-        # Nota: los límites se aplican dentro del subprocess
-        # No podemos aplicar max_memory_mb global aquí fácilmente en Termux,
-        # pero podemos limitar:
-        
-        # 1. Tiempo de CPU
-        # resource.setrlimit(resource.RLIMIT_CPU, (cpu_limit, cpu_limit))
-        
-        # 2. Tamaño máximo de archivo
-        # resource.setrlimit(resource.RLIMIT_FSIZE, (file_limit, file_limit))
-        
-        # 3. Número máximo de procesos
+
+        cpu = max(1, int(limits.max_cpu_seconds))
+        file_bytes = max(1, int(limits.max_file_size_mb * 1024 * 1024))
+        resource.setrlimit(resource.RLIMIT_CPU, (cpu, cpu))
+        resource.setrlimit(resource.RLIMIT_FSIZE, (file_bytes, file_bytes))
         resource.setrlimit(resource.RLIMIT_NPROC, (50, 50))
-        
-        # 4. Número máximo de file descriptors
         resource.setrlimit(resource.RLIMIT_NOFILE, (100, 100))
-        
+
+        if hasattr(resource, "RLIMIT_AS") and not sys.platform.startswith("android"):
+            memory = max(16, int(limits.max_memory_mb * 1024 * 1024))
+            try:
+                resource.setrlimit(resource.RLIMIT_AS, (memory, memory))
+            except (ValueError, OSError):
+                pass
         return True
     except Exception:
         return False

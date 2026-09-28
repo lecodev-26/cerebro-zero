@@ -161,6 +161,7 @@ class Sandbox:
             self._log("SUCCESS_CODE", f"exit_code={result.exit_code}, duration={result.duration_ms:.1f}ms")
         else:
             self._log("ERROR_CODE", result.error or result.stderr[:100])
+        self.save_audit()
         
         return SandboxResult(
             success=result.success,

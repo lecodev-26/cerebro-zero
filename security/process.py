@@ -12,7 +12,7 @@ import json
 import time
 from dataclasses import dataclass
 from typing import Any, Optional
-from security.limits import ResourceLimits, LIMITS_STANDARD
+from security.limits import ResourceLimits, LIMITS_STANDARD, apply_limits
 
 
 @dataclass
@@ -72,10 +72,14 @@ class IsolatedProcess:
         try:
             # Ejecutar en subprocess con límites
             # NOTA: En Termux, `subprocess.run` con `timeout` es lo más fiable
+            def _child_limits():
+                apply_limits(limits)
+
             proc = subprocess.run(
-                [sys.executable, script_path],
+                [sys.executable, "-I", script_path],
                 capture_output=True,
                 text=True,
+                preexec_fn=_child_limits if os.name == "posix" else None,
                 timeout=limits.timeout_seconds,
                 cwd=tmp_dir,
                 env={
@@ -83,6 +87,7 @@ class IsolatedProcess:
                     'HOME': tmp_dir,
                     'PYTHONPATH': os.environ.get('PYTHONPATH', ''),
                     'PYTHONDONTWRITEBYTECODE': '1',
+                    'PYTHONNOUSERSITE': '1',
                 },
             )
             
@@ -96,6 +101,9 @@ class IsolatedProcess:
                 output=stdout.strip() if proc.returncode == 0 else None,
                 stdout=stdout,
                 stderr=stderr,
+                error=None if proc.returncode == 0 else (
+                    f"Proceso terminó con código {proc.returncode}: {stderr[:200]}"
+                ),
                 exit_code=proc.returncode,
                 duration_ms=duration,
             )
