@@ -1,4 +1,9 @@
-# 🧠 CEREBRO ZERO 4.0
+# CEREBRO ZERO
+
+<p align="center">
+  <img src="./public/og-image.jpg" width="120" alt="Cerebro Zero" />
+</p>
+
 
 ## Autonomous Learning Cognitive Agent
 
