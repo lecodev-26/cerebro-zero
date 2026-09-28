@@ -1,5 +1,16 @@
 # 🧪 Guía de Testing
 
+## Release 4.0 gate
+
+```bash
+python -m pytest -q
+python cli.py benchmark
+python -m build
+cerebro-zero --version
+```
+
+The release environment currently collects **762 active tests**. CI runs the same test suite across Python 3.10–3.14.
+
 ## Ejecutar todos los tests
 
 ```bash

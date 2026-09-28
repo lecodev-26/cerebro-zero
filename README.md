@@ -9,8 +9,8 @@
 
 [![Python](https://img.shields.io/badge/Python-3.14-blue.svg)](https://www.python.org/)
 [![NumPy](https://img.shields.io/badge/NumPy-2.4.4-green.svg)](https://numpy.org/)
-[![Tests](https://img.shields.io/badge/Tests-742%2F742-brightgreen.svg)](tests/)
-[![CI](https://github.com/lecodev-26/cerebro-zero/actions/workflows/tests.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/tests.yml)
+[![Tests](https://img.shields.io/badge/Tests-762%2F762-brightgreen.svg)](tests/)
+[![CI](https://github.com/lecodev-26/cerebro-zero/actions/workflows/ci.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![No Pickle](https://img.shields.io/badge/Pickle-Zero-success.svg)](#serialization)
 [![Made in Termux](https://img.shields.io/badge/Made%20in-Termux-orange.svg)](https://termux.dev/)
@@ -53,9 +53,12 @@
 | **Serialization** | ✅ **Zero pickle** across active tree (JSON + NPY) |
 | **Repository** | ✅ Clean tree with `legacy/` archive |
 | **Sandbox** | ✅ Subprocess + timeout + temp cwd |
-| **CI/CD** | ✅ 5 GitHub Actions workflows |
+| **CI/CD** | ✅ Unified GitHub Actions CI across Python 3.10–3.14 |
 | **CLI** | ✅ `cerebro-zero info/chat/plan/benchmark` |
 | **Visual** | ✅ Rich terminal output + Pillow-generated plots |
+| **E2E** | ✅ Real CerebroV3 benchmark + system tests |
+| **Memory index** | ✅ Lexical pre-index + vectorized retrieval |
+| **KV cache** | ✅ Incremental Transformer inference cache |
 
 ---
 
@@ -131,12 +134,13 @@
 - Inspeccionable with `cat`
 - **Zero `pickle` in the active tree** (legacy archive only)
 
-### **Sandbox**
-- Subprocess isolation with temporary cwd
-- Real timeout (infinite loops get killed)
-- Partial resource limits (SAFE/STANDARD/GENEROUS)
+### **Sandbox & security (4.8)**
+- Subprocess isolation with temporary working directory
+- Timeout enforcement and output limits
+- POSIX CPU/file/process/file-descriptor limits where supported
+- Python isolated mode and reduced child environment
 - Persistent audit log
-- ⚠️ Not a full OS-level sandbox (no namespaces) — planned for 4.8
+- Platform-aware: Termux/Android does not provide Linux namespaces/seccomp isolation through this Python layer
 
 ### **Repository cleanup (4.1)**
 - All legacy code moved to `legacy/` with its own README
@@ -291,51 +295,54 @@ Completed
 
 Status
 
-· Total: 64/64 phases
-· Tests: 742/742
-· Version: 4.0.0
-
-In progress / planned
-
-· ⏳ 4.4 E2E Benchmark (measure CerebroV3 directly)
-· ⏳ 4.5 E2E Testing
-· ⏳ 4.6 Memory Indexing
-· ⏳ 4.7 Transformer Inference (KV-cache)
-· ⏳ 4.8 Security Hardening
-· ⏳ 4.9 Unified CI
-· ⏳ 4.10 Scientific Release
-· ⏳ 4.11 Documentation 4.0
+· Version: 4.0.0 — release complete
+· Tests: see the live CI badge and `pytest --collect-only -q` for the current count
+· 4.4 E2E Benchmark: ✅
+· 4.5 E2E Testing: ✅
+· 4.6 Memory Indexing: ✅
+· 4.7 Transformer KV-cache: ✅
+· 4.8 Security Hardening: ✅
+· 4.9 Unified CI: ✅
+· 4.10 Scientific Release: ✅
+· 4.11 Documentation 4.0: ✅
 
 ---
 
 ⚠️ Known limitations
 
-Cerebro Zero 4.0 is an educational laboratory with technical honesty. These are the real limitations:
+Cerebro Zero 4.0 is an educational laboratory with explicit technical limitations.
 
 Benchmark
 
-· The benchmark framework is scientific and reproducible ✅
-· The handlers in benchmark_v4.py are reference — not all of them call the real CerebroV3 yet → planned for 4.4
+· The release benchmark now exercises the real CerebroV3 pipeline in `evaluation/benchmark_e2e.py`.
+· The legacy handler benchmark remains as a component-level reference suite.
 
-Sandbox
+Security
 
-· Isolation via subprocess + timeout + temp cwd ✅
-· NOT a full OS-level sandbox (no namespaces, seccomp, network isolation) → planned for 4.8
+· Subprocess, timeout, output, and POSIX resource controls are enabled where the platform supports them.
+· Termux/Android does not expose Linux namespaces/seccomp isolation through this Python layer, so this is not a full OS sandbox.
+· Network isolation is not claimed.
 
 Gradient checking
 
-· The Transformer passes sampled gradient check (5 random elements per parameter) ✅
-· Does NOT verify every single element of each gradient
+· Transformer gradient checking remains sampled rather than exhaustive over every tensor element.
 
 Performance
 
-· Working Memory and Semantic Memory are O(n) → planned for 4.6
-· Transformer has no KV-cache → planned for 4.7
+· Semantic memory now uses a lexical pre-index plus vectorized candidate scoring.
+· Transformer inference has an incremental KV-cache.
+· Other subsystems may still contain O(n) operations by design.
 
 Legacy code
 
-· legacy/ contains historic code (pickle-based, old registries, old brains)
-· Not executed in production; kept for historical reference only
+· `legacy/` contains historical code and old pickle-based artifacts.
+· Legacy artifacts are excluded from the active package and active test tree.
+
+---
+
+🔎 Discoverability
+
+Cerebro Zero is intentionally described with searchable terms used by the project itself: **from-scratch AI, cognitive agent, autonomous learning, Python, NumPy, autograd, Transformer, memory, planning, reinforcement learning, tokenizer, reproducibility, Termux, Android**. These are descriptive project keywords, not a claim about search ranking.
 
 ---
 

@@ -265,7 +265,7 @@ def test_procedimiento_aparece_en_stats(cerebro):
 def test_stats_iniciales(cerebro):
     s = cerebro.stats()
     assert s["nombre"] == "test"
-    assert s["version"] == "3.0"
+    assert s["version"] == "4.0"
     assert s["num_procesados"] == 0
 
 

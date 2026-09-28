@@ -1,4 +1,4 @@
-# 🏗️ Arquitectura de Cerebro Zero 2.0
+# 🏗️ Arquitectura de Cerebro Zero 4.0
 
 ## Visión General
 
@@ -106,6 +106,16 @@ CerebroZero.procesar(input)
    Respuesta
 
 ```
+
+## Version 4.0 integrity layer
+
+The 4.0 release adds cross-cutting integrity layers around the cognitive pipeline:
+
+- Evaluation: `benchmark_e2e.py` measures the real `CerebroV3` public pipeline.
+- Memory indexing: semantic memory maintains a token index and cached embedding matrix.
+- Inference: the Transformer exposes `forward_cached()` and `generate_cached()` for incremental KV-cache inference.
+- Security: subprocess execution applies timeout/output controls and best-effort POSIX resource limits.
+- CI: `.github/workflows/ci.yml` validates Python 3.10–3.14, E2E, lint and packaging.
 
 ## Testing
 

@@ -1,5 +1,22 @@
 # 📝 CHANGELOG
 
+## [4.0.0] - 2026-09-28
+
+### System Integrity Release
+
+- Fixed stale CLI tests from 3.0.0 to 4.0.0.
+- Added real CerebroV3 E2E benchmark and system-level E2E tests.
+- Added semantic-memory lexical indexing and vectorized scoring.
+- Added Transformer incremental KV-cache inference.
+- Hardened subprocess execution with timeout, output and POSIX resource controls.
+- Isolated historical pickle artifacts under `legacy/models/`.
+- Unified CI into one Python 3.10–3.14 release workflow.
+- Fixed packaging metadata and verified sdist/wheel builds.
+- Updated README, roadmap and release validation documentation.
+- Recorded 762 active tests in the Termux release environment.
+
+
+
 ## [3.0.0] - 2026-09-17
 
 ### 🧠 AUTONOMOUS LEARNING COGNITIVE AGENT
@@ -8,7 +25,7 @@
 - README actualizado al estado real (792 tests)
 - ROADMAP con las 13 fases del bloque 3.x
 - CHANGELOG con todas las fases 3.x
-- Documentación específica en docs/CEREBRO_V3.md
+- Documentación histórica en docs/archive/CEREBRO_V3.md
 
 #### FASE 3.12 — Packaging
 - CLI completa: `info`, `chat`, `plan`, `benchmark`, `test`

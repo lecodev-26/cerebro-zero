@@ -1,5 +1,30 @@
 # 🗺️ ROADMAP - Cerebro Zero
 
+## 🏁 Cerebro Zero 4.0 — COMPLETADO
+
+Release de integridad finalizado el 2026-09-28.
+
+- [x] 4.4 — E2E Benchmark sobre `CerebroV3`
+- [x] 4.5 — E2E system testing
+- [x] 4.6 — Semantic memory indexing
+- [x] 4.7 — Transformer KV-cache
+- [x] 4.8 — Security hardening
+- [x] 4.9 — Unified CI
+- [x] 4.10 — Scientific release validation
+- [x] 4.11 — Documentation 4.0
+
+### Release gate
+
+- 762 tests collected and passing on the Termux release environment.
+- Real CerebroV3 E2E benchmark: 6/6 cases correct, 0 errors.
+- Source distribution and wheel build successfully.
+- CLI package entry point verified.
+- Legacy pickle artifacts isolated under `legacy/`.
+- Main branch synchronized with GitHub after every release commit.
+
+**Next milestone: design Cerebro Zero 5.0.**
+
+
 ## ✅ P0 — CORRECCIÓN (5/5)
 - [x] FASE 21: Autograd verificado con gradient checking
 - [x] FASE 22: Tests automáticos (pytest + CI/CD)

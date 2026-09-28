@@ -5,7 +5,7 @@ authors:
     given-names: "Manuel"
     email: "axiomsystemsechepares@gmail.com"
 title: "Cerebro Zero: Inteligencia Artificial desde cero en Termux"
-version: 1.0.0
-date-released: 2026-09-08
+version: 4.0.0
+date-released: 2026-09-28
 url: "https://github.com/lecodev-26/cerebro-zero"
 repository-code: "https://github.com/lecodev-26/cerebro-zero"
