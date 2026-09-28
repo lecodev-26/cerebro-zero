@@ -211,6 +211,39 @@ def cmd_benchmark(args):
     tabla(["Split", "Correctos", "Accuracy"], filas, titulo="Por split")
 
 
+def cmd_benchmark_e2e(args):
+    """Ejecuta el benchmark E2E sobre CerebroV3 real."""
+    from evaluation.benchmark_e2e import E2EBenchmark
+
+    titulo("BENCHMARK 4.0 — E2E")
+    info("Midiendo el pipeline real de CerebroV3...")
+    consola.print()
+
+    benchmark = E2EBenchmark(seed=42)
+    benchmark.run()
+    summary = benchmark.summary()
+
+    seccion("Resultados")
+    tabla(
+        ["Métrica", "Valor"],
+        [
+            ["Total", summary["total"]],
+            ["Correctos", summary["correct"]],
+            ["Accuracy", f"{summary['accuracy'] * 100:.2f}%"],
+            ["Latency p50", f"{summary['latency_p50_ms']:.2f}ms"],
+            ["Latency p95", f"{summary['latency_p95_ms']:.2f}ms"],
+            ["Errores", summary["errors"]],
+        ],
+        titulo="CerebroV3 E2E",
+    )
+
+    for result in summary["results"]:
+        estado = "✅" if result["correct"] else "❌"
+        consola.print(f"  {estado} {result['id']}: {result['output']}")
+
+    return 0
+
+
 def cmd_test(args):
     """Ejecuta los tests"""
     import subprocess
@@ -255,7 +288,7 @@ def crear_parser():
     
     # benchmark
     p_bench = subparsers.add_parser("benchmark", help="Ejecuta benchmark")
-    p_bench.set_defaults(func=cmd_benchmark)
+    p_bench.set_defaults(func=cmd_benchmark_e2e)
     
     # test
     p_test = subparsers.add_parser("test", help="Ejecuta tests")
