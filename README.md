@@ -71,7 +71,7 @@ V5 preserves the V4 ML/Transformer stack; historical V4 documentation remains av
 
 | Area | Status |
 |------|--------|
-| **Tests** | ✅ 762/762 passing |
+| **Tests** | ✅ 770/770 passing |
 | **Autograd** | ✅ Verified with gradient checking |
 | **Transformer** | ✅ REAL backprop (17/17 gradients) |
 | **Cognitive Pipeline** | ✅ CerebroV3 integrated (10 components) |
