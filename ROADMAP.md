@@ -1,5 +1,32 @@
 # 🗺️ ROADMAP - Cerebro Zero
 
+## 🧠 Cerebro Zero 5.0 — COMPLETADO
+
+Release V5 completado el 2026-09-29.
+
+- [x] Cognitive cycle foundation
+- [x] Multi-layer memory primitives and consolidation
+- [x] Structured hypotheses and evidence
+- [x] Hierarchical planning, verification and plan repair
+- [x] Tool registry, permissions and action/risk budgets
+- [x] Skills and strategy learning
+- [x] Outcome evaluation and confidence error
+- [x] Replay and experience storage
+- [x] Reproducible V5 benchmark
+- [x] Transformer V5 integration while preserving the verified V4 ML stack
+- [x] Long-running autonomous benchmark suite
+- [x] Android/Termux performance qualification
+- [x] Final V5 release gate
+
+### V5 release gate
+
+- 770 tests passing in the Termux release environment.
+- 1,000/1,000 autonomous cycles successful in the release benchmark.
+- Package version verified as `5.0.0`.
+- Main branch synchronized with GitHub.
+
+Historical V4/V3/V2 roadmap sections below are retained as project history.
+
 ## 🏁 Cerebro Zero 4.0 — COMPLETADO
 
 Release de integridad finalizado el 2026-09-28.
@@ -22,7 +49,7 @@ Release de integridad finalizado el 2026-09-28.
 - Legacy pickle artifacts isolated under `legacy/`.
 - Main branch synchronized with GitHub after every release commit.
 
-**Next milestone: design Cerebro Zero 5.0.**
+**Historical V4 milestone — completed before V5.**
 
 
 ## ✅ P0 — CORRECCIÓN (5/5)
@@ -65,7 +92,7 @@ Release de integridad finalizado el 2026-09-28.
 
 ---
 
-## 🎯 Estado Actual: **COMPLETADO AL 100%**
+## 🎯 Historical status: **COMPLETADO AL 100%**
 
 **Total: 48/48 fases (100%)**
 **Tests: 308/308 ✅**
@@ -102,7 +129,7 @@ Si empezamos 3.0, los candidatos serían:
 
 ---
 
-## 🏆 Estado Actual: **CEREBRO ZERO 3.0 COMPLETADO**
+## 🏆 Historical status: **CEREBRO ZERO 3.0 COMPLETADO**
 
 **Total: 61/61 fases**
 **Tests: 792/792 ✅**
@@ -120,7 +147,7 @@ Candidatos para 4.0:
 - Voice 3.0 (TTS, STT)
 - Multimodal (texto + imagen)
 
-## Cerebro Zero V5
+## V5 implementation checklist (historical completion record)
 
 - [x] Cognitive cycle foundation
 - [x] Multi-layer memory primitives

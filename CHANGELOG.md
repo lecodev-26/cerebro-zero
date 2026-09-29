@@ -1,5 +1,21 @@
 # 📝 CHANGELOG
 
+## [5.0.0] - 2026-09-29
+
+### Cognitive Autonomous Runtime
+
+- Added the V5 cognitive cycle: observe → context → retrieve → reason → plan → guard → act → verify → learn → consolidate.
+- Added working, episodic, semantic and procedural memory orchestration with consolidation.
+- Added structured hypotheses/evidence and memory-backed reasoning.
+- Added hierarchical planning, verification and plan repair.
+- Added tool registry, permissions, action/risk budgets and safe default execution.
+- Added context construction/compression and procedural skills.
+- Added outcome evaluation, confidence error, replay, experience storage and strategy learning.
+- Added reproducible V5 benchmark with long-running cycle support.
+- Added V5 integration tests and release-gate documentation.
+- Qualified the release on Termux: 770/770 tests passing and 1,000/1,000 benchmark cycles successful.
+- Bumped package version to `5.0.0`.
+
 ## [4.0.0] - 2026-09-28
 
 ### System Integrity Release

@@ -9,7 +9,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.14-blue.svg)](https://www.python.org/)
 [![NumPy](https://img.shields.io/badge/NumPy-2.4.4-green.svg)](https://numpy.org/)
-[![Tests](https://img.shields.io/badge/Tests-762%2F762-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-770%2F770-brightgreen.svg)](tests/)
 [![CI](https://github.com/lecodev-26/cerebro-zero/actions/workflows/ci.yml/badge.svg)](https://github.com/lecodev-26/cerebro-zero/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![No Pickle](https://img.shields.io/badge/Pickle-Zero-success.svg)](#serialization)
@@ -27,16 +27,47 @@
 
 ## 📖 Description
 
-**Cerebro Zero 4.0** is a **fully-integrated cognitive agent** built **from scratch** in Python + NumPy. No ML frameworks. No `pickle`. Every component is verified with gradient checking and tests.
+**Cerebro Zero 5.0.0** is the current release: a **cognitive autonomous runtime** built on the verified V4 ML stack. It adds a deterministic cognitive cycle for context, memory, reasoning, planning, guarded actions, verification, learning and consolidation. No ML frameworks. No `pickle` in the active tree.
 
-**Philosophy 4.0 — System Integrity:**
+**Philosophy 5.0 — Cognitive Autonomy:**
 > 2.1 = verifiable system.
 > 3.0 = system that learns, plans and acts verifiably.
-> 4.0 = system that proves its integrity: zero pickle, transactional learning, honest benchmarks.
+> 4.0 = system integrity: zero pickle, transactional learning, honest benchmarks.
+> 5.0 = deterministic cognitive runtime: observe, reason, plan, guard, act, verify, learn and consolidate.
 
 ---
 
-## 🏆 Achievements 4.0
+## 🧠 Cerebro Zero 5.0.0 — Cognitive Autonomous Runtime
+
+V5 is the current release and extends the verified V4 foundation with an autonomous orchestration layer:
+
+`observe → context → retrieve → reason → plan → guard → act → verify → learn → consolidate`
+
+- **Cognitive cycle:** deterministic end-to-end runtime orchestration.
+- **Memory:** working, episodic, semantic and procedural layers with consolidation.
+- **Reasoning:** structured hypotheses and evidence with memory reuse.
+- **Planning:** hierarchical plans with verification and plan repair.
+- **Tools:** registry, schemas, permissions and risk-aware execution.
+- **Context:** bounded context construction and compression.
+- **Skills:** procedural skill registry, selection and usage tracking.
+- **Evaluation:** outcome scoring, confidence error and calibration signals.
+- **Learning:** experience replay, strategy tracking and reward accumulation.
+- **Safety:** action/risk budgets and a safe simulated executor by default.
+- **Benchmark:** reproducible long-running V5 benchmark for Android/Termux.
+
+### V5 release qualification
+
+- **Tests:** 770/770 passing in the Termux release environment.
+- **Benchmark:** 1,000/1,000 successful cycles (100% success in the release benchmark).
+- **Throughput:** 195.66 cycles/s in that 1,000-cycle run on the release environment.
+- **Learning trace:** 1,000 episodic experiences and 1,000 skill uses recorded.
+- **Package:** `5.0.0`, verified as installed.
+
+V5 preserves the V4 ML/Transformer stack; historical V4 documentation remains available for release history and validation details.
+
+---
+
+## 🏆 V4 foundation achievements retained in V5
 
 | Area | Status |
 |------|--------|
@@ -62,7 +93,7 @@
 
 ---
 
-## 🎯 What works in 4.0
+## 🎯 V4 foundation retained in V5
 
 ### **Mathematical core**
 - Tensor with full autograd
@@ -199,7 +230,7 @@ python cli.py chat
 python cli.py plan "Train the model"
 
 # Run benchmark
-python cli.py benchmark
+python -m evaluation.benchmark_v5 --cycles 1000
 
 # Run tests
 python cli.py test
@@ -210,23 +241,20 @@ python cli.py test
 🧠 Usage example
 
 ```python
-from agent.cerebro_v3 import CerebroV3
+from v5.runtime import CerebroZeroV5
 
-cerebro = CerebroV3(nombre="Zero")
+cerebro = CerebroZeroV5()
 
 # Math (tool)
-cerebro.procesar("5 + 3")           # → "5.0 + 3.0 = 8.0"
+result = cerebro.run("5 + 3")
+print(result)
 
-# Learn / recall (world model)
-cerebro.procesar("aprende color = azul")
-cerebro.procesar("recordar color")   # → "💭 Recuerdo: color = azul"
+# Cognitive cycle
+result = cerebro.run("remember that the sky is blue")
+print(result.cycle)
 
-# Plan (Planner 3.0)
-r = cerebro.procesar("Entrenar el modelo")
-r.plan                                # → Plan with 8 subgoals
-
-# Stats
-cerebro.stats()
+# Runtime stats
+print(cerebro.stats())
 ```
 
 ---
@@ -240,14 +268,15 @@ cerebro-zero/
 ├── core/             # Tensor, autograd, layers, transformer, serialization
 ├── datasets/         # Datasets
 ├── docs/             # Documentation
-├── evaluation/       # Benchmark 4.0, reproducibility
+├── evaluation/       # V5 benchmark + reproducibility
+├── v5/                # Cognitive autonomous runtime
 ├── language/         # Tokenizer 3.0, vocabulary
 ├── memory/           # Working, Procedural, World, Semantic
 ├── mobile/           # Optimizer, metrics, quantizer
 ├── models/           # Brain, MLP, Transformer
 ├── reasoning/        # Planner 3.0
 ├── security/         # Permissions, sandbox, process
-├── tests/            # 742 active tests
+├── tests/            # 770 active tests
 ├── tools/            # Tool System 3.0 + plugins
 ├── training/         # LM Trainer, Learning Engine, RL
 ├── utils/            # Visual (rich) + Plots (Pillow)
@@ -259,21 +288,20 @@ cerebro-zero/
 
 ---
 
-📊 Benchmark 4.0
+📊 Benchmark V5
 
 Run:
 
 ```bash
-python cli.py benchmark
+python -m evaluation.benchmark_v5 --cycles 1000
 ```
 
 Metrics:
 
-· Global accuracy
-· Per category (math, memory, planning, rl, learning)
-· Per split (KNOWN, UNSEEN, ADVERSARIAL)
-· Latency p50, p95
-· Error rate
+· Successful cognitive cycles
+· Success rate
+· Elapsed time and cycles/second
+· Runtime statistics: episodic memory, learning experiences, skills and tools
 
 ---
 
@@ -295,22 +323,25 @@ Completed
 
 Status
 
-· Version: 4.0.0 — release complete
+· Version: 5.0.0 — release complete
 · Tests: see the live CI badge and `pytest --collect-only -q` for the current count
-· 4.4 E2E Benchmark: ✅
-· 4.5 E2E Testing: ✅
-· 4.6 Memory Indexing: ✅
-· 4.7 Transformer KV-cache: ✅
-· 4.8 Security Hardening: ✅
-· 4.9 Unified CI: ✅
-· 4.10 Scientific Release: ✅
-· 4.11 Documentation 4.0: ✅
+· V5 Cognitive Cycle: ✅
+· V5 Multi-layer Memory: ✅
+· V5 Reasoning + Evidence: ✅
+· V5 Planning + Repair: ✅
+· V5 Tool Permissions + Risk Budgets: ✅
+· V5 Skills + Strategy Learning: ✅
+· V5 Evaluation + Calibration: ✅
+· V5 Replay + Experience Storage: ✅
+· V5 Reproducible Benchmark: ✅
+· V5 Android/Termux Qualification: ✅
+· V5 Release Gate: ✅
 
 ---
 
 ⚠️ Known limitations
 
-Cerebro Zero 4.0 is an educational laboratory with explicit technical limitations.
+Cerebro Zero 5.0.0 is an educational laboratory with explicit technical limitations.
 
 Benchmark
 
