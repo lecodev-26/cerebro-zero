@@ -46,6 +46,7 @@ test_*_tmp.json
 
 # Estado dinámico (no versionar)
 logs/
+artifacts/cerebro-model-1.0/
 artifacts/*.json
 artifacts/*.png
 artifacts/*.txt

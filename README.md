@@ -11,9 +11,9 @@
 
 Cerebro Zero is moving from V2-V5 research stages to one unified 1.x product line:
 
-Cerebro Runtime 1.0 + Cerebro Model 1.0 -> 1.1 -> 1.2 -> ...
+Cerebro Runtime 1.0 + one continuous Cerebro Model lineage.
 
-V2, V3, V4 and V5 are historical engineering stages. New model releases continue the same lineage.
+V2, V3, V4 and V5 are historical engineering stages. During 1.0 training, generations are successive checkpoints of the same model; product model versions are only declared when a release decision is made.
 
 ## What is ready
 
@@ -87,6 +87,14 @@ Smoke test first:
     python scripts/train_cerebro_1_0.py --dataset <dataset>.jsonl --epochs 1 --batches-per-epoch 2
 
 The command creates tokenizer, train/validation/test corpora, checkpoint and experiment manifest under artifacts/cerebro-model-1.0/.
+
+### Continue the same Cerebro brain
+
+Every continuation loads the latest checkpoint, preserves compatible weights, increases model capacity, and trains the successor in the same `cerebro-model` lineage:
+
+    python scripts/train_cerebro_1_0.py --continue
+
+The lineage pointer is `artifacts/cerebro-model-1.0/LATEST.json`. Parameter counts grow because the architecture is expanded; they do not add arithmetically between checkpoints. Two independent contributors must not concatenate checkpoints: their runs must be explicitly merged or distilled before becoming one successor.
 
 ## Contributing training runs
 

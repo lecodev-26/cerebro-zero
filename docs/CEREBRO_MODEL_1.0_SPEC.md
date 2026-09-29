@@ -1,6 +1,6 @@
 # Cerebro Model 1.0 — Technical Specification
 
-This freezes the starting specification so contributors can focus on training and evaluation.
+This freezes the starting specification so contributors can focus on training and evaluation. The repository uses one cerebro-model lineage; capacity-growth generations are not separate product models.
 
 ## Goal
 
@@ -43,8 +43,14 @@ The command writes tokenizer, split corpora, checkpoint and manifest under artif
 
 A checkpoint is a candidate only if training is reproducible, validation improves against baseline, the held-out benchmark passes, contamination checks pass, and checkpoint/dataset fingerprints are recorded.
 
+## Single-lineage growth
+
+The model identity is cerebro-model. Training generations are capacity-growth steps of that same model, not new product versions. Each continuation loads the latest checkpoint, preserves compatible weights, adds capacity according to the growth schedule, and continues optimization.
+
+The canonical trainer records generation, parent checkpoint hash, architecture, parameter count, dataset fingerprint and evaluation history. Parameters do not add arithmetically between generations or between independently trained branches.
+
 ## Lineage
 
-Cerebro Model 1.0 -> 1.1 -> 1.2 ...
+Cerebro Model 1.0 is the product/release identity. Its internal training generations are implementation checkpoints inside that identity. Future product model evolution remains Cerebro Model 1.1 -> 1.2 ... only when a genuinely new model release is declared.
 
-Every accepted model records parent checkpoint, dataset fingerprint, tokenizer, training configuration and evaluation report.
+Every accepted checkpoint records parent checkpoint, dataset fingerprint, tokenizer, training configuration and evaluation report.
