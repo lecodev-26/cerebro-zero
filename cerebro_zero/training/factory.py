@@ -7,9 +7,11 @@ class SyntheticDataFactory:
     def generate(self,prompts,teacher_name,generate_fn):
         teacher=self.teachers.get(teacher_name)
         return [DatasetRecord(p,generate_fn(teacher,p),source=teacher.name,license=teacher.license,provenance=teacher.provider) for p in prompts]
+    def from_teacher_results(self, results):
+        return [DatasetRecord(r.prompt, r.response, source=r.teacher, license=r.metadata.get("license", "unknown"), provenance=r.metadata.get("provider", r.teacher), metadata={"model": r.model, **r.metadata}) for r in results]
 class DatasetValidator:
     def validate(self,records,allowed_licenses=None):
-        allowed=set(allowed_licenses or {"MIT","Apache-2.0","CC-BY","curated"}); return [r for r in records if r.instruction.strip() and r.response.strip() and r.license in allowed]
+        allowed=set(allowed_licenses or {"MIT","Apache-2.0","CC-BY","curated","provider-output"}); return [r for r in records if r.instruction.strip() and r.response.strip() and r.license in allowed]
     def deduplicate(self,records):
         seen=set(); out=[]
         for r in records:
