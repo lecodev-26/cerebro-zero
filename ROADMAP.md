@@ -119,3 +119,20 @@ Candidatos para 4.0:
 - Vision 3.0 (CNN, datasets reales)
 - Voice 3.0 (TTS, STT)
 - Multimodal (texto + imagen)
+
+## Cerebro Zero V5
+
+- [x] Cognitive cycle foundation
+- [x] Multi-layer memory primitives
+- [x] Structured hypotheses and evidence
+- [x] Plan repair
+- [x] Tool registry and permissions
+- [x] Skills and strategy learning primitives
+- [x] Outcome evaluation and confidence error
+- [x] Action and risk budgets
+- [x] Replay and experience storage
+- [x] Reproducible V5 benchmark
+- [ ] Transformer V5 experiments
+- [ ] long-running autonomous benchmark suite
+- [ ] Android/Termux performance qualification
+- [ ] final V5 release gate

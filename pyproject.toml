@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cerebro-zero"
-version = "4.0.0"
+version = "5.0.0"
 description = "Autonomous Learning Cognitive Agent — IA desde cero en Python + NumPy"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -53,6 +53,7 @@ cerebro-zero = "cli:main"
 
 [tool.setuptools]
 packages = [
+    "v5",
     "agent",
     "config",
     "core",
