@@ -28,12 +28,7 @@ jobs:
       - name: Package metadata
         run: python -m pip check
       - name: 1.0 public API smoke
-        run: python - <<'PY'
-          from cerebro_zero import Cerebro
-          r=Cerebro().run('CI smoke')
-          assert r.success
-          print(r.text)
-          PY
+        run: python -c "from cerebro_zero import Cerebro; r=Cerebro().run('CI smoke'); assert r.success; print(r.text)"
 
   e2e:
     name: E2E benchmark
