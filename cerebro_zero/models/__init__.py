@@ -1,3 +1,4 @@
+from .providers import OpenAICompatibleProvider, OpenRouterProvider
 from .base import BaseModelProvider, LocalEchoProvider
 from .tokenization import TokenizerContract
 from .spec import ModelSpec

@@ -15,3 +15,12 @@ def test_cognitive_stages_are_traced():
 def test_invalid_prompt_rejected():
     import pytest
     with pytest.raises(ValueError): Cerebro().run("")
+
+
+def test_provider_selection_from_env(monkeypatch):
+    monkeypatch.setenv("CEREBRO_PROVIDER", "openrouter")
+    monkeypatch.setenv("CEREBRO_TEACHER_MODEL", "teacher-test")
+    from cerebro_zero import Cerebro
+    ai=Cerebro()
+    assert ai.runtime.provider.name == "openrouter"
+    assert ai.runtime.provider.model == "teacher-test"
