@@ -1,0 +1,41 @@
+name: Model training report
+description: Report a reproducible Cerebro Model training run
+title: "[TRAINING] "
+labels:
+  - training
+body:
+  - type: markdown
+    attributes:
+      value: "Use this form for reproducible training runs. Never include API keys or private data."
+  - type: input
+    id: dataset
+    attributes:
+      label: Dataset fingerprint
+    validations:
+      required: true
+  - type: input
+    id: hardware
+    attributes:
+      label: Hardware / OS
+    validations:
+      required: true
+  - type: textarea
+    id: config
+    attributes:
+      label: Model and training configuration
+      description: Include tokenizer, dimensions, batch size, learning rate, epochs and seed.
+    validations:
+      required: true
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Metrics
+      description: Include train/validation loss, perplexity and held-out benchmark results.
+    validations:
+      required: true
+  - type: input
+    id: checkpoint
+    attributes:
+      label: Checkpoint hash
+    validations:
+      required: false

@@ -1,44 +1,54 @@
-# 🤝 Cómo contribuir a Cerebro Zero
+# Contributing to Cerebro Zero
 
-¡Gracias por tu interés en mejorar Cerebro Zero! Toda ayuda es bienvenida.
+The project is now in the model-training phase. The most valuable contributions are reproducible training runs, data-quality improvements, benchmark improvements and training-performance improvements.
 
-## 🐛 Reportar errores
+## Before changing code
 
-Si encuentras un error, abre un issue en GitHub con:
+Run:
 
-- Descripción del error
-- Pasos para reproducirlo
-- Comportamiento esperado
-- Capturas de pantalla (si es posible)
+    pytest -q
 
-## 💡 Sugerir mejoras
+Read:
 
-Si tienes ideas para mejorar el proyecto:
+- docs/CEREBRO_MODEL_1.0_SPEC.md
+- docs/TRAINING.md
+- docs/DATASET_POLICY.md
 
-- Abre un issue con la etiqueta `enhancement`
-- Describe tu propuesta
-- Explica por qué sería útil
+## Training runs
 
-## 🔧 Enviar código
+Use the Model training issue template. Report the full configuration, dataset fingerprint, metrics and checkpoint hash. Never publish credentials or private data.
 
-1. Haz un fork del repositorio
-2. Crea una rama: `git checkout -b mi-mejora`
-3. Haz tus cambios
-4. Prueba que todo funciona
-5. Envía un pull request
+A training result is a candidate until it passes the evaluation gate.
 
-## 📝 Estilo de código
+## Dataset contributions
 
-- Sigue PEP 8 para Python
-- Documenta funciones y clases
-- Usa nombres descriptivos
+Every record needs provenance and terms/license information. Do not add held-out benchmark data to training data.
 
-## 🧠 Filosofía del proyecto
+## Code contributions
 
-- Todo desde cero (sin frameworks)
-- Código legible y educativo
-- Funcional en móviles (Termux)
+1. Fork the repository.
+2. Create a branch.
+3. Make one focused change.
+4. Run the full test suite.
+5. Include reproducibility information when the change affects training.
+6. Open a pull request.
 
----
+## Scope
 
-**¡Gracias por contribuir a Cerebro Zero!** 🧠🚀
+Preferred work:
+
+- model architecture experiments
+- tokenizer improvements
+- teacher/data factory improvements
+- dataset quality and deduplication
+- evaluation and contamination checks
+- CPU/GPU training backends
+- checkpoint loading and promotion
+- reproducibility
+- documentation
+
+Avoid unrelated rewrites while the 1.0 model is being trained.
+
+## Security
+
+Never commit API keys, tokens, credentials, private datasets or generated secret files.
