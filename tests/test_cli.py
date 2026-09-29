@@ -171,7 +171,7 @@ def test_pyproject_tiene_nombre():
     with open(path) as f:
         contenido = f.read()
     assert 'name = "cerebro-zero"' in contenido
-    assert "4.0.0" in contenido
+    assert "5.0.0" in contenido
 
 
 def test_pyproject_tiene_script():
