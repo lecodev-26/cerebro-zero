@@ -1,2 +1,3 @@
 from .settings import Settings
-__all__ = ["Settings"]
+from .loader import ConfigLoader
+__all__=["Settings","ConfigLoader"]

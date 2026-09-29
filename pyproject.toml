@@ -55,6 +55,7 @@ packages = [
     "cerebro_zero.security",
     "cerebro_zero.evaluation",
     "cerebro_zero.observability",
+    "cerebro_zero.training",
     "v5",
     "agent",
     "config",

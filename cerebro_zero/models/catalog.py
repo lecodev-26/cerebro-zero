@@ -13,4 +13,6 @@ class ModelCatalog:
 
     def get(self, name): return self.registry.get(name)
     def specs(self): return self.registry.list()
+    def list(self):
+        return [{"name": s.name, "version": s.version, "capabilities": list(s.capabilities)} for s in self.registry.list()]
     def lineage(self, name): return self.lineages.get(name)
