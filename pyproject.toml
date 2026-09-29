@@ -47,6 +47,8 @@ cerebro-zero = "cerebro_zero.cli:main"
 packages = [
     "cerebro_zero",    "cerebro_zero.cli",
     "cerebro_zero.config",
+    "cerebro_zero.compat",
+    "cerebro_zero.compute",
     "cerebro_zero.core",
     "cerebro_zero.models",
     "cerebro_zero.cognition",

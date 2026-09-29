@@ -1,4 +1,4 @@
-from v5.runtime import ReasoningEngine
+from ..compat import ReasoningEngine
 
 class Reasoner(ReasoningEngine):
     """1.0 boundary around the proven reasoning primitive."""

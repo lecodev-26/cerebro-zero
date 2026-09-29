@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from v5.security import ActionGuard
+from ..compat import ActionGuard
 
 @dataclass(frozen=True)
 class ToolDecision:

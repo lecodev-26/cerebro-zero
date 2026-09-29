@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 import time
-from v5.runtime import CerebroZeroV5
+from ..compat import CerebroZeroV5
 from ..config import Settings
 from ..models import LocalEchoProvider, ModelCatalog, ModelSpec, ModelLineage
 from ..observability import EventTrace

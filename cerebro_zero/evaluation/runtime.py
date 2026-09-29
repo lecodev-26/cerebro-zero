@@ -1,4 +1,4 @@
-from v5.evaluation import Evaluator as V5Evaluator
+from ..compat import V5Evaluator
 
 class RuntimeEvaluator(V5Evaluator):
     def evaluate(self, value):

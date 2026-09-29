@@ -1,4 +1,4 @@
-from v5.runtime import ToolRegistry, ToolSpec, PermissionPolicy
+from ..compat import ToolRegistry, ToolSpec, PermissionPolicy
 
 class ToolService:
     """Stable tool boundary; execution remains policy-gated."""

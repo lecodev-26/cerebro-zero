@@ -141,9 +141,23 @@ See docs/TRAINING.md and docs/DATASET_POLICY.md.
 
 ## Development checks
 
+The canonical verification command is:
+
+    make verify
+
+It runs the regression suite, package checks, wheel build, release gate and public API smoke test.
+
+For the fast training-path check:
+
+    make train-smoke
+
+For individual checks:
+
     pytest -q
     python -m build --wheel
     python scripts/release_gate.py
+
+See `docs/STATUS.md` for the live 1.0 status and `docs/CANONICAL_ARCHITECTURE.md` for dependency boundaries.
 
 ## Historical releases
 
