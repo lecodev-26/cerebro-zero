@@ -132,7 +132,7 @@ Candidatos para 4.0:
 - [x] Action and risk budgets
 - [x] Replay and experience storage
 - [x] Reproducible V5 benchmark
-- [ ] Transformer V5 experiments
-- [ ] long-running autonomous benchmark suite
-- [ ] Android/Termux performance qualification
-- [ ] final V5 release gate
+- [x] Transformer V5 experiments (V4 transformer preserved and V5 integration qualified)
+- [x] long-running autonomous benchmark suite
+- [x] Android/Termux performance qualification
+- [x] final V5 release gate
