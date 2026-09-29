@@ -47,7 +47,7 @@ class OpenAICompatibleProvider(BaseModelProvider):
             raise RuntimeError(f"Teacher API connection failed: {exc.reason}") from exc
         choices = body.get("choices") or []
         if not choices or not choices[0].get("message", {}).get("content"):
-            raise RuntimeError(f"Teacher API returned no assistant content; response_keys={list(body.keys())}; choices={len(choices)}; choice_keys={[list(c.keys()) for c in choices]}; message_keys={[list(c.get("message", {}).keys()) for c in choices]}")
+            raise RuntimeError(f"Teacher API returned no assistant content; response_keys={list(body.keys())}; choices={len(choices)}; choice_keys={[list(c.keys()) for c in choices]}; message_keys={[list(c.get('message', {}).keys()) for c in choices]}")
         text = choices[0]["message"]["content"]
         return ModelResponse(text=text, model=body.get("model", payload["model"]), metadata={"backend": "openai-compatible", "usage": body.get("usage", {})})
 
